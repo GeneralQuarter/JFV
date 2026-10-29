@@ -1,4 +1,5 @@
 import type { Plant } from '@jfv/core/domain';
+import { MAP_LAYER_IDS } from '@jfv/map-data';
 import circle from '@turf/circle';
 import type { FeatureCollection } from 'geojson';
 import { type FC, useMemo } from 'react';
@@ -88,6 +89,7 @@ const Plants: FC<PlantsProps> = ({
       />
       <Layer type="line" paint={{ 'line-color': 'gray' }}></Layer>
       <Layer
+        id={MAP_LAYER_IDS.plantLabel}
         type="symbol"
         layout={{ 'text-field': ['get', 'code'] }}
         paint={{

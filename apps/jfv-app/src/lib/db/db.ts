@@ -74,7 +74,9 @@ function setNextSyncToken(token: string) {
 }
 
 export async function sync() {
-  if (!navigator.onLine || !import.meta.env.PROD) {
+  const syncInDev = import.meta.env.VITE_SYNC_IN_DEV === 'true';
+
+  if (!navigator.onLine || (!import.meta.env.PROD && !syncInDev)) {
     return;
   }
 
@@ -84,12 +86,17 @@ export async function sync() {
   });
 
   const nextSyncToken = getNextSyncToken();
-  const syncQuery: SyncQuery = nextSyncToken
-    ? { nextSyncToken }
-    : { initial: true };
+  const hasLocalData =
+    (await db.plants.count()) > 0 ||
+    (await db.plantCards.count()) > 0 ||
+    (await db.hedges.count()) > 0 ||
+    (await db.rectangles.count()) > 0;
+  const syncQuery: SyncQuery =
+    nextSyncToken && hasLocalData ? { nextSyncToken } : { initial: true };
 
   if (syncQuery.initial) {
     await clearAllSyncedTables();
+    localStorage.removeItem(syncTokenKey);
   }
 
   const {

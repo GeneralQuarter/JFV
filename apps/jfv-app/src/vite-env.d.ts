@@ -5,6 +5,9 @@
 
 interface ImportMetaEnv {
   readonly VITE_API_BASE_URL: string;
+  readonly VITE_CONTENTFUL_ACCESS_TOKEN: string;
+  readonly VITE_CONTENTFUL_SPACE: string;
+  readonly VITE_SYNC_IN_DEV?: string;
 }
 
 interface ImportMeta {

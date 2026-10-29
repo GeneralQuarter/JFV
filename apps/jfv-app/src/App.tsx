@@ -5,6 +5,8 @@ import {
   type SearchEntry,
   TAG_IDS,
 } from '@jfv/core/domain';
+import type { MeasureNode } from '@jfv/core/geo';
+import { MAP_LAYER_IDS } from '@jfv/map-data';
 import GpsFixedIcon from '@mui/icons-material/GpsFixed';
 import GrassIcon from '@mui/icons-material/Grass';
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
@@ -12,6 +14,7 @@ import LocationDisabledIcon from '@mui/icons-material/LocationDisabled';
 import LocationSearchingIcon from '@mui/icons-material/LocationSearching';
 import NavigationIcon from '@mui/icons-material/Navigation';
 import ParkIcon from '@mui/icons-material/Park';
+import SquareFootIcon from '@mui/icons-material/SquareFoot';
 import {
   Alert,
   AppBar,
@@ -19,6 +22,7 @@ import {
   CircularProgress,
   Fab,
   IconButton,
+  LinearProgress,
   Snackbar,
   styled,
   Toolbar,
@@ -30,6 +34,7 @@ import Filters from './components/Filters';
 import MainMap, { type Feature } from './components/MainMap';
 import CurrentPosition from './components/map/CurrentPosition';
 import Hedges from './components/map/Hedges';
+import Measures from './components/map/Measures';
 import Plants from './components/map/Plants';
 import Rectangles from './components/map/Rectangles';
 import StaticFeatures from './components/map/StaticFeatures';
@@ -43,6 +48,7 @@ import useAuth from './hooks/useAuth';
 import useFilters from './hooks/useFilters';
 import useGeolocation from './hooks/useGeolocation';
 import useHedges from './hooks/useHedges';
+import useMeasureGraph from './hooks/useMeasureGraph';
 import usePlants from './hooks/usePlants';
 import useRectangles from './hooks/useRectangles';
 import useSelectedPlant from './hooks/useSelectedPlant';
@@ -58,7 +64,7 @@ const FullContainer = styled('div')({
   width: '100%',
 });
 
-const interactiveLayerIds = ['plant'];
+const interactiveLayerIds = [MAP_LAYER_IDS.plant, MAP_LAYER_IDS.measure];
 
 const FixedFab = styled(Fab)({
   position: 'absolute',
@@ -66,7 +72,7 @@ const FixedFab = styled(Fab)({
 });
 
 const App: FC = () => {
-  useSyncDb();
+  const [syncing] = useSyncDb();
   const auth = useAuth();
   const plants = usePlants();
   const rectangles = useRectangles();
@@ -79,21 +85,74 @@ const App: FC = () => {
   const [filters, addFilter, removeFilter] = useFilters();
   const [showCanopy, toggleShowCanopy] = useToggle();
   const [geolocationActive, toggleGeolocation] = useToggle();
+  const [tapeActive, toggleTape] = useToggle();
+  const [measureStart, setMeasureStart] = useState<MeasureNode>();
+  const [measureGraph, addMeasure, removeMeasure] = useMeasureGraph();
   const [pendingAction, setPendingAction] = useState<'plant' | 'dead' | null>(
     null,
   );
   const currentCoords = useGeolocation(geolocationActive);
   const { mainMap } = useMap();
 
+  const addMeasureNode = useCallback(
+    (plantId: string) => {
+      const plant = (plants ?? []).find(
+        (candidate) => candidate.id === plantId,
+      );
+
+      if (!plant?.position) {
+        return;
+      }
+
+      const node: MeasureNode = {
+        id: plant.id,
+        position: plant.position,
+      };
+
+      if (!measureStart) {
+        setMeasureStart(node);
+        return;
+      }
+
+      if (measureStart.id === node.id) {
+        setMeasureStart(undefined);
+        return;
+      }
+
+      addMeasure(measureStart, node);
+      setMeasureStart(undefined);
+    },
+    [addMeasure, measureStart, plants],
+  );
+
+  const onToggleTape = useCallback(() => {
+    toggleTape();
+    setSelectedPlantId(undefined);
+    setMeasureStart(undefined);
+  }, [setSelectedPlantId, toggleTape]);
+
   const onFeatureClick = useCallback(
     (feature: Feature) => {
       switch (feature.type) {
-        case 'plant':
+        case MAP_LAYER_IDS.plant:
+          if (tapeActive) {
+            addMeasureNode(feature.id);
+            return;
+          }
+
           toggleSelectedPlantId(feature.id);
           break;
+        case MAP_LAYER_IDS.measure: {
+          const { aId, bId } = feature.properties;
+
+          if (typeof aId === 'string' && typeof bId === 'string') {
+            removeMeasure([aId, bId]);
+          }
+          break;
+        }
       }
     },
-    [toggleSelectedPlantId],
+    [addMeasureNode, removeMeasure, tapeActive, toggleSelectedPlantId],
   );
 
   const flyTo = useCallback(
@@ -230,6 +289,12 @@ const App: FC = () => {
             <Filters filters={filters} onFilterDelete={removeFilter} />
           </Toolbar>
         )}
+        {syncing && (
+          <LinearProgress
+            color="secondary"
+            sx={{ position: 'absolute', bottom: 0, left: 0, right: 0 }}
+          />
+        )}
       </AppBar>
       <MainMap
         onFeatureClick={onFeatureClick}
@@ -245,11 +310,14 @@ const App: FC = () => {
           showCanopy={showCanopy}
           filters={filters}
         />
+        <Measures graph={measureGraph} startNode={measureStart} />
         {currentCoords && <CurrentPosition currentCoords={currentCoords} />}
       </MainMap>
       <SelectionDrawer
         title={selectedPlant?.code}
-        placeholder="Sélectionnez un arbre"
+        placeholder={
+          tapeActive ? 'Sélectionnez deux arbres' : 'Sélectionnez un arbre'
+        }
         actions={
           auth.status === 'authenticated' && selectedPlant ? (
             <IconButton
@@ -308,6 +376,18 @@ const App: FC = () => {
         aria-label="Montrer/Cacher la canopée"
       >
         {showCanopy ? <GrassIcon /> : <ParkIcon />}
+      </FixedFab>
+      <FixedFab
+        sx={(theme) => ({
+          insetInlineEnd: theme.spacing(2),
+          insetBlockEnd: theme.spacing(16),
+        })}
+        onClick={onToggleTape}
+        color={tapeActive ? 'secondary' : 'primary'}
+        size="small"
+        aria-label="Mesurer la distance entre deux arbres"
+      >
+        <SquareFootIcon />
       </FixedFab>
       <FixedFab
         sx={(theme) => ({

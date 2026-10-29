@@ -16,6 +16,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 export type Feature = {
   id: string;
   type: string;
+  properties: Record<string, unknown>;
 };
 
 type MainMapProps = {
@@ -44,8 +45,9 @@ const MainMap: FC<PropsWithChildren<MainMapProps>> = ({
 
       if (firstFeature) {
         onFeatureClick({
-          id: firstFeature.properties.id,
+          id: String(firstFeature.properties.id ?? ''),
           type: firstFeature.layer.id,
+          properties: firstFeature.properties,
         });
       }
     },
