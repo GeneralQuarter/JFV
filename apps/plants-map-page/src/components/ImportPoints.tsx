@@ -1,6 +1,6 @@
 import type { PageAppSDK } from '@contentful/app-sdk';
-import { Button } from '@contentful/f36-components';
-import { TrashSimpleIcon, TrayArrowDownIcon } from '@contentful/f36-icons';
+import { Button, Menu } from '@contentful/f36-components';
+import { TrayArrowDownIcon } from '@contentful/f36-icons';
 import { useSDK } from '@contentful/react-apps-toolkit';
 import { type ChangeEvent, type FC, useRef, useState } from 'react';
 import useEntries from '../hooks/useEntries';
@@ -85,28 +85,35 @@ const ImportPoints: FC = () => {
 
   return (
     <>
-      <Button
-        isDisabled={importing}
-        isLoading={importing}
-        onClick={() => fileInput.current?.click()}
-        size="small"
-        startIcon={<TrayArrowDownIcon />}
-        title="Import measured points (CSV) or marked plants (JSON)"
-      >
-        Import
-      </Button>
-      <Button
-        isDisabled={importing || points.length === 0}
-        onClick={() => {
-          clearPoints();
-          sdk.notifier.success('Measured points cleared.');
-        }}
-        size="small"
-        startIcon={<TrashSimpleIcon />}
-        title="Clear measured points"
-      >
-        Clear
-      </Button>
+      <Menu>
+        <Menu.Trigger>
+          <Button
+            isDisabled={importing}
+            isLoading={importing}
+            size="small"
+            startIcon={<TrayArrowDownIcon />}
+          >
+            Points
+          </Button>
+        </Menu.Trigger>
+        <Menu.List>
+          <Menu.Item
+            isDisabled={importing}
+            onClick={() => fileInput.current?.click()}
+          >
+            Import points (CSV/JSON)
+          </Menu.Item>
+          <Menu.Item
+            isDisabled={importing || points.length === 0}
+            onClick={() => {
+              clearPoints();
+              sdk.notifier.success('Measured points cleared.');
+            }}
+          >
+            Clear points
+          </Menu.Item>
+        </Menu.List>
+      </Menu>
       <input
         accept=".csv,.json,text/csv,application/json"
         onChange={(event) => void importFile(event)}
