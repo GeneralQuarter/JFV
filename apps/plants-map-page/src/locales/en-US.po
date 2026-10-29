@@ -52,28 +52,28 @@ msgstr "{marked} plants marked. Select the Marked tag to highlight them."
 msgid "<0>Click</0> on a feature to select it"
 msgstr "<0>Click</0> on a feature to select it"
 
-#: src/components/selection/SingleSelection.tsx:211
-#: src/components/selection/SingleSelection.tsx:228
+#: src/components/selection/SingleSelection.tsx:215
+#: src/components/selection/SingleSelection.tsx:232
 msgid "<0>Right-click</0> the copy to confirm, or <1>Escape</1> to cancel"
 msgstr "<0>Right-click</0> the copy to confirm, or <1>Escape</1> to cancel"
 
-#: src/components/selection/SingleSelection.tsx:182
+#: src/components/selection/SingleSelection.tsx:186
 msgid "<0>Right-click</0> the plant to move it"
 msgstr "<0>Right-click</0> the plant to move it"
 
-#: src/components/selection/SingleSelection.tsx:199
+#: src/components/selection/SingleSelection.tsx:203
 msgid "<0>Right-click</0> the rectangle to move it"
 msgstr "<0>Right-click</0> the rectangle to move it"
 
-#: src/components/selection/SingleSelection.tsx:188
+#: src/components/selection/SingleSelection.tsx:192
 msgid "<0>Right-click</0> the transparent copy to confirm, or <1>Escape</1> to cancel"
 msgstr "<0>Right-click</0> the transparent copy to confirm, or <1>Escape</1> to cancel"
 
-#: src/components/selection/SingleSelection.tsx:222
+#: src/components/selection/SingleSelection.tsx:226
 msgid "<0>Right-click</0> the zone to move it"
 msgstr "<0>Right-click</0> the zone to move it"
 
-#: src/components/selection/SingleSelection.tsx:205
+#: src/components/selection/SingleSelection.tsx:209
 msgid "<0>Scroll</0> over the moving rectangle to rotate it"
 msgstr "<0>Scroll</0> over the moving rectangle to rotate it"
 
@@ -198,7 +198,7 @@ msgstr "Dead plants"
 msgid "Draw sector"
 msgstr "Draw sector"
 
-#: src/components/selection/SingleSelection.tsx:109
+#: src/components/selection/SingleSelection.tsx:108
 msgid "Edit"
 msgstr "Edit"
 
@@ -270,7 +270,7 @@ msgstr "No loaded plants matched that list."
 msgid "No points found. Use name, latitude and longitude columns."
 msgstr "No points found. Use name, latitude and longitude columns."
 
-#: src/components/selection/SingleSelection.tsx:166
+#: src/components/selection/SingleSelection.tsx:165
 msgid "No tags"
 msgstr "No tags"
 
@@ -292,8 +292,8 @@ msgstr "Pin"
 
 #: src/components/AddMenu.tsx:25
 #: src/components/selection/plant/PlantQuickActions.tsx:101
-#: src/components/selection/SingleSelection.tsx:60
-#: src/components/selection/SingleSelection.tsx:60
+#: src/components/selection/SingleSelection.tsx:59
+#: src/components/selection/SingleSelection.tsx:59
 msgid "Plant"
 msgstr "Plant"
 
@@ -321,7 +321,7 @@ msgstr "Plant card"
 msgid "Plant cards"
 msgstr "Plant cards"
 
-#: src/components/selection/SingleSelection.tsx:135
+#: src/components/selection/SingleSelection.tsx:134
 msgid "Plant Cards"
 msgstr "Plant Cards"
 
@@ -354,7 +354,7 @@ msgid "Planted"
 msgstr "Planted"
 
 #: src/components/EditorMap.tsx:253
-#: src/components/selection/SingleSelection.tsx:177
+#: src/components/selection/SingleSelection.tsx:181
 msgid "Planted plants cannot be moved."
 msgstr "Planted plants cannot be moved."
 
@@ -376,8 +376,8 @@ msgid "Quick Actions"
 msgstr "Quick Actions"
 
 #: src/components/selection/MultiSelection.tsx:143
+#: src/components/selection/SingleSelection.tsx:64
 #: src/components/selection/SingleSelection.tsx:65
-#: src/components/selection/SingleSelection.tsx:66
 msgid "Rectangle"
 msgstr "Rectangle"
 
@@ -440,7 +440,7 @@ msgstr "Shown on map"
 msgid "Sponsor"
 msgstr "Sponsor"
 
-#: src/components/selection/SingleSelection.tsx:150
+#: src/components/selection/SingleSelection.tsx:149
 #: src/components/TagsSelector.tsx:62
 msgid "Tags"
 msgstr "Tags"
@@ -453,11 +453,11 @@ msgstr "The plant will be placed at the current map centre."
 msgid "Undo"
 msgstr "Undo"
 
-#: src/components/selection/SingleSelection.tsx:70
+#: src/components/selection/SingleSelection.tsx:69
 msgid "Unknown"
 msgstr "Unknown"
 
-#: src/components/selection/SingleSelection.tsx:99
+#: src/components/selection/SingleSelection.tsx:98
 msgid "Unselect feature"
 msgstr "Unselect feature"
 
@@ -470,8 +470,8 @@ msgid "You can select multiple features by holding <0>Ctrl</0>"
 msgstr "You can select multiple features by holding <0>Ctrl</0>"
 
 #: src/components/selection/MultiSelection.tsx:157
-#: src/components/selection/SingleSelection.tsx:68
-#: src/components/selection/SingleSelection.tsx:68
+#: src/components/selection/SingleSelection.tsx:67
+#: src/components/selection/SingleSelection.tsx:67
 msgid "Zone"
 msgstr "Zone"
 
