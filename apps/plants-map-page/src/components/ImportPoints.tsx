@@ -5,6 +5,7 @@ import { useSDK } from '@contentful/react-apps-toolkit';
 import { type ChangeEvent, type FC, useRef, useState } from 'react';
 import useEntries from '../hooks/useEntries';
 import useMeasuredPoints from '../hooks/useMeasuredPoints';
+import useMeasurementGraph from '../hooks/useMeasurementGraph';
 import { addEntryTag, entryTags } from '../lib/entries';
 import { MARKED_TAG_ID } from '../lib/keys';
 import { parseMeasuredPointsCsv, parsePlantIdsJson } from '../lib/points';
@@ -16,6 +17,12 @@ const ImportPoints: FC = () => {
   const points = useMeasuredPoints((state) => state.points);
   const setPoints = useMeasuredPoints((state) => state.setPoints);
   const clearPoints = useMeasuredPoints((state) => state.clearPoints);
+  const measurementCount = useMeasurementGraph(
+    (state) => state.graph.edges.length,
+  );
+  const clearMeasurements = useMeasurementGraph(
+    (state) => state.clearMeasurements,
+  );
   const fileInput = useRef<HTMLInputElement>(null);
   const [importing, setImporting] = useState(false);
 
@@ -72,6 +79,7 @@ const ImportPoints: FC = () => {
       }
 
       setPoints(points);
+      clearMeasurements();
       sdk.notifier.success(
         `${points.length} measured point${points.length === 1 ? '' : 's'} loaded. Ctrl/Cmd+click one to move the selected plant; Shift+Ctrl/Cmd copies coordinates.`,
       );
@@ -107,10 +115,20 @@ const ImportPoints: FC = () => {
             isDisabled={importing || points.length === 0}
             onClick={() => {
               clearPoints();
-              sdk.notifier.success('Measured points cleared.');
+              clearMeasurements();
+              sdk.notifier.success('Measured points and measurements cleared.');
             }}
           >
             Clear points
+          </Menu.Item>
+          <Menu.Item
+            isDisabled={importing || measurementCount === 0}
+            onClick={() => {
+              clearMeasurements();
+              sdk.notifier.success('Measurements cleared.');
+            }}
+          >
+            Clear measurements
           </Menu.Item>
         </Menu.List>
       </Menu>

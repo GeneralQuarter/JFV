@@ -21,6 +21,7 @@ export const MAP_LAYER_IDS = {
   measuredPoint: 'measured-point',
   measuredPointLabel: 'measured-point-label',
   measure: 'measure',
+  measureLabel: 'measure-label',
 } as const;
 
 export function createMapStyle(backgroundColor: string): StyleSpecification {

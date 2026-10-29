@@ -20,6 +20,7 @@ import MapSectors from './map/MapSectors';
 import MapView from './map/MapView';
 import MapZones from './map/MapZones';
 import MeasuredPoints from './map/MeasuredPoints';
+import Measurements from './map/Measurements';
 import PlantMoveGhost from './map/PlantMoveGhost';
 import Plants from './map/Plants';
 import Rectangles from './map/Rectangles';
@@ -47,15 +48,19 @@ const interactiveLayerIds = [
   MAP_LAYER_IDS.mapZone,
   MAP_LAYER_IDS.measuredPoint,
   MAP_LAYER_IDS.measuredPointLabel,
+  MAP_LAYER_IDS.measure,
+  MAP_LAYER_IDS.measureLabel,
 ];
 
-const MEASURED_POINT_LAYERS = [
+const OVERLAY_LAYERS = [
   MAP_LAYER_IDS.measuredPoint,
   MAP_LAYER_IDS.measuredPointLabel,
+  MAP_LAYER_IDS.measure,
+  MAP_LAYER_IDS.measureLabel,
 ];
 
-const isMeasuredPointFeature = (feature: MapGeoJSONFeature) =>
-  MEASURED_POINT_LAYERS.some((layerId) => layerId === feature.layer.id);
+const isOverlayFeature = (feature: MapGeoJSONFeature) =>
+  OVERLAY_LAYERS.some((layerId) => layerId === feature.layer.id);
 
 const mapStyle = createMapStyle(mapBackgroundColor);
 
@@ -131,7 +136,7 @@ const EditorMap: FC = () => {
         return;
       }
 
-      if (e.features?.some(isMeasuredPointFeature)) {
+      if (e.features?.some(isOverlayFeature)) {
         return;
       }
 
@@ -160,7 +165,7 @@ const EditorMap: FC = () => {
 
       const features = e.features ?? [];
 
-      if (features.some(isMeasuredPointFeature)) {
+      if (features.some(isOverlayFeature)) {
         return;
       }
 
@@ -268,6 +273,7 @@ const EditorMap: FC = () => {
       <MapSectors />
       <Plants />
       <MeasuredPoints />
+      <Measurements />
       <SectorDraft />
       {movingPlant && (
         <PlantMoveGhost

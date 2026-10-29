@@ -3,11 +3,12 @@ import { useSDK } from '@contentful/react-apps-toolkit';
 import { MAP_LAYER_IDS } from '@jfv/map-data';
 import type { FeatureCollection, Point } from 'geojson';
 import type { MapLayerMouseEvent } from 'maplibre-gl';
-import { type FC, useEffect, useMemo, useRef } from 'react';
+import { type FC, useEffect, useMemo, useRef, useState } from 'react';
 import { Layer, Source, useMap } from 'react-map-gl/maplibre';
 import useEntries from '../../hooks/useEntries';
 import useMapSelection from '../../hooks/useMapSelection';
 import useMeasuredPoints from '../../hooks/useMeasuredPoints';
+import useMeasurementGraph from '../../hooks/useMeasurementGraph';
 import useSectorDrawing from '../../hooks/useSectorDrawing';
 import { entryCode } from '../../lib/entries';
 import {
@@ -21,6 +22,7 @@ type MeasuredPointProperties = {
   color: string;
   index: number;
   label: string;
+  selected: boolean;
 };
 
 const MEASURED_POINT_LAYERS = [
@@ -35,8 +37,15 @@ const MeasuredPoints: FC = () => {
   const updatePlant = useEntries((state) => state.updatePlant);
   const selectedFeatures = useMapSelection((state) => state.selectedFeatures);
   const points = useMeasuredPoints((state) => state.points);
+  const addMeasurement = useMeasurementGraph((state) => state.addMeasurement);
   const isDrawing = useSectorDrawing((state) => state.isDrawing);
+  const [selectedIndex, setSelectedIndex] = useState<number>();
   const busyRef = useRef(false);
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: reset the selection when the imported points change
+  useEffect(() => {
+    setSelectedIndex(undefined);
+  }, [points]);
 
   const featureCollection = useMemo<
     FeatureCollection<Point, MeasuredPointProperties>
@@ -53,10 +62,11 @@ const MeasuredPoints: FC = () => {
           color: point.height > 10 ? '#e07b1f' : '#2f6fbf',
           index,
           label: point.name,
+          selected: index === selectedIndex,
         },
       })),
     }),
-    [points],
+    [points, selectedIndex],
   );
 
   useEffect(() => {
@@ -76,6 +86,36 @@ const MeasuredPoints: FC = () => {
       }
 
       if (!original.ctrlKey && !original.metaKey) {
+        event.preventDefault();
+
+        if (selectedIndex === index) {
+          setSelectedIndex(undefined);
+          return;
+        }
+
+        if (selectedIndex === undefined) {
+          setSelectedIndex(index);
+          return;
+        }
+
+        const first = points[selectedIndex];
+
+        if (!first) {
+          setSelectedIndex(index);
+          return;
+        }
+
+        addMeasurement(
+          {
+            id: `measured-${selectedIndex}`,
+            position: [first.coords.lat, first.coords.lon],
+          },
+          {
+            id: `measured-${index}`,
+            position: [point.coords.lat, point.coords.lon],
+          },
+        );
+        setSelectedIndex(undefined);
         return;
       }
 
@@ -151,7 +191,17 @@ const MeasuredPoints: FC = () => {
         map.off('click', layer, onPointClick);
       }
     };
-  }, [isDrawing, mainMap, plants, points, sdk, selectedFeatures, updatePlant]);
+  }, [
+    addMeasurement,
+    isDrawing,
+    mainMap,
+    plants,
+    points,
+    sdk,
+    selectedFeatures,
+    selectedIndex,
+    updatePlant,
+  ]);
 
   if (points.length === 0) {
     return null;
@@ -164,9 +214,14 @@ const MeasuredPoints: FC = () => {
         type="circle"
         paint={{
           'circle-color': ['get', 'color'],
-          'circle-radius': 5,
-          'circle-stroke-color': '#ffffff',
-          'circle-stroke-width': 1.5,
+          'circle-radius': ['case', ['get', 'selected'], 8, 5],
+          'circle-stroke-color': [
+            'case',
+            ['get', 'selected'],
+            '#7a5fa8',
+            '#ffffff',
+          ],
+          'circle-stroke-width': ['case', ['get', 'selected'], 2.5, 1.5],
         }}
       />
       <Layer
