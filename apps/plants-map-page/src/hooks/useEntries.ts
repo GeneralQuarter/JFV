@@ -66,6 +66,7 @@ type EntriesState = {
   loading: boolean;
   error?: string;
   fetchAllEntries: (cma: CMAClient) => Promise<void>;
+  addPlant: (plant: CmaEntry) => void;
   updateEntry: (entryId: string, updater: (entry: CmaEntry) => void) => void;
   updatePlant: (plantId: string, updater: (entry: CmaEntry) => void) => void;
   removePlant: (plantId: string) => void;
@@ -114,6 +115,15 @@ const useEntries = create<EntriesState>((set) => ({
         loading: false,
       });
     }
+  },
+  addPlant: (plant: CmaEntry) => {
+    set(
+      produce((state: EntriesState) => {
+        if (!state.plants.some((item) => item.sys.id === plant.sys.id)) {
+          state.plants.push(plant);
+        }
+      }),
+    );
   },
   updateEntry: (entryId: string, updater: (entry: CmaEntry) => void) => {
     set(

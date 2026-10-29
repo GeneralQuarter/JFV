@@ -3,6 +3,7 @@ import { TAG_IDS } from '@jfv/core/domain';
 import {
   addEntryTag,
   type CmaEntry,
+  entryCode,
   entryTags,
   setLocalizedDate,
 } from '../entries';
@@ -132,11 +133,29 @@ export function applyLocalPlantAction(
   }
 }
 
+export async function findPlantByCode(
+  cma: CMAClient,
+  code: string,
+): Promise<CmaEntry | undefined> {
+  const normalized = code.trim().toLowerCase();
+  const collection = await cma.entry.getMany({
+    query: {
+      content_type: 'plant',
+      'fields.code[match]': code.trim(),
+      limit: 10,
+    },
+  });
+
+  return collection.items.find(
+    (entry) => entryCode(entry).trim().toLowerCase() === normalized,
+  );
+}
+
 export async function updatePlantPosition(
   cma: CMAClient,
   plantId: string,
   position: { lat: number; lon: number },
-): Promise<void> {
+): Promise<CmaEntry> {
   const entry = await cma.entry.get({ entryId: plantId });
 
   if (entry.sys.contentType.sys.id !== 'plant') {
@@ -155,7 +174,7 @@ export async function updatePlantPosition(
     ],
   );
 
-  await cma.entry.publish({ entryId: plantId }, updated);
+  return cma.entry.publish({ entryId: plantId }, updated);
 }
 
 export function setLocalPlantPosition(
