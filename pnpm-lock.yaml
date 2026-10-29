@@ -168,6 +168,8 @@ overrides:
   '@lingui/vite-plugin': 5.7.0
   '@lingui/swc-plugin': 5.10.0
   '@swc/core': 1.15.8
+  react: 19.2.3
+  react-dom: 19.2.3
 
 importers:
 
@@ -327,13 +329,13 @@ importers:
     dependencies:
       '@ebay/nice-modal-react':
         specifier: ^1.2.13
-        version: 1.2.13(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        version: 1.2.13(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@emotion/react':
         specifier: ^11.14.0
-        version: 11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0)
+        version: 11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0)
       '@emotion/styled':
         specifier: ^11.14.1
-        version: 11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0)
+        version: 11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0)
       '@jfv/core':
         specifier: workspace:*
         version: link:../../packages/core
@@ -342,10 +344,10 @@ importers:
         version: link:../../packages/map-data
       '@mui/icons-material':
         specifier: ^7.3.6
-        version: 7.3.11(@mui/material@7.3.11(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(@types/react@19.3.0)(react@19.3.1)
+        version: 7.3.11(@mui/material@7.3.11(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(@types/react@19.3.0)(react@19.2.3)
       '@mui/material':
         specifier: ^7.3.6
-        version: 7.3.11(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        version: 7.3.11(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@turf/buffer':
         specifier: ^7.3.1
         version: 7.4.0
@@ -363,7 +365,7 @@ importers:
         version: 4.4.7
       dexie-react-hooks:
         specifier: ^4.2.0
-        version: 4.4.0(dexie@4.4.7)(react@19.3.1)
+        version: 4.4.0(dexie@4.4.7)(react@19.2.3)
       immer:
         specifier: ^11.0.1
         version: 11.2.9
@@ -374,14 +376,14 @@ importers:
         specifier: ^7.2.0
         version: 7.2.0
       react:
-        specifier: ^19.2.3
-        version: 19.3.1
+        specifier: 19.2.3
+        version: 19.2.3
       react-dom:
-        specifier: ^19.2.3
-        version: 19.3.1(react@19.3.1)
+        specifier: 19.2.3
+        version: 19.2.3(react@19.2.3)
       react-map-gl:
         specifier: ^8.1.0
-        version: 8.1.3(maplibre-gl@5.24.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        version: 8.1.3(maplibre-gl@5.24.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
     devDependencies:
       '@biomejs/biome':
         specifier: 2.3.8
@@ -635,13 +637,13 @@ importers:
         version: 4.76.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0)
       '@contentful/f36-components':
         specifier: ^5.9.0
-        version: 5.9.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
+        version: 5.9.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
       '@contentful/react-apps-toolkit':
         specifier: 1.2.16
-        version: 1.2.16(@contentful/app-sdk@4.76.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0))(debug@4.4.3(supports-color@7.2.0))(react@19.3.1)(supports-color@7.2.0)
+        version: 1.2.16(@contentful/app-sdk@4.76.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0))(debug@4.4.3(supports-color@7.2.0))(react@19.2.3)(supports-color@7.2.0)
       '@emotion/react':
         specifier: ^11.14.0
-        version: 11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0)
+        version: 11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0)
       '@types/react':
         specifier: ^19.2.7
         version: 19.3.0
@@ -652,11 +654,11 @@ importers:
         specifier: ^11.67.0
         version: 11.76.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0)
       react:
-        specifier: ^19.2.3
-        version: 19.3.1
+        specifier: 19.2.3
+        version: 19.2.3
       react-dom:
-        specifier: ^19.2.3
-        version: 19.3.1(react@19.3.1)
+        specifier: 19.2.3
+        version: 19.2.3(react@19.2.3)
       typescript:
         specifier: ~5.9.3
         version: 5.9.3
@@ -1396,106 +1398,106 @@ packages:
   '@contentful/f36-accordion@5.9.1':
     resolution: {integrity: sha512-3TTcYXBs4axgP6YQj0hFIh3CIrWdPMUx2DgBxUDBUmgttLTx0P8kMXA4Smc2wpGw0SySrjNNnrDMFajZaeKAJQ==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-accordion@6.28.0':
     resolution: {integrity: sha512-NPrzbCr4ACSiEymbtrB/wUAypni5gqE9SD0LzSfk44RhvZ06DtbotQ7U2PN8ySanjcp+8PKPup+S2/IPp84rug==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-asset@5.9.1':
     resolution: {integrity: sha512-Y2AnZhxjVmLpesjPyURFkvzbFt4Jnr6PD+NQDTyoDYUsW74U7TXym3KVvAJNATeI+5S4RUF3hdxp0H8Ugym7+Q==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-asset@6.28.0':
     resolution: {integrity: sha512-zWedUd/k+nRLZSVum1Kk4cBYor6+NCH8rN1rGEnOlBd/xC+/t4uYfbcrx2vky66S3wIxVPBckdTvhaj7wZOhSQ==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-autocomplete@5.9.1':
     resolution: {integrity: sha512-icPKC7KVGmg7Yfvrr8hLdXvO1tePSIbFPNrSMcLSJXu/XI0lYjtjAKwDyb3duCaHMyDeXaASl0LiajAcw37tlQ==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-autocomplete@6.28.0':
     resolution: {integrity: sha512-UsnHWtPNZG53sa6IQ/RJ2aJ5wE2kECV3ccrxoRLryDHFsykzZcYkBQAss/DW7gs5k6mQlSULkukU11mO2QiEKA==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-avatar@5.9.1':
     resolution: {integrity: sha512-Aem9srqBF7ueyyAEPY4uOxa8j3yQ0ui7Xatw0z6uO2h0yhX8irmT7S833TdPvUblvAZOMFTgKC7OWOF2bx8CWQ==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-avatar@6.28.0':
     resolution: {integrity: sha512-I7cQQHbdjIeUMaXJElbZcxQYgek/kQby1O98yg7/ytjh5JjYUgckRrmcOqbkGNdCU0GiuS2iEWw5PLGHX7nyZQ==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-badge@5.9.1':
     resolution: {integrity: sha512-4JaMmJZbD8BcSX4do14nijDORbClkzYOAxovTLBfzoGae69FxnXnNcVYsibwM7kYhyrBBgXevAcE/Y3GgG6jNw==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-badge@6.28.0':
     resolution: {integrity: sha512-pT1qGYq20pN8/iC7EecRpQonvSDOV6jS/EN8E7LQb0HXYgxQ4iHiHV+4/x1UIavHEHLnDG93rganHSaodmXmSQ==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-button@5.9.1':
     resolution: {integrity: sha512-2UVwQY3yekL3V4TO2uP5adN/ArRKRMvq8iB8OptnqnFEZClI7jT5YFuu/99AS4nLTdRVISNi/Bf2g7m0PIotvw==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-button@6.28.0':
     resolution: {integrity: sha512-Q3kBYZjdLnXWIiGwfUmZAZfCqgnlTmfdxOYqKfy8A/2/la9Isonh3/dAElWdPz4XvMmVP47Vsbf79aMJjWsAnw==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-card@5.9.1':
     resolution: {integrity: sha512-1r1k96l6rnHwJQc8yV6Ys67d1FrsE2785R2TTQCqdNGItrrF5aJylkNCVI+CLXgKI7EVCiNAQvbMd1iy4bUZQQ==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-card@6.28.0':
     resolution: {integrity: sha512-ORFPnc1SzsvsyDzO0LPwF6Iz3oIBraawQHk4DpS4iATdjIs/n+CIilvefkfplrzTv849aBXvpQqw0Wwwc9xB8A==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-collapse@5.9.1':
     resolution: {integrity: sha512-9n66T8PZJnRVlJeItnznFtwlfnndGizqYgF8e+Ad6d+xTNP009f70nLALg1qncpxtxd488Xwbkune7j9WVlaEQ==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-collapse@6.28.0':
     resolution: {integrity: sha512-az+N8xPRN6ZbDXRg3EyQhOOqOs2l6RBa4tjh4fOtN7TMsV1SQFfXDh4X980fM42ibsUsv4IJLCJgbMO3z4xfmw==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-components@5.9.0':
     resolution: {integrity: sha512-PiRQla7eJjTKJiF81evoMYxZtd2K8nnjmpdBJF2H2woOBzZBr7XJ8QcZYbOHWDOuOPccImeItw2zeD4VQXqUkQ==}
     peerDependencies:
       '@types/react': '>=16.8'
       '@types/react-dom': '>=16.8'
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -1507,8 +1509,8 @@ packages:
     peerDependencies:
       '@types/react': ^18.3.0 || >=19.1.0
       '@types/react-dom': ^18.3.0 || >=19.1.0
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -1518,354 +1520,354 @@ packages:
   '@contentful/f36-copybutton@5.9.1':
     resolution: {integrity: sha512-pCeahvjcNuDXjUZx6qiKDfUqDmYnRUTZPKFUTlKSSAMsU2smjnxG5fZhVhEbYgBpwxn/Uj2VvkozkIedhEOjuw==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-copybutton@6.28.0':
     resolution: {integrity: sha512-YjBr6LMvHpjIgUA1YGr7kwuGPyWgruX9sWP6pQM5cOuZo6rGEsiDl+Fhhd6zokpUGtRTW3oNqA7YUpy603N+ww==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-core@5.9.1':
     resolution: {integrity: sha512-egPXjZLcUwF+LJ7q8w/9zpMVNTWVIIEV5DEmn5nAgPd4+FLQjyWFbL8ubyOMk41F0ceCbB1cp5AILuA0xRIsvQ==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-core@6.28.0':
     resolution: {integrity: sha512-KJPWiSRFdJY/MIaBMjvhUq1WvabXlqTbvVVOuTpLEOt/qMm1f6BaEb83XqAPeuFMnzZBefFL2TuBf3xRs7yRqQ==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-datepicker@5.9.1':
     resolution: {integrity: sha512-T4xmo3o6TBhmRV5oW7RXKOn/FpiZOgBEptpMsgcU+ICJ4taTZ87vFdNIkfQf2LibwQzhJhBNxPbEhZ1pZNoVIg==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-datepicker@6.28.0':
     resolution: {integrity: sha512-sl8tKNNo6/yS+f6vYgO4ZrnSo8U87j/SNYnE/GG4nRv/w5BznZWFjH3OwJhFm7Dno2eQ3YgcMrffQpyma+0uLA==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-datetime@5.9.1':
     resolution: {integrity: sha512-WHwlTQLM21J2SskvVxJisJMql+WcqDSu939KUegRgHjhriEkEfgUA/KyjHyjfKxZFrC7MamBYnaSV2IKBuDPDA==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-datetime@6.28.0':
     resolution: {integrity: sha512-qgqLkNbC3FVjb/hbROuucnV6/DzyHy6LhKY5MtfN/wNdbULwx1aw0V8MrHwDAWS5l6N6RUwIdQK1msDJ6t0ZVA==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-drag-handle@5.9.1':
     resolution: {integrity: sha512-h8jCcob5pPp5FK88wgrqN/91N2uSxEBSAMoaxePwsNS15k6G0TpNV4U9vtlRVBx1htEzj2R2BSBR7ANlQEKMRQ==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-drag-handle@6.28.0':
     resolution: {integrity: sha512-LOEp5OJM+TpZnSVVgO34B4tFVB61EEp7SN8B7JiOsNEB8VyuoI6FF0/ygb3h3fsbPx3HeRmqiRjwlCfrqqdirw==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-empty-state@5.9.1':
     resolution: {integrity: sha512-6T07mp9aWWxFFJHICNbqPpBFrf04t2rVAX/kFST1ibsab934ZvutpwOAlQvjl/L9emY3c2LSt6dSnjsyaqHttA==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-empty-state@6.28.0':
     resolution: {integrity: sha512-h021WBKgzZnwafDDYWV74D59nd6LAmK82O+z+ZEEgP9FxcAc4mM27HT3Q1tD9U4xIBDi4E40t90ANursV5AXbw==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-entity-list@5.9.1':
     resolution: {integrity: sha512-agdjTStNZVJNbNfD8MX/HkJ1K9Nh5qtccpO76eubfWUa8ZOTzSwdV2I3pBMgQ1/Zpxt09+1yqG28Mdn0b5QhWQ==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-entity-list@6.28.0':
     resolution: {integrity: sha512-CPjuukP2YFUQOkm8PE2qq8OPVW2XemhBHySSJeoeC1Qgvjc5sVOODTArVk0Wni62TcLoiJdMb+7C4TO8FB44jg==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-forms@5.9.1':
     resolution: {integrity: sha512-hQMNJobHj5CrMtdVbNuxuM/jgUuYDTYNADRVGCpxKesl0KLC3c9efKKNCm8djE4wnCK8zZhXtLBAD4LJRCiUaw==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-forms@6.28.0':
     resolution: {integrity: sha512-R76Iw4yM6fRa+x7BIitWK97GBZd3iKW3klZ8VkqO+pG2Ag8gkYmrFUqZ5sbXt844qEvtPRlzk1Ig8SUs1sf5ig==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-header@5.9.1':
     resolution: {integrity: sha512-A5v7UkRRtAny6NBqAx+QgD2jdvy7KD5GFe3UItjhhbX8D1LDo5TfECYZjiNHgn5guCZyKsejN99b2Tqc3n++hw==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-header@6.28.0':
     resolution: {integrity: sha512-CDDAZutJoJQ9DeykrQZwmKPdNR2hJ4QQsLQeFlHnf8lcNABdfChi3bAM5OBNpVf4ApiL8jw+Hs65fXSorWuT+Q==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-icon@5.9.1':
     resolution: {integrity: sha512-58Pa0r5vpSX6jr6Lsvoc0ah82Hid6kvNFvu8+/vGDO//KgX7On0LjLUYiygLmyNG9FeKaJingxB8RUe2FEIR6g==}
     engines: {node: '>=16'}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-icon@6.28.0':
     resolution: {integrity: sha512-q+Bjk9vXMNlnE/AI68hEiHJNTPmb1OXh6C4eFE0TNhw4CFv9f09FYYO574zM3xpcr9tKSzKe1x2ZEIIoZ/bvjw==}
     engines: {node: '>=16'}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-icons@5.9.1':
     resolution: {integrity: sha512-bq2i5W8rA+jYPsdPQdBegrWqbZquYfYcNHF6VOuxZuUl9xn78FvaiWHxiaVDyjFk/3kQFSDjMLUdQI3sePJSUw==}
     engines: {node: '>=16'}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-icons@6.28.0':
     resolution: {integrity: sha512-ZZ+Xka/OKwOWrleBaMYgyyxpO1jWVzCvqOGZDVJ+yfg+jtnKOb6fTbN8T/zO8niMY7/brYhUZIoeZlHPVX+tfQ==}
     engines: {node: '>=16'}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-image@5.9.1':
     resolution: {integrity: sha512-azVK98nlMWF1ElwZ0tvmN82opXwHMN0BVFG5g6zlZzqCeH7zYzm6lC5Lck5J/+ZVNStJoJjRdA9l4Pj7U1fnvg==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-image@6.28.0':
     resolution: {integrity: sha512-+F6gd9jXRH3S63s1lOYDo2y4NqIBGc5CFsAz4hg9pMT81+2GKKxdH6xD+Uob0QCL69XJHGBNqfSsYOw6tPKFXA==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-layout@5.9.1':
     resolution: {integrity: sha512-JSrogs8BcCHpf6RTS27aFOSId9K2aSLH47eq+qE6v0OJTeep7iwDEruJarw4C4xBPxIJoKY2LC3JytdATzY6eg==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-layout@6.28.0':
     resolution: {integrity: sha512-/8nnF4DHm6neXIWdjcuqyNGpEZ/W6Cv08uQE/dTb56psz/EbyIkB+AB1sabLZvTo3NR6SHgqsAZdn7vJ3umNVA==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-list@5.9.1':
     resolution: {integrity: sha512-AVXiUb83CmMuAI0lLR3hAg4cqTbNx1jaUPLVmJ8xiFX1wJjgu7KdQnOazrwH4wfU0lOztiMnGgH8NRqWX8D5OQ==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-list@6.28.0':
     resolution: {integrity: sha512-MC4iyiDRv9AXzSZWkHEFskGuclA7r/tnQGvb26xYCmycfjDuRSCgwfAI4vTwhZom0/JgzNtQ+PWkuVkzPeY8rw==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-menu@5.9.1':
     resolution: {integrity: sha512-Za7rFmaJ3wYVt5IH4ONDZloPm+F/vPat5qnarDSrT/Unp8hvvJbv7oLGF/yueQY5jimZ1OrfeldghIqeq1+bxQ==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-menu@6.28.0':
     resolution: {integrity: sha512-zTCmLKUliBTjIZLcc8XCj8pEsgyOBZhrefAImRMGb41JtUlEH9TQB49Bx6PGMuqwxtLhedEogsn5dR4wWgeh7g==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-modal@5.9.1':
     resolution: {integrity: sha512-nau1EWXo7fXOQb+vbFqLvOZJYVdzA73QYUzZhl4YjSMDBbBmSZ7eNQJY32GxiQ+8bV7n2ozLcylghUnoKZhWSA==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-modal@6.28.0':
     resolution: {integrity: sha512-OTTqU4T5bTvPp4/Cv8JmSsD5YMW5gMkgStVmvbBx4KPm6OHYivvX8waIq/bvSUibYJomSotYZuNskyi6xZ+AZg==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-multiselect@5.9.1':
     resolution: {integrity: sha512-JWDwZ81Qdwh1550iTNDkMDcaXFLxG9fPpMDq13Lf+a7SHp1Tp3yFLOUdviWURgjeMJSFo3LXeU5iX60sxmomYA==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-multiselect@6.28.0':
     resolution: {integrity: sha512-PgVwjSJi28QAq3iys1++IaC7kC+pp2cm2T7hb7XVdyxCgH0klZndhapTsqVRe5YMYEgjx0Tv+smGBilf9aNEdA==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-navlist@5.9.1':
     resolution: {integrity: sha512-nPcKopkpt3HaaXJ0NFf0tyrQEyob1+q+5XiIYIBoc2TasEJvjIZX9veLCp6f0Ab8kUlegIRnTsCW2WaQmCB8kA==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-navlist@6.28.0':
     resolution: {integrity: sha512-rSr4wxzg5oqcYwgO6ab986+VRamNqtnvSBUsS7/GQXkBv/l0T7LXfvbmEntzvlKF0Z598CCZCiQmoHE54M6w2A==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-note@5.9.1':
     resolution: {integrity: sha512-T6xYZDOCj9rEeV2bpVYTyKA/IQJWhTk738JdtGrOoUCfVaTYRHQZ7Lwr7FDbhZeBX+hXoe3G5JXUsAOe9/WNng==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-note@6.28.0':
     resolution: {integrity: sha512-0iMqbW4ZJYaw0Nf8dwrGFKwOF5G/4gidenRDt3wtQtdo5n+TMIvG69PCY/O1WukO9IbLt8w0BvsEUva1jJ45qg==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-notification@5.9.1':
     resolution: {integrity: sha512-iV7QV/8cTiOJZNjeSeqCSgigxymfU/ksq60/PeS3NZq4HcKq+T9zQguJJnJnCbQ/Cx5qSrugQ5SuUrIi6CqEBA==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-notification@6.28.0':
     resolution: {integrity: sha512-gKS/icIiyZP+3ikzqPm46U0fLgc14Y704li3Yl8LxYjreYmXFeeIdvXKI8SnKvvgETftAsjieG/CX9nCg3DjEg==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-pagination@5.9.1':
     resolution: {integrity: sha512-YoK8+jEGvfX+lKGxGGQjBucQ/5fRg6SbvY6ZGLELcxhYm1ZZAwI0mLkNXQ/++N8uDejAIdqx3sYHW5uhEoRaEw==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-pagination@6.28.0':
     resolution: {integrity: sha512-F8rqs6wh3mUUkBXSMVVP6U9oB85ICGFFZFirYVAF1IWSj4NzTwDX+LcHNd+yJocxRIw3ABA90vhfSoC3qN3QpQ==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-pill@5.9.1':
     resolution: {integrity: sha512-+lkq35mWHTWSUdjRi9+psrdMaIYM0f80vtJzqCRVS5IE9C7oXTlX6NxsrHMQUMX1jfNGylJv6vATTUgo6XA93Q==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-pill@6.28.0':
     resolution: {integrity: sha512-+2oMmdtjQwXTthtqiQqRpBHGIQ0P0wyefGiOgIr2dx+4Y0IICBqEJXNSXPzbJS8dIWc20rBGC/fkIbiRzEryQw==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-popover@5.9.1':
     resolution: {integrity: sha512-gLJyS4u0Umst7QYtFZq/gLjZP0pkZ756KzvGlxfGsRgfHq75AxWdMMnyMuWvqq1J2JcJuYrw28JJRs0tFMfl/A==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-popover@6.28.0':
     resolution: {integrity: sha512-gBwQATpjlV00X/FjIvS1hbIiXmlF0Yd1kio8kD9XwHfg1LWSITMXBOvlTkR5ZW98rCyGfP1LOjEr6wV3q9f/jw==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-progress-stepper@5.9.1':
     resolution: {integrity: sha512-UQkGFDfl17WY1UIkaWnKVTCKZjVk7Mx9rkkE3c5OJ4llihbHDRI9mxD+6i5OXA+U3iEMW2UsUgxy3ACeOnSsmQ==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-progress-stepper@6.28.0':
     resolution: {integrity: sha512-BZ2seMPo2Byh6sia0YaP+U42m0HGBXwsvEuRYQBTyqRKhjwy3btJ2UrPYBiLJ3kYdOptSD+4/QB5nbcUjRg6Ig==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-skeleton@5.9.1':
     resolution: {integrity: sha512-/xucQq3ON7oymJbJaMLFPL/vwc4VjW29/JumRls6nAHM0jSK/1g0KjShqVVdy+YPxi4VocYujdBKd8IMqS4eXg==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-skeleton@6.28.0':
     resolution: {integrity: sha512-xh0XgiV1oROnyQaplmgC4kQRdd2BPeE0vGxPPJ2mL3EOBa/BfvwDquXHink8xpFo/AzpNKZi5yVd7DjmWCukwA==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-spinner@5.9.1':
     resolution: {integrity: sha512-or3wkkdSZA6ljXIFURiDl2I1YhFgp7ouWiCxJYYOl8brujYnVGhZlxz5G0MUHzFx7N6tz+4wqY3Ru52lneHt+Q==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-spinner@6.28.0':
     resolution: {integrity: sha512-LTyQekaAyXBpeME1vOTR19CWgX9swRpj8Qt4izvbd6uM9/88jTh1O/d9/ZX8TXTqPQY4y+j9B6/3+ey/82R48w==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-table@5.9.1':
     resolution: {integrity: sha512-QE8BIsIZpq1ZK55wp2Qokkcjsu21hW4LECKzBrx+Es/7dxeXGZaqFuQ6jzP+MyGAs5Cu2pYegs/qys17cr/QUw==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-table@6.28.0':
     resolution: {integrity: sha512-v6BE0GaFA+iuHgURBHTneMrO2sugzVb8yz5y8zEzzyH+vtALb+0v1XgMPKdh9n4xK4KLsaZg+OQmtYqIrkIEWQ==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-tabs@5.9.1':
     resolution: {integrity: sha512-Smvn0s/IWKQBhqsIxU51mjouaWWx/jDY65LGusK2qhtHMA3n9yg7TMsBXgZpJnX1Y9UOJD6nalAC7be3smWQug==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-tabs@6.28.0':
     resolution: {integrity: sha512-/1uhHRjRXzLC9Gs3BFlRtgH8gi/l1fjI3M/mClTHTlQBYWBZyBuv2Gy+U3M85Nng2qvdYHqierPkKka2gu1mKg==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-text-link@5.9.1':
     resolution: {integrity: sha512-I9HYYHTiyFkhvFQlGc+bNvRXwzKKLsQW4RJJZ3SiXxIA44/NNMIVxD0xg3CEYt89+DWpjiiLwp5q5ZJpq1hZIw==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-text-link@6.28.0':
     resolution: {integrity: sha512-F8nsh6B9NLl4sUa1rSm+zmHtHrs7qDEqnO5chrsXLzWRcqWxtrUIrTH5tl7wyzL3eEPBr0EfnEPlAOlf2CRfWw==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-tokens@5.1.0':
     resolution: {integrity: sha512-7++MPQiizK6qLhPkilWIKqM5Mhdr199tK7dL4iZ689iTwA82uvXXOojJr+0wVOurG2Odb+6/3WLe1XdveDZHEA==}
@@ -1876,62 +1878,62 @@ packages:
   '@contentful/f36-tooltip@5.9.1':
     resolution: {integrity: sha512-q8XbO/sOr3CCGQJt/xJfNBXtiDccYyNFleZJwGirxj9Z5GnvMTOdM5Rc+hjxi4mCYczcutQTybu8aFvVJFR+FA==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-tooltip@6.28.0':
     resolution: {integrity: sha512-ezr53snYdd5s71zHzcwR19qMp/uwr7n8D3XccLBaZjHg9uMsHPWvgoEVRW8E2ngpxdqT5cj2y8L/p+3zyA+KQA==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-typography@5.9.1':
     resolution: {integrity: sha512-EB05+XuBuocSJtBpE/BvXL8wq91GKwL+Hu5OFcVmpggWS1OUU/CeuQGUMggj96LwMSRGlKNKrZ7iLLT8FZVvAA==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-typography@6.28.0':
     resolution: {integrity: sha512-jWqvZvrq1MNaFhE8tmDYQjAKFONSPl+4pttf83WLAINVHVuyIYLDk6VdQMWVOVsRyStpazNd0w5YjYe4IV0z6A==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-usage-card@5.9.1':
     resolution: {integrity: sha512-tdHjX3J86dUaFs859P9xrab7XZJ2NFhp6DxSN7TD2ZJ5Fy0qY8X8jk4GT/7sCyeg+7ZzL8PB+FeRHDMXq3gAXQ==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-usage-card@6.28.0':
     resolution: {integrity: sha512-FYTG1J/nnE/x5Zvw82FhFmSNsRVJ/e2FhL5HeziFwW9e1ipn7HopnuBbhyIvoMY5g8+uuaqoSkp9wChq+SgzZQ==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-usage-count@5.9.1':
     resolution: {integrity: sha512-vlhGgoyiUtxLE48tAh+m/8Wv4YpBDUHh8nCAR2FgPkU/dR+BCYO6e/i2BFXXTax4dZDhIo+A9N/1FBJ+mmsngw==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-usage-count@6.28.0':
     resolution: {integrity: sha512-P0YHWiofZqmqZySZv/qJPrMJjIQpF1deuEzWU1HSHuIDjBYV3fYkZRtMMMNtncswEf99TxnZbXii9elNK67Z5w==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-utils@5.2.0':
     resolution: {integrity: sha512-0YWsKAdU2HeNz5DwuOCR0lnlHVhlXiDkqtYaH8hHqT9HlQKHDSBPQUI9Vk5OrPDRJ3uLVoyGOJcvUDf27tTopA==}
     peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/f36-utils@6.1.2':
     resolution: {integrity: sha512-gaG+q5NHVEfDzCEGoK12/+8Y1VODPO8k/DyrZjCIOTxTK9rXZ5l1xESMbnMAbwHnz2zXoLkkzI0QGCChW6xrpw==}
     peerDependencies:
-      react: ^18.3.0 || >=19.1.0
-      react-dom: ^18.3.0 || >=19.1.0
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@contentful/field-editor-shared@3.1.4':
     resolution: {integrity: sha512-4wg8zF1XmEFu9CzcDo6hxPoQuuELQKQPHH6/zq6KsVvMNTBD6JUADtXsLj5IFtn9mCB+8sTyyNOPMVT+5Cmgew==}
@@ -1939,8 +1941,8 @@ packages:
       '@contentful/app-sdk': ^4.29.0
       '@lingui/core': 5.7.0
       '@tanstack/react-query': ^4.3.9 || ^5.0.0
-      react: '>=18.3.1'
-      react-dom: '>=18.3.1'
+      react: 19.2.3
+      react-dom: 19.2.3
     peerDependenciesMeta:
       '@tanstack/react-query':
         optional: true
@@ -1950,13 +1952,13 @@ packages:
     peerDependencies:
       '@contentful/app-sdk': ^4.45.0
       '@lingui/core': 5.7.0
-      react: '>=16.8.0'
+      react: 19.2.3
 
   '@contentful/react-apps-toolkit@1.2.16':
     resolution: {integrity: sha512-vx7+T4h+w1XBbn7OfRoXr8YUTtiyRNLaltF2ziM4xMqBryu/3Y71nBbhbxD6NIfOui3QIo3TR9Q5sPTZvGbIVw==}
     peerDependencies:
       '@contentful/app-sdk': '>=4.0.0'
-      react: '>=16.8.0'
+      react: 19.2.3
 
   '@contentful/rich-text-types@16.8.5':
     resolution: {integrity: sha512-q18RJuJCOuYveGiCIjE5xLCQc5lZ3L2Qgxrlg/H2YEobDFqdtmklazRi1XwEWaK3tMg6yVXBzKKkQfLB4qW14A==}
@@ -1973,8 +1975,8 @@ packages:
   '@ebay/nice-modal-react@1.2.13':
     resolution: {integrity: sha512-jx8xIWe/Up4tpNuM02M+rbnLoxdngTGk3Y8LjJsLGXXcSoKd/+eZStZcAlIO/jwxyz/bhPZnpqPJZWAmhOofuA==}
     peerDependencies:
-      react: '>16.8.0'
-      react-dom: '>16.8.0'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@edge-runtime/format@2.2.1':
     resolution: {integrity: sha512-JQTRVuiusQLNNLe2W9tnzBlV/GvSVcozLl4XZHk5swnRZ/v6jp8TqR8P7sqmJsQqblDZ3EztcWmLDbhRje/+8g==}
@@ -2008,7 +2010,7 @@ packages:
   '@emotion/core@10.3.1':
     resolution: {integrity: sha512-447aUEjPIm0MnE6QYIaFz9VQOHSXf4Iu6EWOIqq11EAPqinkSZmfymPTmlOE3QjLv846lH4JVZBUOtwGbuQoww==}
     peerDependencies:
-      react: '>=16.3.0'
+      react: 19.2.3
 
   '@emotion/css@10.0.27':
     resolution: {integrity: sha512-6wZjsvYeBhyZQYNrGoR5yPMYbMBNEnanDrqmsqS1mzDm1cOTu12shvl2j4QHNS36UaTE0USIJawCH9C8oW34Zw==}
@@ -2035,7 +2037,7 @@ packages:
     resolution: {integrity: sha512-O000MLDBDdk/EohJPFUqvnp4qnHeYkVP5B0xEG0D/L7cOKP9kefu2DXn8dj74cQfsEzUqh+sr1RzFqiL1o+PpA==}
     peerDependencies:
       '@types/react': '*'
-      react: '>=16.8.0'
+      react: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -2057,7 +2059,7 @@ packages:
     peerDependencies:
       '@emotion/react': ^11.0.0-rc.0
       '@types/react': '*'
-      react: '>=16.8.0'
+      react: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -2074,7 +2076,7 @@ packages:
   '@emotion/use-insertion-effect-with-fallbacks@1.2.0':
     resolution: {integrity: sha512-yJMtVdH59sxi/aVJBpk9FQq+OR8ll5GT8oWd57UpeaKEVGab41JWaCFA7FRLoMLloOZF/c/wsPoe+bfGmRKgDg==}
     peerDependencies:
-      react: '>=16.8.0'
+      react: 19.2.3
 
   '@emotion/utils@0.11.3':
     resolution: {integrity: sha512-0o4l6pZC+hI88+bzuaX/6BgOvQVhbt2PfmxauVaYOGgbsAw14wdKyvMCZXnsnsHys94iadcF+RG/wZyx6+ZZBw==}
@@ -2426,14 +2428,14 @@ packages:
   '@floating-ui/react-dom@2.1.9':
     resolution: {integrity: sha512-JDjEFGCpImxDCA7JJKviA0M9+RtmJdj0m/NVU5IMgBK+AmZouAQQ7/+2GLH0GXXY0YMw9oXPB8hKdbPYg5QLYg==}
     peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@floating-ui/react@0.27.20':
     resolution: {integrity: sha512-CMqMy7OaXl9W0eq1Uy7L7i2Y/anPvHmFmESd2CEw0t5YvZhcVCeo4MBevAmswRllX7Y2dEidA4ozGPunLSTQpw==}
     peerDependencies:
-      react: '>=17.0.0'
-      react-dom: '>=17.0.0'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@floating-ui/utils@0.2.12':
     resolution: {integrity: sha512-HpCo8tmWzLVad5s2d19EhAz5zqrrQ6s69qd6moPMQvkOuSwDT1YgRfWSVuc4ennqrgv3OHppiOGMQ7oC13yIww==}
@@ -2529,7 +2531,7 @@ packages:
     peerDependencies:
       '@lingui/babel-plugin-lingui-macro': 5.7.0
       babel-plugin-macros: 2 || 3
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: 19.2.3
     peerDependenciesMeta:
       '@lingui/babel-plugin-lingui-macro':
         optional: true
@@ -2618,7 +2620,7 @@ packages:
     peerDependencies:
       '@mui/material': ^7.3.11
       '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
-      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -2631,8 +2633,8 @@ packages:
       '@emotion/styled': ^11.3.0
       '@mui/material-pigment-css': ^7.3.11
       '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
-      react: ^17.0.0 || ^18.0.0 || ^19.0.0
-      react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: 19.2.3
+      react-dom: 19.2.3
     peerDependenciesMeta:
       '@emotion/react':
         optional: true
@@ -2648,7 +2650,7 @@ packages:
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
-      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -2659,7 +2661,7 @@ packages:
     peerDependencies:
       '@emotion/react': ^11.4.1
       '@emotion/styled': ^11.3.0
-      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: 19.2.3
     peerDependenciesMeta:
       '@emotion/react':
         optional: true
@@ -2673,7 +2675,7 @@ packages:
       '@emotion/react': ^11.5.0
       '@emotion/styled': ^11.3.0
       '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
-      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: 19.2.3
     peerDependenciesMeta:
       '@emotion/react':
         optional: true
@@ -2695,7 +2697,7 @@ packages:
     engines: {node: '>=14.0.0'}
     peerDependencies:
       '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
-      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -2723,8 +2725,8 @@ packages:
     resolution: {integrity: sha512-RxJlAkErO+t50DsY82ga9RGOULK6Jux0MdmXqvDjtOzG3PYQFz6rjdUU2q06lPMMbJTT+d+qurKYmF7i2Uv74A==}
     engines: {node: '>=10'}
     peerDependencies:
-      react: '>= 16.8'
-      react-dom: '>= 16.8'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
@@ -2737,8 +2739,8 @@ packages:
     peerDependencies:
       '@types/react': '*'
       '@types/react-dom': '*'
-      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
-      react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react: 19.2.3
+      react-dom: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -2749,7 +2751,7 @@ packages:
     resolution: {integrity: sha512-+48PbAAbq3didjJxa+OaWY2ZwgAKsNiRGyeHKszblZMQ+kcpd9pAaT11cMkGEie0vsOi3QdeTE6d5Fe3Gn61kA==}
     peerDependencies:
       '@types/react': '*'
-      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -2758,7 +2760,7 @@ packages:
     resolution: {integrity: sha512-v5AYEocMISkbJ+1fTXzZpiFv7NRr3D2WiYbLIKf+FkmJ8VkP6d503eV2n34MFussHXY1pcoq3yfJiQH77dc4Mg==}
     peerDependencies:
       '@types/react': '*'
-      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -2767,7 +2769,7 @@ packages:
     resolution: {integrity: sha512-FtRA52a/r+LKStFT+neLUm+8vSe7wbzkbQGGeU8ixFiwC8NU14Evoq9ATECqL3eGbcUzJR4fyfA4KkK/q6dfqg==}
     peerDependencies:
       '@types/react': '*'
-      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -2776,7 +2778,7 @@ packages:
     resolution: {integrity: sha512-TMQp2llA+RYn7JcjnrMnz7wN4pcVttPZnRZo52PLQsoLVKzNlVwUeHmfePgTgRluXFvlD3GD5g5MOVVTJCO0qA==}
     peerDependencies:
       '@types/react': '*'
-      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -2786,8 +2788,8 @@ packages:
     peerDependencies:
       '@types/react': '*'
       '@types/react-dom': '*'
-      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
-      react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react: 19.2.3
+      react-dom: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -2799,8 +2801,8 @@ packages:
     peerDependencies:
       '@types/react': '*'
       '@types/react-dom': '*'
-      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
-      react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react: 19.2.3
+      react-dom: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -2812,8 +2814,8 @@ packages:
     peerDependencies:
       '@types/react': '*'
       '@types/react-dom': '*'
-      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
-      react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react: 19.2.3
+      react-dom: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -2824,7 +2826,7 @@ packages:
     resolution: {integrity: sha512-tyYd9ddPXAysAbdbD9eYxgwpCSv6f3PncqVSNKQFSR5lcJVLz3cb/pANDoYrLiHBpXv7skortyUgGUWsYuPPFQ==}
     peerDependencies:
       '@types/react': '*'
-      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -2834,8 +2836,8 @@ packages:
     peerDependencies:
       '@types/react': '*'
       '@types/react-dom': '*'
-      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
-      react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react: 19.2.3
+      react-dom: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -2846,7 +2848,7 @@ packages:
     resolution: {integrity: sha512-Y5GBf4NKeADoXI1geiMlMuMoURT3k9MizzzKhGb/m55H94aGigZ01PIpkvsO6lML13BA6XYAXSJ6gza7vTn5nw==}
     peerDependencies:
       '@types/react': '*'
-      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -2855,7 +2857,7 @@ packages:
     resolution: {integrity: sha512-TAcBI7bw2ljYCbv4+zuTSd6zICu8pRt6SDN2vJ/Z06K2MXh6I9WYFe/A9ovlFDtR5HVHGm5iDxDoABm/++dbKg==}
     peerDependencies:
       '@types/react': '*'
-      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -2864,7 +2866,7 @@ packages:
     resolution: {integrity: sha512-7cshFL8HGS/7HEiHH+9kL9HBwp2sa9yX18Knwek6KYWmXwM7pegMgta2AXMQKI+rq3JnfSj9x8wYqFMTdG1Jgg==}
     peerDependencies:
       '@types/react': '*'
-      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -2873,7 +2875,7 @@ packages:
     resolution: {integrity: sha512-umO/aJ+82CpOnhDZUTbILCQf7kU/g0iv+oGs/Q8jw7IkhWBzaEP4sA268PhFAJTFetbwp3ICc6ktpI4TqtxcIw==}
     peerDependencies:
       '@types/react': '*'
-      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -2882,7 +2884,7 @@ packages:
     resolution: {integrity: sha512-K20DkRkUwDnxEYMBPcg3Y6voLkEy5p5QQmszZgLngKKiC7dzBR/aEuK3w1qlx2JWDUNH6FluahYdgR3BP+QbYw==}
     peerDependencies:
       '@types/react': '*'
-      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -3186,7 +3188,7 @@ packages:
     resolution: {integrity: sha512-y+hMuDERvgg6ay1da0V1a6ZC0ZONt7dELxSFkqRZuwm7p1TTZs0MoXrPlBRflIpRoYjvzQVYxycnLImpFLhWrw==}
     peerDependencies:
       '@types/react': ^18 || ^19
-      react: ^18 || ^19
+      react: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -3363,8 +3365,8 @@ packages:
     resolution: {integrity: sha512-96sCSl8BKoTLn2xMWlkjlR9GA5URM2t5Ln386t8pNVsoINsUXxweyuJ+gJlDe0GgAIOttXreU/1fK9AfrD28NA==}
     peerDependencies:
       mapbox-gl: '>=3.5.0'
-      react: '>=16.3.0'
-      react-dom: '>=16.3.0'
+      react: 19.2.3
+      react-dom: 19.2.3
     peerDependenciesMeta:
       mapbox-gl:
         optional: true
@@ -3373,8 +3375,8 @@ packages:
     resolution: {integrity: sha512-5Ntvp8YP94SBRaJXLolw6Q57CtrPdWYxdCIo+JeI63hM9BPEJ1efLcPgfSAAUhzXanDeorTE91GsZAgoXbnB3g==}
     peerDependencies:
       maplibre-gl: '>=4.0.0'
-      react: '>=16.3.0'
-      react-dom: '>=16.3.0'
+      react: 19.2.3
+      react-dom: 19.2.3
     peerDependenciesMeta:
       maplibre-gl:
         optional: true
@@ -3988,7 +3990,7 @@ packages:
     resolution: {integrity: sha512-ObLXBS5+4BJU8vtSvBx6b9fY6zZYgniAtwxzjCHsUQadgbqYN6935X2/1TWw4Rf2N1aZV1io5/ziox4vKuxABA==}
     peerDependencies:
       dexie: '>=4.2.0-alpha.1 <5.0.0'
-      react: '>=16'
+      react: 19.2.3
 
   dexie@4.4.7:
     resolution: {integrity: sha512-wemFiCl3DTCnfzyqepUTX1ugbYbkTrw3aEZOG7YjAOUoEQB5g5PrEywPzk5JpbX/SxqQ9IvjUpxCDIEjoOWEfA==}
@@ -4012,12 +4014,12 @@ packages:
   downshift@6.1.12:
     resolution: {integrity: sha512-7XB/iaSJVS4T8wGFT3WRXmSF1UlBHAA40DshZtkrIscIN+VC+Lh363skLxFTvJwtNgHxAMDGEHT4xsyQFWL+UA==}
     peerDependencies:
-      react: '>=16.12.0'
+      react: 19.2.3
 
   downshift@9.4.0:
     resolution: {integrity: sha512-yIwyzRYzycKwMZhvOahsn4BmRr4Ffi0JymdWOtTDhR+LGDEXCZHTcwgUbNBC/oZLT6YrR46iwJe/BrQUS5ClQQ==}
     peerDependencies:
-      react: '>=16.12.0'
+      react: 19.2.3
 
   dset@3.1.4:
     resolution: {integrity: sha512-2QF/g9/zTaPDc3BjNcVTGoBbXBgYfMTTceLaYcFJ/W9kggFUkhxD/hMEeuLKbugyef9SqAx8cpgwlIP/jinUTA==}
@@ -5254,29 +5256,24 @@ packages:
     resolution: {integrity: sha512-wcT37yHsFWDx8DmNFMy0AqSrYgNPGAtU9dyEqwIq3kSUXW03DWSi5WqbhlOALvMXcowal8JWUJRXij6TexilGQ==}
     engines: {node: '>= 20.0.0'}
     peerDependencies:
-      react: '>=16.8.0'
-      react-dom: '>=16.8.0'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   react-clientside-effect@1.2.8:
     resolution: {integrity: sha512-ma2FePH0z3px2+WOu6h+YycZcEvFmmxIlAb62cF52bG86eMySciO/EQZeQMXd07kPCYB0a1dWDT5J+KE9mCDUw==}
     peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+      react: 19.2.3
 
   react-day-picker@8.10.2:
     resolution: {integrity: sha512-LK68OTbHB3oJNhl9cA0qVizzp3o26w61YSjAFkYi67N86iro32wx86kSNeFU/hq+gI8m1yzWhnomMLfZ041RzQ==}
     peerDependencies:
       date-fns: ^2.28.0 || ^3.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: 19.2.3
 
   react-dom@19.2.3:
     resolution: {integrity: sha512-yELu4WmLPw5Mr/lmeEpox5rw3RETacE++JgHqQzd2dg+YbJuat3jH4ingc+WPZhxaoFzdv9y33G+F7Nl5O0GBg==}
     peerDependencies:
-      react: ^19.2.3
-
-  react-dom@19.3.1:
-    resolution: {integrity: sha512-Y0bARz53lhEC1NMCASs0/j+faB/zqt3R8hpvg1e8+61ZVJ4UL0UdC4cBbXfZMcIuhrfgeILTLe+ZeBCavQPtKQ==}
-    peerDependencies:
-      react: ^19.3.1
+      react: 19.2.3
 
   react-fast-compare@3.2.2:
     resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
@@ -5285,7 +5282,7 @@ packages:
     resolution: {integrity: sha512-20lpZHEQrXPb+pp1tzd4ULL6DyO5D2KnR0G69tTDdydrmNhU7pdFmbQUYVyHUgp+xN29IuFR0PVuhOmvaZL9Og==}
     peerDependencies:
       '@types/react': '*'
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+      react: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -5310,8 +5307,8 @@ packages:
     peerDependencies:
       mapbox-gl: '>=1.13.0'
       maplibre-gl: '>=1.13.0'
-      react: '>=16.3.0'
-      react-dom: '>=16.3.0'
+      react: 19.2.3
+      react-dom: 19.2.3
     peerDependenciesMeta:
       mapbox-gl:
         optional: true
@@ -5321,15 +5318,15 @@ packages:
   react-modal@3.16.3:
     resolution: {integrity: sha512-yCYRJB5YkeQDQlTt17WGAgFJ7jr2QYcWa1SHqZ3PluDmnKJ/7+tVU+E6uKyZ0nODaeEj+xCpK4LcSnKXLMC0Nw==}
     peerDependencies:
-      react: ^0.14.0 || ^15.0.0 || ^16 || ^17 || ^18 || ^19
-      react-dom: ^0.14.0 || ^15.0.0 || ^16 || ^17 || ^18 || ^19
+      react: 19.2.3
+      react-dom: 19.2.3
 
   react-popper@2.3.0:
     resolution: {integrity: sha512-e1hj8lL3uM+sgSR4Lxzn5h1GxBlpa4CQz0XLF8kx4MDrDRWY0Ena4c97PUeSX9i5W3UAfDP0z0FXCTQkoXUl3Q==}
     peerDependencies:
       '@popperjs/core': ^2.0.0
-      react: ^16.8.0 || ^17 || ^18
-      react-dom: ^16.8.0 || ^17 || ^18
+      react: 19.2.3
+      react-dom: 19.2.3
 
   react-refresh@0.18.0:
     resolution: {integrity: sha512-QgT5//D3jfjJb6Gsjxv0Slpj23ip+HtOpnNgnb2S5zU3CB26G/IDPGoy4RJB42wzFE46DRsstbW6tKHoKbhAxw==}
@@ -5338,15 +5335,11 @@ packages:
   react-transition-group@4.4.5:
     resolution: {integrity: sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g==}
     peerDependencies:
-      react: '>=16.6.0'
-      react-dom: '>=16.6.0'
+      react: 19.2.3
+      react-dom: 19.2.3
 
   react@19.2.3:
     resolution: {integrity: sha512-Ku/hhYbVjOQnXDZFv2+RibmLFGwFdeeKHFcOTlrt7xplBnya5OGn/hIRDsqDiSUcfORsDC7MPxwork8jBwsIWA==}
-    engines: {node: '>=0.10.0'}
-
-  react@19.3.1:
-    resolution: {integrity: sha512-QNhWdt7nrgVWWQG58QuGsAR3jv3Hbe4mb4vz7w2csnHavciZJgda1CPNaldF6eVxv90ud3jUXpKlHL69gO38yw==}
     engines: {node: '>=0.10.0'}
 
   readable-stream@2.3.8:
@@ -5475,9 +5468,6 @@ packages:
 
   scheduler@0.27.0:
     resolution: {integrity: sha512-eNv+WrVbKu1f3vbYJT/xtiF5syA5HPIMtf9IgY/nKg0sWqzAUEvqY/xm7OcZc/qafLx/iO9FgOmeSAp4v5ti/Q==}
-
-  scheduler@0.28.0:
-    resolution: {integrity: sha512-juorfCmIkIw8tT+p5BXSm6PJjQF/ycEYmKyzURCIt/RaZIhL+PulbQ9Yu2z1HdOJDdqDTlxA1+xKBmHXJsczAw==}
 
   select-hose@2.0.0:
     resolution: {integrity: sha512-mEugaLK+YfkijB4fx0e6kImuJdCIt2LxCRcbEYPqRGCs4F2ogyfZU5IAZRdjCP8JPq2AtdNoC/Dux63d9Kiryg==}
@@ -5894,7 +5884,7 @@ packages:
     engines: {node: '>=10'}
     peerDependencies:
       '@types/react': '*'
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+      react: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -5903,14 +5893,14 @@ packages:
     resolution: {integrity: sha512-kvds8BHR2k28cFsxW8k3nc/tRga2rs1RHYCqmmGqb90MEeE++oALwzh2COiuBLO1/QXiOuShXoSN2ZpWnMmvuQ==}
     engines: {node: '>= 16.0.0'}
     peerDependencies:
-      react: '*'
+      react: 19.2.3
 
   use-sidecar@1.1.3:
     resolution: {integrity: sha512-Fedw0aZvkhynoPYlA5WXrMCAMm+nSWdZt6lzJQ7Ok8S6Q+VsHmHpRWndVRJ8Be0ZbkfPc5LRYH+5XrzXcEeLRQ==}
     engines: {node: '>=10'}
     peerDependencies:
       '@types/react': '*'
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+      react: 19.2.3
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -6191,7 +6181,7 @@ packages:
     peerDependencies:
       '@types/react': '>=18.0.0'
       immer: '>=9.0.6'
-      react: '>=18.0.0'
+      react: 19.2.3
       use-sync-external-store: '>=1.2.0'
     peerDependenciesMeta:
       '@types/react':
@@ -7039,19 +7029,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@contentful/f36-accordion@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-collapse': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icons': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-typography': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-    transitivePeerDependencies:
-      - supports-color
-
   '@contentful/f36-accordion@6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
       '@contentful/f36-collapse': 6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
@@ -7076,19 +7053,6 @@ snapshots:
       emotion: 10.0.27(supports-color@7.2.0)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@contentful/f36-asset@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icon': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icons': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-typography': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -7124,24 +7088,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@contentful/f36-autocomplete@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-button': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-forms': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icons': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-popover': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-skeleton': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-typography': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-utils': 5.2.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      downshift: 6.1.12(react@19.3.1)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-    transitivePeerDependencies:
-      - supports-color
-
   '@contentful/f36-autocomplete@6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
       '@contentful/f36-button': 6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
@@ -7174,19 +7120,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@contentful/f36-avatar@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-image': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-menu': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-tooltip': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-    transitivePeerDependencies:
-      - supports-color
-
   '@contentful/f36-avatar@6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
       '@contentful/f36-core': 6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
@@ -7210,18 +7143,6 @@ snapshots:
       emotion: 10.0.27(supports-color@7.2.0)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@contentful/f36-badge@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icons': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-utils': 5.2.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -7249,19 +7170,6 @@ snapshots:
       emotion: 10.0.27(supports-color@7.2.0)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@contentful/f36-button@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-spinner': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-tooltip': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-utils': 5.2.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -7300,27 +7208,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@contentful/f36-card@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-asset': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-badge': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-button': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-drag-handle': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icon': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icons': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-menu': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-skeleton': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-tooltip': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-typography': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-      truncate: 3.0.0
-    transitivePeerDependencies:
-      - supports-color
-
   '@contentful/f36-card@6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
       '@contentful/f36-asset': 6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
@@ -7350,16 +7237,6 @@ snapshots:
       emotion: 10.0.27(supports-color@7.2.0)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@contentful/f36-collapse@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -7427,53 +7304,53 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@contentful/f36-components@5.9.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
+  '@contentful/f36-components@5.9.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
-      '@contentful/f36-accordion': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-asset': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-autocomplete': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-avatar': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-badge': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-button': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-card': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-collapse': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-copybutton': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-datepicker': 5.9.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-datetime': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-drag-handle': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-empty-state': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-entity-list': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-forms': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-header': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icon': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icons': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-image': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-layout': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-list': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-menu': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-modal': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-multiselect': 5.9.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-navlist': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-note': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-notification': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-pagination': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-pill': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-popover': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-progress-stepper': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-skeleton': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-spinner': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-table': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tabs': 5.9.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-text-link': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
+      '@contentful/f36-accordion': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-asset': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-autocomplete': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-avatar': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-badge': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-button': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-card': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-collapse': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-copybutton': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-core': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-datepicker': 5.9.1(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-datetime': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-drag-handle': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-empty-state': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-entity-list': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-forms': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-header': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-icon': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-icons': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-image': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-layout': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-list': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-menu': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-modal': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-multiselect': 5.9.1(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-navlist': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-note': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-notification': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-pagination': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-pill': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-popover': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-progress-stepper': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-skeleton': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-spinner': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-table': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-tabs': 5.9.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-text-link': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
       '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-tooltip': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-typography': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-usage-card': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-usage-count': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-utils': 5.2.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
+      '@contentful/f36-tooltip': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-typography': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-usage-card': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-usage-count': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-utils': 5.2.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
     optionalDependencies:
       '@types/react': 19.3.0
       '@types/react-dom': 19.3.0(@types/react@19.3.0)
@@ -7543,19 +7420,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@contentful/f36-copybutton@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-button': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icons': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-tooltip': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-    transitivePeerDependencies:
-      - supports-color
-
   '@contentful/f36-copybutton@6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
       '@contentful/f36-button': 6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
@@ -7578,18 +7442,6 @@ snapshots:
       emotion: 10.0.27(supports-color@7.2.0)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@contentful/f36-core@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-tokens': 5.1.0
-      '@emotion/core': 10.3.1(react@19.3.1)(supports-color@7.2.0)
-      '@emotion/is-prop-valid': 1.4.0
-      csstype: 3.2.3
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -7624,21 +7476,21 @@ snapshots:
       - '@types/react'
       - supports-color
 
-  '@contentful/f36-datepicker@5.9.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
+  '@contentful/f36-datepicker@5.9.1(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
-      '@contentful/f36-button': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-forms': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icons': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-popover': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
+      '@contentful/f36-button': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-core': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-forms': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-icons': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-popover': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
       '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-typography': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
+      '@contentful/f36-typography': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
       date-fns: 2.30.0
       emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-day-picker: 8.10.2(date-fns@2.30.0)(react@19.3.1)
-      react-dom: 19.3.1(react@19.3.1)
-      react-focus-lock: 2.13.7(@types/react@19.3.0)(react@19.3.1)
+      react: 19.2.3
+      react-day-picker: 8.10.2(date-fns@2.30.0)(react@19.2.3)
+      react-dom: 19.2.3(react@19.2.3)
+      react-focus-lock: 2.13.7(@types/react@19.3.0)(react@19.2.3)
     transitivePeerDependencies:
       - '@types/react'
       - supports-color
@@ -7672,17 +7524,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@contentful/f36-datetime@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      dayjs: 1.11.23
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-    transitivePeerDependencies:
-      - supports-color
-
   '@contentful/f36-datetime@6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
       '@contentful/f36-core': 6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
@@ -7702,18 +7543,6 @@ snapshots:
       emotion: 10.0.27(supports-color@7.2.0)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@contentful/f36-drag-handle@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icons': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-utils': 5.2.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -7737,16 +7566,6 @@ snapshots:
       emotion: 10.0.27(supports-color@7.2.0)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@contentful/f36-empty-state@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-typography': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -7777,24 +7596,6 @@ snapshots:
       emotion: 10.0.27(supports-color@7.2.0)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@contentful/f36-entity-list@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-badge': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-button': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-drag-handle': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icon': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icons': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-menu': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-skeleton': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-typography': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -7830,19 +7631,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@contentful/f36-forms@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icons': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-typography': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-utils': 5.2.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-    transitivePeerDependencies:
-      - supports-color
-
   '@contentful/f36-forms@6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
       '@contentful/f36-core': 6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
@@ -7871,19 +7659,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@contentful/f36-header@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-button': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icons': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-typography': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-    transitivePeerDependencies:
-      - supports-color
-
   '@contentful/f36-header@6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
       '@contentful/f36-button': 6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
@@ -7906,17 +7681,6 @@ snapshots:
       emotion: 10.0.27(supports-color@7.2.0)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@contentful/f36-icon@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@phosphor-icons/react': 2.1.8(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -7944,18 +7708,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@contentful/f36-icons@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icon': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@phosphor-icons/react': 2.1.8(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-    transitivePeerDependencies:
-      - supports-color
-
   '@contentful/f36-icons@6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
       '@contentful/f36-core': 6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
@@ -7979,17 +7731,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@contentful/f36-image@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-skeleton': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-    transitivePeerDependencies:
-      - supports-color
-
   '@contentful/f36-image@6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
       '@contentful/f36-core': 6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
@@ -8009,17 +7750,6 @@ snapshots:
       emotion: 10.0.27(supports-color@7.2.0)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@contentful/f36-layout@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-header': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -8048,16 +7778,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@contentful/f36-list@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-    transitivePeerDependencies:
-      - supports-color
-
   '@contentful/f36-list@6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
       '@contentful/f36-core': 6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
@@ -8080,20 +7800,6 @@ snapshots:
       emotion: 10.0.27(supports-color@7.2.0)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@contentful/f36-menu@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icons': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-popover': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-typography': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-utils': 5.2.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -8124,21 +7830,6 @@ snapshots:
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
       react-modal: 3.16.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@contentful/f36-modal@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-button': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icons': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-typography': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@types/react-modal': 3.16.3
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-      react-modal: 3.16.3(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -8179,23 +7870,23 @@ snapshots:
       - '@types/react'
       - supports-color
 
-  '@contentful/f36-multiselect@5.9.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
+  '@contentful/f36-multiselect@5.9.1(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
       '@babel/runtime': 7.29.10
-      '@contentful/f36-button': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-forms': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icons': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-popover': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-skeleton': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
+      '@contentful/f36-button': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-core': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-forms': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-icons': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-popover': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-skeleton': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
       '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-tooltip': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-typography': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-utils': 5.2.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
+      '@contentful/f36-tooltip': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-typography': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
+      '@contentful/f36-utils': 5.2.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
       emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-      react-focus-lock: 2.13.7(@types/react@19.3.0)(react@19.3.1)
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
+      react-focus-lock: 2.13.7(@types/react@19.3.0)(react@19.2.3)
     transitivePeerDependencies:
       - '@types/react'
       - supports-color
@@ -8228,16 +7919,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@contentful/f36-navlist@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-    transitivePeerDependencies:
-      - supports-color
-
   '@contentful/f36-navlist@6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
       '@contentful/f36-core': 6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
@@ -8261,21 +7942,6 @@ snapshots:
       emotion: 10.0.27(supports-color@7.2.0)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@contentful/f36-note@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-button': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icon': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icons': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-typography': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-utils': 5.2.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -8310,21 +7976,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@contentful/f36-notification@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-button': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icons': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-text-link': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-typography': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-animate-height: 3.2.4(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      react-dom: 19.3.1(react@19.3.1)
-    transitivePeerDependencies:
-      - supports-color
-
   '@contentful/f36-notification@6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
       '@contentful/f36-button': 6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
@@ -8355,20 +8006,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@contentful/f36-pagination@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-button': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-forms': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icons': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-typography': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-    transitivePeerDependencies:
-      - supports-color
-
   '@contentful/f36-pagination@6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
       '@contentful/f36-button': 6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
@@ -8393,20 +8030,6 @@ snapshots:
       emotion: 10.0.27(supports-color@7.2.0)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@contentful/f36-pill@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-button': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-drag-handle': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icons': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-tooltip': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -8438,19 +8061,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@contentful/f36-popover@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-utils': 5.2.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@popperjs/core': 2.11.8
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-      react-popper: 2.3.0(@popperjs/core@2.11.8)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-    transitivePeerDependencies:
-      - supports-color
-
   '@contentful/f36-popover@6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
       '@contentful/f36-core': 6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
@@ -8474,19 +8084,6 @@ snapshots:
       emotion: 10.0.27(supports-color@7.2.0)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@contentful/f36-progress-stepper@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-button': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icons': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-typography': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -8514,17 +8111,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@contentful/f36-skeleton@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-table': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-    transitivePeerDependencies:
-      - supports-color
-
   '@contentful/f36-skeleton@6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
       '@contentful/f36-core': 6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
@@ -8543,16 +8129,6 @@ snapshots:
       emotion: 10.0.27(supports-color@7.2.0)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@contentful/f36-spinner@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -8577,19 +8153,6 @@ snapshots:
       emotion: 10.0.27(supports-color@7.2.0)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@contentful/f36-table@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icons': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-typography': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-utils': 5.2.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -8621,14 +8184,14 @@ snapshots:
       - '@types/react-dom'
       - supports-color
 
-  '@contentful/f36-tabs@5.9.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
+  '@contentful/f36-tabs@5.9.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
+      '@contentful/f36-core': 5.9.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
       '@contentful/f36-tokens': 5.1.0
-      '@radix-ui/react-tabs': 1.2.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      '@radix-ui/react-tabs': 1.2.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
     transitivePeerDependencies:
       - '@types/react'
       - '@types/react-dom'
@@ -8654,16 +8217,6 @@ snapshots:
       emotion: 10.0.27(supports-color@7.2.0)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@contentful/f36-text-link@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -8698,20 +8251,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@contentful/f36-tooltip@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-utils': 5.2.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@popperjs/core': 2.11.8
-      csstype: 3.2.3
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-      react-popper: 2.3.0(@popperjs/core@2.11.8)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-    transitivePeerDependencies:
-      - supports-color
-
   '@contentful/f36-tooltip@6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
       '@contentful/f36-core': 6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
@@ -8734,17 +8273,6 @@ snapshots:
       emotion: 10.0.27(supports-color@7.2.0)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@contentful/f36-typography@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-utils': 5.2.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -8776,21 +8304,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@contentful/f36-usage-card@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-card': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-icons': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-text-link': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-tooltip': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-typography': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-    transitivePeerDependencies:
-      - supports-color
-
   '@contentful/f36-usage-card@6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
       '@contentful/f36-card': 6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
@@ -8818,17 +8331,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@contentful/f36-usage-count@5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-core': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      '@contentful/f36-tokens': 5.1.0
-      '@contentful/f36-typography': 5.9.1(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-    transitivePeerDependencies:
-      - supports-color
-
   '@contentful/f36-usage-count@6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
       '@contentful/f36-core': 6.28.0(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(supports-color@7.2.0)
@@ -8847,15 +8349,6 @@ snapshots:
       emotion: 10.0.27(supports-color@7.2.0)
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@contentful/f36-utils@5.2.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/f36-tokens': 5.1.0
-      emotion: 10.0.27(supports-color@7.2.0)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -8921,15 +8414,6 @@ snapshots:
       - debug
       - supports-color
 
-  '@contentful/react-apps-toolkit@1.2.16(@contentful/app-sdk@4.76.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0))(debug@4.4.3(supports-color@7.2.0))(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@contentful/app-sdk': 4.76.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0)
-      contentful-management: 11.67.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0)
-      react: 19.3.1
-    transitivePeerDependencies:
-      - debug
-      - supports-color
-
   '@contentful/rich-text-types@16.8.5': {}
 
   '@contentful/rich-text-types@17.2.7': {}
@@ -8938,10 +8422,10 @@ snapshots:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
 
-  '@ebay/nice-modal-react@1.2.13(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@ebay/nice-modal-react@1.2.13(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
 
   '@edge-runtime/format@2.2.1': {}
 
@@ -8998,18 +8482,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@emotion/core@10.3.1(react@19.3.1)(supports-color@7.2.0)':
-    dependencies:
-      '@babel/runtime': 7.29.10
-      '@emotion/cache': 10.0.29
-      '@emotion/css': 10.0.27(supports-color@7.2.0)
-      '@emotion/serialize': 0.11.16
-      '@emotion/sheet': 0.9.4
-      '@emotion/utils': 0.11.3
-      react: 19.3.1
-    transitivePeerDependencies:
-      - supports-color
-
   '@emotion/css@10.0.27(supports-color@7.2.0)':
     dependencies:
       '@emotion/serialize': 0.11.16
@@ -9056,17 +8528,17 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0)':
+  '@emotion/react@11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
       '@babel/runtime': 7.29.10
       '@emotion/babel-plugin': 11.13.5(supports-color@7.2.0)
       '@emotion/cache': 11.14.0
       '@emotion/serialize': 1.3.3
-      '@emotion/use-insertion-effect-with-fallbacks': 1.2.0(react@19.3.1)
+      '@emotion/use-insertion-effect-with-fallbacks': 1.2.0(react@19.2.3)
       '@emotion/utils': 1.4.2
       '@emotion/weak-memoize': 0.4.0
       hoist-non-react-statics: 3.3.2
-      react: 19.3.1
+      react: 19.2.3
     optionalDependencies:
       '@types/react': 19.3.0
     transitivePeerDependencies:
@@ -9092,16 +8564,16 @@ snapshots:
 
   '@emotion/sheet@1.4.0': {}
 
-  '@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0)':
+  '@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0)':
     dependencies:
       '@babel/runtime': 7.29.10
       '@emotion/babel-plugin': 11.13.5(supports-color@7.2.0)
       '@emotion/is-prop-valid': 1.4.0
-      '@emotion/react': 11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0)
+      '@emotion/react': 11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0)
       '@emotion/serialize': 1.3.3
-      '@emotion/use-insertion-effect-with-fallbacks': 1.2.0(react@19.3.1)
+      '@emotion/use-insertion-effect-with-fallbacks': 1.2.0(react@19.2.3)
       '@emotion/utils': 1.4.2
-      react: 19.3.1
+      react: 19.2.3
     optionalDependencies:
       '@types/react': 19.3.0
     transitivePeerDependencies:
@@ -9116,10 +8588,6 @@ snapshots:
   '@emotion/use-insertion-effect-with-fallbacks@1.2.0(react@19.2.3)':
     dependencies:
       react: 19.2.3
-
-  '@emotion/use-insertion-effect-with-fallbacks@1.2.0(react@19.3.1)':
-    dependencies:
-      react: 19.3.1
 
   '@emotion/utils@0.11.3': {}
 
@@ -9559,45 +9027,45 @@ snapshots:
 
   '@mui/core-downloads-tracker@7.3.11': {}
 
-  '@mui/icons-material@7.3.11(@mui/material@7.3.11(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(@types/react@19.3.0)(react@19.3.1)':
+  '@mui/icons-material@7.3.11(@mui/material@7.3.11(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(@types/react@19.3.0)(react@19.2.3)':
     dependencies:
       '@babel/runtime': 7.29.10
-      '@mui/material': 7.3.11(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      react: 19.3.1
+      '@mui/material': 7.3.11(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      react: 19.2.3
     optionalDependencies:
       '@types/react': 19.3.0
 
-  '@mui/material@7.3.11(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@mui/material@7.3.11(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
       '@babel/runtime': 7.29.10
       '@mui/core-downloads-tracker': 7.3.11
-      '@mui/system': 7.3.11(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.3.1)
+      '@mui/system': 7.3.11(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.2.3)
       '@mui/types': 7.4.12(@types/react@19.3.0)
-      '@mui/utils': 7.3.11(@types/react@19.3.0)(react@19.3.1)
+      '@mui/utils': 7.3.11(@types/react@19.3.0)(react@19.2.3)
       '@popperjs/core': 2.11.8
       '@types/react-transition-group': 4.4.12(@types/react@19.3.0)
       clsx: 2.1.1
       csstype: 3.2.3
       prop-types: 15.8.1
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
       react-is: 19.3.1
-      react-transition-group: 4.4.5(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      react-transition-group: 4.4.5(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
     optionalDependencies:
-      '@emotion/react': 11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0)
-      '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0)
+      '@emotion/react': 11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0)
+      '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0)
       '@types/react': 19.3.0
 
-  '@mui/private-theming@7.3.11(@types/react@19.3.0)(react@19.3.1)':
+  '@mui/private-theming@7.3.11(@types/react@19.3.0)(react@19.2.3)':
     dependencies:
       '@babel/runtime': 7.29.10
-      '@mui/utils': 7.3.11(@types/react@19.3.0)(react@19.3.1)
+      '@mui/utils': 7.3.11(@types/react@19.3.0)(react@19.2.3)
       prop-types: 15.8.1
-      react: 19.3.1
+      react: 19.2.3
     optionalDependencies:
       '@types/react': 19.3.0
 
-  '@mui/styled-engine@7.3.10(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(react@19.3.1)':
+  '@mui/styled-engine@7.3.10(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(react@19.2.3)':
     dependencies:
       '@babel/runtime': 7.29.10
       '@emotion/cache': 11.14.0
@@ -9605,25 +9073,25 @@ snapshots:
       '@emotion/sheet': 1.4.0
       csstype: 3.2.3
       prop-types: 15.8.1
-      react: 19.3.1
+      react: 19.2.3
     optionalDependencies:
-      '@emotion/react': 11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0)
-      '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0)
+      '@emotion/react': 11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0)
+      '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0)
 
-  '@mui/system@7.3.11(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.3.1)':
+  '@mui/system@7.3.11(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.2.3)':
     dependencies:
       '@babel/runtime': 7.29.10
-      '@mui/private-theming': 7.3.11(@types/react@19.3.0)(react@19.3.1)
-      '@mui/styled-engine': 7.3.10(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(react@19.3.1)
+      '@mui/private-theming': 7.3.11(@types/react@19.3.0)(react@19.2.3)
+      '@mui/styled-engine': 7.3.10(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(react@19.2.3)
       '@mui/types': 7.4.12(@types/react@19.3.0)
-      '@mui/utils': 7.3.11(@types/react@19.3.0)(react@19.3.1)
+      '@mui/utils': 7.3.11(@types/react@19.3.0)(react@19.2.3)
       clsx: 2.1.1
       csstype: 3.2.3
       prop-types: 15.8.1
-      react: 19.3.1
+      react: 19.2.3
     optionalDependencies:
-      '@emotion/react': 11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0)
-      '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.3.1)(supports-color@7.2.0)
+      '@emotion/react': 11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0)
+      '@emotion/styled': 11.14.1(@emotion/react@11.14.0(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0))(@types/react@19.3.0)(react@19.2.3)(supports-color@7.2.0)
       '@types/react': 19.3.0
 
   '@mui/types@7.4.12(@types/react@19.3.0)':
@@ -9632,14 +9100,14 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.3.0
 
-  '@mui/utils@7.3.11(@types/react@19.3.0)(react@19.3.1)':
+  '@mui/utils@7.3.11(@types/react@19.3.0)(react@19.2.3)':
     dependencies:
       '@babel/runtime': 7.29.10
       '@mui/types': 7.4.12(@types/react@19.3.0)
       '@types/prop-types': 15.7.15
       clsx: 2.1.1
       prop-types: 15.8.1
-      react: 19.3.1
+      react: 19.2.3
       react-is: 19.3.1
     optionalDependencies:
       '@types/react': 19.3.0
@@ -9664,11 +9132,6 @@ snapshots:
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
 
-  '@phosphor-icons/react@2.1.8(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
-    dependencies:
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-
   '@popperjs/core@2.11.8': {}
 
   '@radix-ui/primitive@1.2.0': {}
@@ -9686,15 +9149,15 @@ snapshots:
       '@types/react': 19.2.7
       '@types/react-dom': 19.2.3(@types/react@19.2.7)
 
-  '@radix-ui/react-collection@1.2.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@radix-ui/react-collection@1.2.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
-      '@radix-ui/react-compose-refs': 1.1.5(@types/react@19.3.0)(react@19.3.1)
-      '@radix-ui/react-context': 1.3.0(@types/react@19.3.0)(react@19.3.1)
-      '@radix-ui/react-primitive': 2.2.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      '@radix-ui/react-slot': 1.5.0(@types/react@19.3.0)(react@19.3.1)
-      '@radix-ui/react-use-layout-effect': 1.1.4(@types/react@19.3.0)(react@19.3.1)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
+      '@radix-ui/react-compose-refs': 1.1.5(@types/react@19.3.0)(react@19.2.3)
+      '@radix-ui/react-context': 1.3.0(@types/react@19.3.0)(react@19.2.3)
+      '@radix-ui/react-primitive': 2.2.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      '@radix-ui/react-slot': 1.5.0(@types/react@19.3.0)(react@19.2.3)
+      '@radix-ui/react-use-layout-effect': 1.1.4(@types/react@19.3.0)(react@19.2.3)
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
     optionalDependencies:
       '@types/react': 19.3.0
       '@types/react-dom': 19.3.0(@types/react@19.3.0)
@@ -9705,9 +9168,9 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.7
 
-  '@radix-ui/react-compose-refs@1.1.5(@types/react@19.3.0)(react@19.3.1)':
+  '@radix-ui/react-compose-refs@1.1.5(@types/react@19.3.0)(react@19.2.3)':
     dependencies:
-      react: 19.3.1
+      react: 19.2.3
     optionalDependencies:
       '@types/react': 19.3.0
 
@@ -9717,9 +9180,9 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.7
 
-  '@radix-ui/react-context@1.3.0(@types/react@19.3.0)(react@19.3.1)':
+  '@radix-ui/react-context@1.3.0(@types/react@19.3.0)(react@19.2.3)':
     dependencies:
-      react: 19.3.1
+      react: 19.2.3
     optionalDependencies:
       '@types/react': 19.3.0
 
@@ -9729,9 +9192,9 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.7
 
-  '@radix-ui/react-direction@1.2.0(@types/react@19.3.0)(react@19.3.1)':
+  '@radix-ui/react-direction@1.2.0(@types/react@19.3.0)(react@19.2.3)':
     dependencies:
-      react: 19.3.1
+      react: 19.2.3
     optionalDependencies:
       '@types/react': 19.3.0
 
@@ -9742,10 +9205,10 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.7
 
-  '@radix-ui/react-id@1.1.4(@types/react@19.3.0)(react@19.3.1)':
+  '@radix-ui/react-id@1.1.4(@types/react@19.3.0)(react@19.2.3)':
     dependencies:
-      '@radix-ui/react-use-layout-effect': 1.1.4(@types/react@19.3.0)(react@19.3.1)
-      react: 19.3.1
+      '@radix-ui/react-use-layout-effect': 1.1.4(@types/react@19.3.0)(react@19.2.3)
+      react: 19.2.3
     optionalDependencies:
       '@types/react': 19.3.0
 
@@ -9758,11 +9221,11 @@ snapshots:
       '@types/react': 19.2.7
       '@types/react-dom': 19.2.3(@types/react@19.2.7)
 
-  '@radix-ui/react-presence@1.1.11(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@radix-ui/react-presence@1.1.11(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
-      '@radix-ui/react-use-layout-effect': 1.1.4(@types/react@19.3.0)(react@19.3.1)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
+      '@radix-ui/react-use-layout-effect': 1.1.4(@types/react@19.3.0)(react@19.2.3)
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
     optionalDependencies:
       '@types/react': 19.3.0
       '@types/react-dom': 19.3.0(@types/react@19.3.0)
@@ -9776,11 +9239,11 @@ snapshots:
       '@types/react': 19.2.7
       '@types/react-dom': 19.2.3(@types/react@19.2.7)
 
-  '@radix-ui/react-primitive@2.2.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@radix-ui/react-primitive@2.2.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
-      '@radix-ui/react-slot': 1.5.0(@types/react@19.3.0)(react@19.3.1)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
+      '@radix-ui/react-slot': 1.5.0(@types/react@19.3.0)(react@19.2.3)
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
     optionalDependencies:
       '@types/react': 19.3.0
       '@types/react-dom': 19.3.0(@types/react@19.3.0)
@@ -9804,21 +9267,21 @@ snapshots:
       '@types/react': 19.2.7
       '@types/react-dom': 19.2.3(@types/react@19.2.7)
 
-  '@radix-ui/react-roving-focus@1.2.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@radix-ui/react-roving-focus@1.2.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
       '@radix-ui/primitive': 1.2.0
-      '@radix-ui/react-collection': 1.2.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      '@radix-ui/react-compose-refs': 1.1.5(@types/react@19.3.0)(react@19.3.1)
-      '@radix-ui/react-context': 1.3.0(@types/react@19.3.0)(react@19.3.1)
-      '@radix-ui/react-direction': 1.2.0(@types/react@19.3.0)(react@19.3.1)
-      '@radix-ui/react-id': 1.1.4(@types/react@19.3.0)(react@19.3.1)
-      '@radix-ui/react-primitive': 2.2.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      '@radix-ui/react-use-callback-ref': 1.1.5(@types/react@19.3.0)(react@19.3.1)
-      '@radix-ui/react-use-controllable-state': 1.3.0(@types/react@19.3.0)(react@19.3.1)
-      '@radix-ui/react-use-is-hydrated': 0.1.3(@types/react@19.3.0)(react@19.3.1)
-      '@radix-ui/react-use-layout-effect': 1.1.4(@types/react@19.3.0)(react@19.3.1)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
+      '@radix-ui/react-collection': 1.2.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      '@radix-ui/react-compose-refs': 1.1.5(@types/react@19.3.0)(react@19.2.3)
+      '@radix-ui/react-context': 1.3.0(@types/react@19.3.0)(react@19.2.3)
+      '@radix-ui/react-direction': 1.2.0(@types/react@19.3.0)(react@19.2.3)
+      '@radix-ui/react-id': 1.1.4(@types/react@19.3.0)(react@19.2.3)
+      '@radix-ui/react-primitive': 2.2.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      '@radix-ui/react-use-callback-ref': 1.1.5(@types/react@19.3.0)(react@19.2.3)
+      '@radix-ui/react-use-controllable-state': 1.3.0(@types/react@19.3.0)(react@19.2.3)
+      '@radix-ui/react-use-is-hydrated': 0.1.3(@types/react@19.3.0)(react@19.2.3)
+      '@radix-ui/react-use-layout-effect': 1.1.4(@types/react@19.3.0)(react@19.2.3)
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
     optionalDependencies:
       '@types/react': 19.3.0
       '@types/react-dom': 19.3.0(@types/react@19.3.0)
@@ -9830,10 +9293,10 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.7
 
-  '@radix-ui/react-slot@1.5.0(@types/react@19.3.0)(react@19.3.1)':
+  '@radix-ui/react-slot@1.5.0(@types/react@19.3.0)(react@19.2.3)':
     dependencies:
-      '@radix-ui/react-compose-refs': 1.1.5(@types/react@19.3.0)(react@19.3.1)
-      react: 19.3.1
+      '@radix-ui/react-compose-refs': 1.1.5(@types/react@19.3.0)(react@19.2.3)
+      react: 19.2.3
     optionalDependencies:
       '@types/react': 19.3.0
 
@@ -9853,18 +9316,18 @@ snapshots:
       '@types/react': 19.2.7
       '@types/react-dom': 19.2.3(@types/react@19.2.7)
 
-  '@radix-ui/react-tabs@1.2.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@radix-ui/react-tabs@1.2.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
       '@radix-ui/primitive': 1.2.0
-      '@radix-ui/react-context': 1.3.0(@types/react@19.3.0)(react@19.3.1)
-      '@radix-ui/react-direction': 1.2.0(@types/react@19.3.0)(react@19.3.1)
-      '@radix-ui/react-id': 1.1.4(@types/react@19.3.0)(react@19.3.1)
-      '@radix-ui/react-presence': 1.1.11(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      '@radix-ui/react-primitive': 2.2.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      '@radix-ui/react-roving-focus': 1.2.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      '@radix-ui/react-use-controllable-state': 1.3.0(@types/react@19.3.0)(react@19.3.1)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
+      '@radix-ui/react-context': 1.3.0(@types/react@19.3.0)(react@19.2.3)
+      '@radix-ui/react-direction': 1.2.0(@types/react@19.3.0)(react@19.2.3)
+      '@radix-ui/react-id': 1.1.4(@types/react@19.3.0)(react@19.2.3)
+      '@radix-ui/react-presence': 1.1.11(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      '@radix-ui/react-primitive': 2.2.0(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      '@radix-ui/react-roving-focus': 1.2.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      '@radix-ui/react-use-controllable-state': 1.3.0(@types/react@19.3.0)(react@19.2.3)
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
     optionalDependencies:
       '@types/react': 19.3.0
       '@types/react-dom': 19.3.0(@types/react@19.3.0)
@@ -9876,10 +9339,10 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.7
 
-  '@radix-ui/react-use-callback-ref@1.1.5(@types/react@19.3.0)(react@19.3.1)':
+  '@radix-ui/react-use-callback-ref@1.1.5(@types/react@19.3.0)(react@19.2.3)':
     dependencies:
-      '@radix-ui/react-use-layout-effect': 1.1.4(@types/react@19.3.0)(react@19.3.1)
-      react: 19.3.1
+      '@radix-ui/react-use-layout-effect': 1.1.4(@types/react@19.3.0)(react@19.2.3)
+      react: 19.2.3
     optionalDependencies:
       '@types/react': 19.3.0
 
@@ -9892,12 +9355,12 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.7
 
-  '@radix-ui/react-use-controllable-state@1.3.0(@types/react@19.3.0)(react@19.3.1)':
+  '@radix-ui/react-use-controllable-state@1.3.0(@types/react@19.3.0)(react@19.2.3)':
     dependencies:
       '@radix-ui/primitive': 1.2.0
-      '@radix-ui/react-use-effect-event': 0.0.5(@types/react@19.3.0)(react@19.3.1)
-      '@radix-ui/react-use-layout-effect': 1.1.4(@types/react@19.3.0)(react@19.3.1)
-      react: 19.3.1
+      '@radix-ui/react-use-effect-event': 0.0.5(@types/react@19.3.0)(react@19.2.3)
+      '@radix-ui/react-use-layout-effect': 1.1.4(@types/react@19.3.0)(react@19.2.3)
+      react: 19.2.3
     optionalDependencies:
       '@types/react': 19.3.0
 
@@ -9908,10 +9371,10 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.7
 
-  '@radix-ui/react-use-effect-event@0.0.5(@types/react@19.3.0)(react@19.3.1)':
+  '@radix-ui/react-use-effect-event@0.0.5(@types/react@19.3.0)(react@19.2.3)':
     dependencies:
-      '@radix-ui/react-use-layout-effect': 1.1.4(@types/react@19.3.0)(react@19.3.1)
-      react: 19.3.1
+      '@radix-ui/react-use-layout-effect': 1.1.4(@types/react@19.3.0)(react@19.2.3)
+      react: 19.2.3
     optionalDependencies:
       '@types/react': 19.3.0
 
@@ -9921,9 +9384,9 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.7
 
-  '@radix-ui/react-use-is-hydrated@0.1.3(@types/react@19.3.0)(react@19.3.1)':
+  '@radix-ui/react-use-is-hydrated@0.1.3(@types/react@19.3.0)(react@19.2.3)':
     dependencies:
-      react: 19.3.1
+      react: 19.2.3
     optionalDependencies:
       '@types/react': 19.3.0
 
@@ -9933,9 +9396,9 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.7
 
-  '@radix-ui/react-use-layout-effect@1.1.4(@types/react@19.3.0)(react@19.3.1)':
+  '@radix-ui/react-use-layout-effect@1.1.4(@types/react@19.3.0)(react@19.2.3)':
     dependencies:
-      react: 19.3.1
+      react: 19.2.3
     optionalDependencies:
       '@types/react': 19.3.0
 
@@ -10421,24 +9884,11 @@ snapshots:
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
 
-  '@vis.gl/react-mapbox@8.1.3(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
-    dependencies:
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-
   '@vis.gl/react-maplibre@8.1.3(maplibre-gl@5.24.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
     dependencies:
       '@maplibre/maplibre-gl-style-spec': 19.3.3
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-    optionalDependencies:
-      maplibre-gl: 5.24.0
-
-  '@vis.gl/react-maplibre@8.1.3(maplibre-gl@5.24.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
-    dependencies:
-      '@maplibre/maplibre-gl-style-spec': 19.3.3
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
     optionalDependencies:
       maplibre-gl: 5.24.0
 
@@ -11126,10 +10576,10 @@ snapshots:
 
   detect-node@2.1.0: {}
 
-  dexie-react-hooks@4.4.0(dexie@4.4.7)(react@19.3.1):
+  dexie-react-hooks@4.4.0(dexie@4.4.7)(react@19.2.3):
     dependencies:
       dexie: 4.4.7
-      react: 19.3.1
+      react: 19.2.3
 
   dexie@4.4.7: {}
 
@@ -11150,15 +10600,6 @@ snapshots:
       compute-scroll-into-view: 1.0.20
       prop-types: 15.8.1
       react: 19.2.3
-      react-is: 17.0.2
-      tslib: 2.8.1
-
-  downshift@6.1.12(react@19.3.1):
-    dependencies:
-      '@babel/runtime': 7.29.10
-      compute-scroll-into-view: 1.0.20
-      prop-types: 15.8.1
-      react: 19.3.1
       react-is: 17.0.2
       tslib: 2.8.1
 
@@ -12443,40 +11884,20 @@ snapshots:
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
 
-  react-animate-height@3.2.4(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
-    dependencies:
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-
   react-clientside-effect@1.2.8(react@19.2.3):
     dependencies:
       '@babel/runtime': 7.29.10
       react: 19.2.3
-
-  react-clientside-effect@1.2.8(react@19.3.1):
-    dependencies:
-      '@babel/runtime': 7.29.10
-      react: 19.3.1
 
   react-day-picker@8.10.2(date-fns@2.30.0)(react@19.2.3):
     dependencies:
       date-fns: 2.30.0
       react: 19.2.3
 
-  react-day-picker@8.10.2(date-fns@2.30.0)(react@19.3.1):
-    dependencies:
-      date-fns: 2.30.0
-      react: 19.3.1
-
   react-dom@19.2.3(react@19.2.3):
     dependencies:
       react: 19.2.3
       scheduler: 0.27.0
-
-  react-dom@19.3.1(react@19.3.1):
-    dependencies:
-      react: 19.3.1
-      scheduler: 0.28.0
 
   react-fast-compare@3.2.2: {}
 
@@ -12492,15 +11913,15 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.7
 
-  react-focus-lock@2.13.7(@types/react@19.3.0)(react@19.3.1):
+  react-focus-lock@2.13.7(@types/react@19.3.0)(react@19.2.3):
     dependencies:
       '@babel/runtime': 7.29.10
       focus-lock: 1.3.6
       prop-types: 15.8.1
-      react: 19.3.1
-      react-clientside-effect: 1.2.8(react@19.3.1)
-      use-callback-ref: 1.3.3(@types/react@19.3.0)(react@19.3.1)
-      use-sidecar: 1.1.3(@types/react@19.3.0)(react@19.3.1)
+      react: 19.2.3
+      react-clientside-effect: 1.2.8(react@19.2.3)
+      use-callback-ref: 1.3.3(@types/react@19.3.0)(react@19.2.3)
+      use-sidecar: 1.1.3(@types/react@19.3.0)(react@19.2.3)
     optionalDependencies:
       '@types/react': 19.3.0
 
@@ -12523,30 +11944,12 @@ snapshots:
     optionalDependencies:
       maplibre-gl: 5.24.0
 
-  react-map-gl@8.1.3(maplibre-gl@5.24.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
-    dependencies:
-      '@vis.gl/react-mapbox': 8.1.3(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      '@vis.gl/react-maplibre': 8.1.3(maplibre-gl@5.24.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-    optionalDependencies:
-      maplibre-gl: 5.24.0
-
   react-modal@3.16.3(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
       exenv: 1.2.2
       prop-types: 15.8.1
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
-      react-lifecycles-compat: 3.0.4
-      warning: 4.0.3
-
-  react-modal@3.16.3(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
-    dependencies:
-      exenv: 1.2.2
-      prop-types: 15.8.1
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
       react-lifecycles-compat: 3.0.4
       warning: 4.0.3
 
@@ -12558,28 +11961,18 @@ snapshots:
       react-fast-compare: 3.2.2
       warning: 4.0.3
 
-  react-popper@2.3.0(@popperjs/core@2.11.8)(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
-    dependencies:
-      '@popperjs/core': 2.11.8
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
-      react-fast-compare: 3.2.2
-      warning: 4.0.3
-
   react-refresh@0.18.0: {}
 
-  react-transition-group@4.4.5(react-dom@19.3.1(react@19.3.1))(react@19.3.1):
+  react-transition-group@4.4.5(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
       '@babel/runtime': 7.29.10
       dom-helpers: 5.2.1
       loose-envify: 1.4.0
       prop-types: 15.8.1
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
 
   react@19.2.3: {}
-
-  react@19.3.1: {}
 
   readable-stream@2.3.8:
     dependencies:
@@ -12759,8 +12152,6 @@ snapshots:
   safer-buffer@2.1.2: {}
 
   scheduler@0.27.0: {}
-
-  scheduler@0.28.0: {}
 
   select-hose@2.0.0: {}
 
@@ -13234,9 +12625,9 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.7
 
-  use-callback-ref@1.3.3(@types/react@19.3.0)(react@19.3.1):
+  use-callback-ref@1.3.3(@types/react@19.3.0)(react@19.2.3):
     dependencies:
-      react: 19.3.1
+      react: 19.2.3
       tslib: 2.8.1
     optionalDependencies:
       '@types/react': 19.3.0
@@ -13253,10 +12644,10 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.7
 
-  use-sidecar@1.1.3(@types/react@19.3.0)(react@19.3.1):
+  use-sidecar@1.1.3(@types/react@19.3.0)(react@19.2.3):
     dependencies:
       detect-node-es: 1.1.0
-      react: 19.3.1
+      react: 19.2.3
       tslib: 2.8.1
     optionalDependencies:
       '@types/react': 19.3.0

@@ -15,3 +15,5 @@ overrides:
   '@lingui/vite-plugin': 5.7.0
   '@lingui/swc-plugin': 5.10.0
   '@swc/core': 1.15.8
+  react: 19.2.3
+  react-dom: 19.2.3
