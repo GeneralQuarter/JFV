@@ -55,20 +55,12 @@ export function buildAuthorizeUrl(state: string): string {
 }
 
 async function requestToken(params: Record<string, string>): Promise<TokenSet> {
-  const headers: Record<string, string> = {
-    Accept: 'application/json',
-    'Content-Type': 'application/x-www-form-urlencoded',
-  };
-
-  if (params.client_id && params.client_secret) {
-    headers.Authorization = `Basic ${Buffer.from(
-      `${params.client_id}:${params.client_secret}`,
-    ).toString('base64')}`;
-  }
-
   const response = await fetch(TOKEN_URL, {
     method: 'POST',
-    headers,
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
     body: new URLSearchParams(params).toString(),
   });
 
