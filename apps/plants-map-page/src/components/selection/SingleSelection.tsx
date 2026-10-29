@@ -2,6 +2,7 @@ import type { PageAppSDK } from '@contentful/app-sdk';
 import {
   Button,
   EntryCard,
+  Paragraph,
   SectionHeading,
   Stack,
 } from '@contentful/f36-components';
@@ -79,7 +80,12 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
         fullWidth
       >
         {entry?.sys.contentType.sys.id === 'plant' && (
-          <PlantQuickActions entry={entry} />
+          <>
+            <Paragraph>
+              Drag the handle on the map to move this plant.
+            </Paragraph>
+            <PlantQuickActions entry={entry} />
+          </>
         )}
         {plantCard && (
           <>

@@ -8,6 +8,7 @@ import { mapBackgroundColor } from '../theme';
 import Hedges from './map/Hedges';
 import MapSectors from './map/MapSectors';
 import MapZones from './map/MapZones';
+import PlantMoveHandle from './map/PlantMoveHandle';
 import Plants from './map/Plants';
 import Rectangles from './map/Rectangles';
 import StaticFeatures from './map/StaticFeatures';
@@ -97,6 +98,7 @@ const EditorMap: FC = () => {
       <MapZones />
       <MapSectors />
       <Plants />
+      <PlantMoveHandle />
     </MapLibreMap>
   );
 };

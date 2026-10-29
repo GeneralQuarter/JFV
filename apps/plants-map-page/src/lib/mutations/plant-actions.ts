@@ -131,3 +131,36 @@ export function applyLocalPlantAction(
     setLocalizedDate(entry, config.dateField, date);
   }
 }
+
+export async function updatePlantPosition(
+  cma: CMAClient,
+  plantId: string,
+  position: { lat: number; lon: number },
+): Promise<void> {
+  const entry = await cma.entry.get({ entryId: plantId });
+
+  if (entry.sys.contentType.sys.id !== 'plant') {
+    throw new Error('Entry is not a plant');
+  }
+
+  const hasPosition = entry.fields.position !== undefined;
+  const updated = await cma.entry.patch(
+    { entryId: plantId, version: entry.sys.version },
+    [
+      {
+        op: hasPosition ? 'replace' : 'add',
+        path: hasPosition ? '/fields/position/fr' : '/fields/position',
+        value: hasPosition ? position : { fr: position },
+      },
+    ],
+  );
+
+  await cma.entry.publish({ entryId: plantId }, updated);
+}
+
+export function setLocalPlantPosition(
+  entry: CmaEntry,
+  position: { lat: number; lon: number },
+): void {
+  entry.fields.position = { fr: position };
+}
