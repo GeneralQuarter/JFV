@@ -1,0 +1,15 @@
+{
+  "name": "jfv-app-api",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npx vercel@latest dev",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "@vercel/node": "^3.2.2",
+    "typescript": "~5.9.3"
+  }
+}

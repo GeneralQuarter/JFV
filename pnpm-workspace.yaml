@@ -1,0 +1,17 @@
+packages:
+  - apps/*
+  - packages/*
+
+allowBuilds:
+  '@biomejs/biome': true
+  '@parcel/watcher': true
+  '@swc/core': true
+  esbuild: true
+  sharp: true
+
+overrides:
+  '@lingui/core': 5.7.0
+  '@lingui/react': 5.7.0
+  '@lingui/vite-plugin': 5.7.0
+  '@lingui/swc-plugin': 5.10.0
+  '@swc/core': 1.15.8

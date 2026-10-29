@@ -1,0 +1,10 @@
+.plant-field-full-latin-name {
+  input {
+    padding-inline-start: 40px;
+  }
+
+  svg {
+    width: 25px;
+    height: 25px;
+  }
+}

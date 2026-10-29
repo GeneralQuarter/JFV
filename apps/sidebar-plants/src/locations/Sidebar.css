@@ -1,0 +1,9 @@
+.plant-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.plant-entity-list-item:hover {
+  cursor: pointer;
+}

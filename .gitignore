@@ -1,0 +1,22 @@
+# Dependencies
+node_modules
+
+# Build outputs
+dist
+build
+dev-dist
+coverage
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Hosting and editor metadata
+.vercel
+.vscode/*
+!.vscode/extensions.json
+
+# Logs and OS files
+*.log
+.DS_Store
