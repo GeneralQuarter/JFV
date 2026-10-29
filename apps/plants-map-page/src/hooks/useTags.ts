@@ -1,0 +1,45 @@
+import type { CMAClient } from '@contentful/app-sdk';
+import { create } from 'zustand';
+
+type TagsState = {
+  tags: Record<string, string>;
+  loading: boolean;
+  loaded: boolean;
+  error?: string;
+  fetchTags: (cma: CMAClient) => Promise<void>;
+};
+
+const useTags = create<TagsState>((set, get) => ({
+  tags: {},
+  loading: false,
+  loaded: false,
+  error: undefined,
+  fetchTags: async (cma: CMAClient) => {
+    if (get().loading) {
+      return;
+    }
+
+    set({ error: undefined, loading: true });
+
+    try {
+      const collection = await cma.tag.getMany({ query: { limit: 1000 } });
+      const tags = collection.items.reduce<Record<string, string>>(
+        (acc, tag) => {
+          acc[tag.sys.id] = tag.name;
+
+          return acc;
+        },
+        {},
+      );
+
+      set({ loaded: true, loading: false, tags });
+    } catch (error) {
+      set({
+        error: error instanceof Error ? error.message : 'Could not load tags',
+        loading: false,
+      });
+    }
+  },
+}));
+
+export default useTags;

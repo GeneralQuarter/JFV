@@ -13,6 +13,10 @@ import { type FC, useMemo } from 'react';
 import useEntries from '../../hooks/useEntries';
 import type { SelectedFeature } from '../../hooks/useMapSelection';
 import useMapSelection from '../../hooks/useMapSelection';
+import useSelectedTags from '../../hooks/useSelectedTags';
+import useTags from '../../hooks/useTags';
+import { entryTags } from '../../lib/entries';
+import TagPill from '../TagPill';
 import PlantQuickActions from './plant/PlantQuickActions';
 import SelectionHeader from './SelectionHeader';
 
@@ -24,6 +28,8 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
   const sdk = useSDK<PageAppSDK>();
   const plants = useEntries((state) => state.plants);
   const plantCards = useEntries((state) => state.plantCards);
+  const tags = useTags((state) => state.tags);
+  const selectedTags = useSelectedTags((state) => state.selected);
   const toggleSelect = useMapSelection((state) => state.toggleSelect);
 
   const entry = useMemo(() => {
@@ -53,6 +59,8 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
       (pc) => pc.sys.id === entry.fields.commonInfo.fr.sys.id,
     );
   }, [entry, plantCards]);
+
+  const plantTags = useMemo(() => (entry ? entryTags(entry) : []), [entry]);
 
   return (
     <Stack flexDirection="column">
@@ -100,6 +108,28 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
                 sdk.navigator.openEntry(plantCard.sys.id, { slideIn: true });
               }}
             />
+          </>
+        )}
+        {entry && (
+          <>
+            <SectionHeading marginBottom="none">Tags</SectionHeading>
+            {plantTags.length > 0 ? (
+              <Stack css={{ flexWrap: 'wrap', gap: tokens.spacingXs }}>
+                {plantTags.map((tagId) => (
+                  <TagPill
+                    key={tagId}
+                    hueIndex={
+                      selectedTags.find((tag) => tag.id === tagId)?.hueIndex
+                    }
+                    label={tags[tagId] ?? tagId}
+                  />
+                ))}
+              </Stack>
+            ) : (
+              <Paragraph marginBottom="none" css={{ color: tokens.gray600 }}>
+                No tags
+              </Paragraph>
+            )}
           </>
         )}
       </Stack>

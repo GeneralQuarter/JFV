@@ -9,8 +9,10 @@ import EntriesSearch from '../components/EntriesSearch';
 import ImportPoints from '../components/ImportPoints';
 import PlantMetrics from '../components/PlantMetrics';
 import MapSelection from '../components/selection/MapSelection';
+import TagsSelector from '../components/TagsSelector';
 import VisibilityToggles from '../components/VisibilityToggles';
 import useEntries from '../hooks/useEntries';
+import useTags from '../hooks/useTags';
 
 if (import.meta.env.DEV) {
   console.info('[JFV editor] local dev build: ghost-v2');
@@ -20,12 +22,17 @@ const Page = () => {
   const sdk = useSDK<PageAppSDK>();
   const cma = sdk.cma;
   const fetchAllEntries = useEntries((state) => state.fetchAllEntries);
+  const fetchTags = useTags((state) => state.fetchTags);
   const loading = useEntries((state) => state.loading);
   const error = useEntries((state) => state.error);
 
   useEffect(() => {
     void fetchAllEntries(cma);
   }, [cma, fetchAllEntries]);
+
+  useEffect(() => {
+    void fetchTags(cma);
+  }, [cma, fetchTags]);
 
   return (
     <Layout
@@ -49,6 +56,8 @@ const Page = () => {
           <PlantMetrics />
           <Divider />
           <VisibilityToggles />
+          <Divider />
+          <TagsSelector />
         </Layout.Sidebar>
       }
       rightSidebar={

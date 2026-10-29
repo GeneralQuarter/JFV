@@ -7,7 +7,9 @@ import { type FC, useMemo } from 'react';
 import { Layer, Source } from 'react-map-gl/maplibre';
 import useEntries from '../../hooks/useEntries';
 import useMapSelection from '../../hooks/useMapSelection';
+import useSelectedTags from '../../hooks/useSelectedTags';
 import useVisibilityToggles from '../../hooks/useVisibilityToggles';
+import { colorFromHueIndex } from '../../lib/colors';
 import {
   entryCode,
   entryTags,
@@ -23,6 +25,7 @@ type RenderPlant = {
   diameter: number;
   height: number;
   tags: string[];
+  tagColor: string;
 };
 
 type PlantProperties = {
@@ -31,6 +34,7 @@ type PlantProperties = {
   code: string;
   height: number;
   diameter: number;
+  tagColor: string;
 };
 
 const renderPlantToFeature =
@@ -46,6 +50,7 @@ const renderPlantToFeature =
           code: plant.code,
           height: plant.height,
           diameter: plant.diameter,
+          tagColor: plant.tagColor,
         },
       },
     ) as Feature<Polygon, PlantProperties>;
@@ -68,6 +73,7 @@ const Plants: FC = () => {
   const showNonPinnedPlants = useVisibilityToggles(
     (state) => state.nonPinnedPlants,
   );
+  const selectedTags = useSelectedTags((state) => state.selected);
   const hoveredId = useMapSelection((state) => state.hoveredId);
   const selectedFeatures = useMapSelection((state) => state.selectedFeatures);
 
@@ -87,6 +93,10 @@ const Plants: FC = () => {
 
         const cardId = plantCardId(plant);
         const plantCard = cardId ? plantCardsById.get(cardId) : undefined;
+        const tags = entryTags(plant).concat(
+          plantCard ? entryTags(plantCard) : [],
+        );
+        const selectedTag = selectedTags.find((tag) => tags.includes(tag.id));
 
         return [
           {
@@ -95,13 +105,14 @@ const Plants: FC = () => {
             position,
             diameter: Number(plantCard?.fields.width?.fr ?? 1),
             height: Number(plantCard?.fields.height?.fr ?? 1),
-            tags: entryTags(plant).concat(
-              plantCard ? entryTags(plantCard) : [],
-            ),
+            tags,
+            tagColor: selectedTag
+              ? colorFromHueIndex(selectedTag.hueIndex, 0.35)
+              : 'transparent',
           },
         ];
       }),
-    [plantCardsById, plants],
+    [plantCardsById, plants, selectedTags],
   );
 
   const filteredPlants = useMemo<RenderPlant[]>(
@@ -149,7 +160,7 @@ const Plants: FC = () => {
           type="fill"
           id={MAP_LAYER_IDS.plant}
           paint={{
-            'fill-color': 'transparent',
+            'fill-color': ['get', 'tagColor'],
           }}
         />
         <Layer type="line" paint={{ 'line-color': 'gray' }} />
