@@ -22,6 +22,7 @@ import {
 
 type PlantMoveGhostProps = {
   plantId: string;
+  code: string;
   position: { lat: number; lon: number };
   diameter: number;
   onDone: () => void;
@@ -30,6 +31,7 @@ type PlantMoveGhostProps = {
 
 const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
   plantId,
+  code,
   position,
   diameter,
   onDone,
@@ -42,6 +44,7 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
   const [currentPosition, setCurrentPosition] = useState(position);
   const [dragging, setDragging] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [zoom, setZoom] = useState(mainMap?.getZoom() ?? 17);
   const commitRef = useRef<(() => Promise<void>) | undefined>(undefined);
 
   useEffect(() => {
@@ -61,9 +64,60 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
       circle(
         [currentPosition.lon, currentPosition.lat],
         (showCanopy || diameter < 2 ? diameter : 2) / 2000,
+        {
+          properties: { code },
+        },
       ),
-    [currentPosition.lat, currentPosition.lon, diameter, showCanopy],
+    [code, currentPosition.lat, currentPosition.lon, diameter, showCanopy],
   );
+
+  const hitBox = useMemo(() => {
+    void zoom;
+
+    if (!mainMap) {
+      return { height: 48, width: 48 };
+    }
+
+    let minX = Number.POSITIVE_INFINITY;
+    let maxX = Number.NEGATIVE_INFINITY;
+    let minY = Number.POSITIVE_INFINITY;
+    let maxY = Number.NEGATIVE_INFINITY;
+
+    for (const [lon, lat] of ghostFeature.geometry.coordinates[0]) {
+      const point = mainMap.project([lon, lat]);
+      minX = Math.min(minX, point.x);
+      maxX = Math.max(maxX, point.x);
+      minY = Math.min(minY, point.y);
+      maxY = Math.max(maxY, point.y);
+    }
+
+    return {
+      height: Math.max(48, maxY - minY + 8),
+      width: Math.max(48, maxX - minX + 8),
+    };
+  }, [ghostFeature, mainMap, zoom]);
+
+  useEffect(() => {
+    if (!mainMap) {
+      return;
+    }
+
+    const updateZoom = () => {
+      const nextZoom = mainMap.getZoom();
+      setZoom((currentZoom) =>
+        currentZoom === nextZoom ? currentZoom : nextZoom,
+      );
+    };
+
+    updateZoom();
+    mainMap.on('zoom', updateZoom);
+    mainMap.on('move', updateZoom);
+
+    return () => {
+      mainMap.off('zoom', updateZoom);
+      mainMap.off('move', updateZoom);
+    };
+  }, [mainMap]);
 
   const commitPosition = useCallback(async () => {
     if (saving) {
@@ -135,6 +189,20 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
             'line-width': 2,
           }}
         />
+        <Layer
+          id="plant-move-ghost-label"
+          type="symbol"
+          layout={{
+            'text-allow-overlap': true,
+            'text-field': ['get', 'code'],
+            'text-size': 12,
+          }}
+          paint={{
+            'text-color': '#1f4d13',
+            'text-halo-color': '#fffbec',
+            'text-halo-width': 2,
+          }}
+        />
       </Source>
       <Marker
         anchor="center"
@@ -165,11 +233,11 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
             border: 'none',
             cursor: dragging ? 'grabbing' : 'grab',
             display: 'flex',
-            height: 120,
+            height: hitBox.height,
             justifyContent: 'center',
             opacity: saving ? 0.55 : 1,
             padding: 0,
-            width: 120,
+            width: hitBox.width,
           }}
           title="Right-click to confirm; Escape to cancel"
           type="button"

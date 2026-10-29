@@ -5,7 +5,7 @@ import { type FC, useCallback, useState } from 'react';
 import { Map as MapLibreMap, type ViewState } from 'react-map-gl/maplibre';
 import useEntries from '../hooks/useEntries';
 import useMapSelection from '../hooks/useMapSelection';
-import { plantCardId, plantPosition } from '../lib/entries';
+import { entryCode, plantCardId, plantPosition } from '../lib/entries';
 import { mapBackgroundColor } from '../theme';
 import Hedges from './map/Hedges';
 import MapSectors from './map/MapSectors';
@@ -17,6 +17,7 @@ import StaticFeatures from './map/StaticFeatures';
 
 type MovingPlant = {
   id: string;
+  code: string;
   position: { lat: number; lon: number };
   diameter: number;
 };
@@ -131,6 +132,7 @@ const EditorMap: FC = () => {
         : undefined;
 
       setMovingPlant({
+        code: entryCode(plant),
         diameter: Number(plantCard?.fields.width?.fr ?? 1),
         id: plant.sys.id,
         position,
@@ -160,6 +162,7 @@ const EditorMap: FC = () => {
       {movingPlant && (
         <PlantMoveGhost
           key={movingPlant.id}
+          code={movingPlant.code}
           diameter={movingPlant.diameter}
           onCancel={() => setMovingPlant(undefined)}
           onDone={() => setMovingPlant(undefined)}
