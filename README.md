@@ -44,7 +44,7 @@ For local HTTPS development on `https://jfv.local`, see [`dev/README.md`](dev/RE
 
 ```bash
 pnpm dev:jfv-app    # jfv-app dev server
-pnpm dev:page       # plants-map-page dev server
+pnpm dev:page       # plants-map-page dev server (http://localhost:3002)
 pnpm dev:api        # jfv-app-api local dev
 pnpm typecheck      # typecheck every workspace
 pnpm lint           # lint with Biome

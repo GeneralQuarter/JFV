@@ -1,79 +1,47 @@
-This project was bootstrapped with [Create Contentful App](https://github.com/contentful/create-contentful-app).
+# Plants Map Page
 
-## How to use
+Contentful Page app rewrite of the plantation editor.
 
-Execute create-contentful-app with npm, npx or yarn to bootstrap the example:
+## Local development
+
+Start the Vite server:
 
 ```bash
-# npx
-npx create-contentful-app --typescript
-
-# npm
-npm init contentful-app -- --typescript
-
-# Yarn
-yarn create contentful-app --typescript
+pnpm dev:page
 ```
 
-## Available Scripts
+It serves on:
 
-In the project directory, you can run:
-
-#### `npm start`
-
-Creates or updates your app definition in Contentful, and runs the app in development mode.
-Open your app to view it in the browser.
-
-The page will reload if you make edits.
-You will also see any lint errors in the console.
-
-#### `npm run build`
-
-Builds the app for production to the `build` folder.
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.
-Your app is ready to be deployed!
-
-#### `npm run upload`
-
-Uploads the build folder to contentful and creates a bundle that is automatically activated.
-The command guides you through the deployment process and asks for all required arguments.
-Read [here](https://www.contentful.com/developers/docs/extensibility/app-framework/create-contentful-app/#deploy-with-contentful) for more information about the deployment process.
-
-#### `npm run upload-ci`
-
-Similar to `npm run upload` it will upload your app to contentful and activate it. The only difference is  
-that with this command all required arguments are read from the environment variables, for example when you add
-the upload command to your CI pipeline.
-
-For this command to work, the following environment variables must be set:
-
-- `CONTENTFUL_ORG_ID` - The ID of your organization
-- `CONTENTFUL_APP_DEF_ID` - The ID of the app to which to add the bundle
-- `CONTENTFUL_ACCESS_TOKEN` - A personal [access token](https://www.contentful.com/developers/docs/references/content-management-api/#/reference/personal-access-tokens)
-
-## Libraries to use
-
-To make your app look and feel like Contentful use the following libraries:
-
-- [Forma 36](https://f36.contentful.com/) – Contentful's design system
-- [Contentful Field Editors](https://www.contentful.com/developers/docs/extensibility/field-editors/) – Contentful's field editor React components
-
-## Using the `contentful-management` SDK
-
-In the default create contentful app output, a contentful management client is
-passed into each location. This can be used to interact with Contentful's
-management API. For example
-
-```js
-// Use the client
-cma.locale.getMany({}).then((locales) => console.log(locales));
+```text
+http://localhost:3002
 ```
 
-Visit the [`contentful-management` documentation](https://www.contentful.com/developers/docs/extensibility/app-framework/sdk/#using-the-contentful-management-library)
-to find out more.
+Port 3002 is used because the local `jfv-app-api` runs on 3000 and `jfv-app` runs on 3001.
 
-## Learn More
+In Contentful, open the app definition for this Page app and set the **Page** location URL to:
 
-[Read more](https://www.contentful.com/developers/docs/extensibility/app-framework/create-contentful-app/) and check out the video on how to use the CLI.
+```text
+http://localhost:3002
+```
+
+Reload the Contentful page. The app will load entries through `sdk.cma` and show a loading overlay while fetching.
+
+If Contentful/browser mixed-content rules block the HTTP iframe, use an HTTPS tunnel:
+
+```bash
+ngrok http 3002
+```
+
+and set the Page URL to the HTTPS tunnel URL.
+
+`contentful-app-scripts start` is also available if you prefer its tunnel/app-definition workflow:
+
+```bash
+pnpm --filter plants-map-page exec contentful-app-scripts start
+```
+
+## Notes
+
+- Quick actions (Pin/Plant/Dead) mutate real Contentful data.
+- `VITE_*` runtime variables are not needed by this app; Contentful supplies the space, environment, and CMA client.
+- Build output goes to `build/`.

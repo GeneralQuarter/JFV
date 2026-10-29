@@ -12,7 +12,9 @@ export default defineConfig({
     outDir: 'build',
   },
   server: {
+    allowedHosts: true,
     host: 'localhost',
-    port: 3000,
+    port: 3002,
+    strictPort: true,
   },
 });
