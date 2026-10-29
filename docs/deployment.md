@@ -39,9 +39,23 @@ Copy from `apps/jfv-app/.env.example`:
 - `VITE_CONTENTFUL_ACCESS_TOKEN` — Contentful Delivery API token
 - `VITE_SW` / `VITE_SW_DEV` / `VITE_SYNC_IN_DEV` — optional feature flags
 
-### `jfv-app-api`
+### `jfv-app-api` project setup
 
-Copy from `apps/jfv-app-api/.env.example`. Production requires:
+This project has **no build command** on purpose. Vercel detects the files in `api/` as serverless functions and bundles them automatically.
+
+Create the project with:
+
+- **Root Directory:** `apps/jfv-app-api`
+- **Include source files outside of the Root Directory:** enabled
+- **Framework Preset:** Other (the checked-in `vercel.json` sets `"framework": null`)
+- **Build Command:** leave empty (functions are deployed without a build)
+- **Output Directory:** leave empty
+- **Install Command:** default (`pnpm` is detected from the root lockfile)
+- **Node.js Version:** 22
+
+The ignored-build step, function duration, and framework are set in `apps/jfv-app-api/vercel.json`. After the first deploy, open `https://<api-project>.vercel.app/api/health` to confirm the function runtime is working, then add the custom API domain and update the Contentful OAuth redirect URI.
+
+Copy environment values from `apps/jfv-app-api/.env.example`. Production requires:
 
 - Contentful OAuth: client ID, client secret, redirect URI, scope
 - Contentful space and environment
