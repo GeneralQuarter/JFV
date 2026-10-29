@@ -42,7 +42,7 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
   onCancel,
 }) => {
   const sdk = useSDK<PageAppSDK>();
-  const { mainMap } = useMap();
+  const { current: mainMap } = useMap();
   const updatePlant = useEntries((state) => state.updatePlant);
   const showCanopy = useVisibilityToggles((state) => state.canopy);
   const showLabels = useVisibilityToggles((state) => state.plantLabels);
