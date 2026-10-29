@@ -52,8 +52,10 @@ https://jfv.local
 Create a separate OAuth application for development:
 
 - Redirect URI: `https://jfv.local/api/auth/callback`
-- Confidential client
+- **Confidential client** (`confidential: true`)
 - Scope: `content_management_manage`
+
+A public OAuth app will redirect to Contentful successfully, but the token exchange will fail with `invalid_grant`. Check the app’s confidentiality setting if login returns with `auth=error`.
 
 Put its client ID and secret in `apps/jfv-app-api/.env.local`.
 

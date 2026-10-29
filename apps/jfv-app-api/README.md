@@ -36,6 +36,9 @@ Create a **confidential** OAuth application in Contentful account settings with:
 
 - Redirect URI: `https://api.example.com/api/auth/callback`
 - Scope: `content_management_manage`
+- `confidential: true`
+
+A public OAuth application will issue authorization codes, but the token exchange will fail because this API uses a client secret. If login returns to the app with `auth=error`, verify the app’s confidentiality flag in Contentful.
 
 Create separate OAuth applications for staging and production. For local OAuth testing, use an HTTPS tunnel or a staging deployment; Contentful requires an HTTPS redirect URI.
 

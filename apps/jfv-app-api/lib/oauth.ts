@@ -73,7 +73,25 @@ async function requestToken(params: Record<string, string>): Promise<TokenSet> {
   });
 
   if (!response.ok) {
-    throw new OAuthError(response.status, 'Contentful token request failed');
+    const raw = await response.text();
+    let detail = '';
+
+    try {
+      const errorBody = JSON.parse(raw) as {
+        error?: string;
+        errorMessage?: string;
+      };
+      detail = [errorBody.error, errorBody.errorMessage]
+        .filter(Boolean)
+        .join(': ');
+    } catch {
+      // Keep the generic message if the response is not JSON.
+    }
+
+    throw new OAuthError(
+      response.status,
+      `Contentful token request failed${detail ? ` (${detail})` : ''}`,
+    );
   }
 
   const data = (await response.json()) as TokenResponse;

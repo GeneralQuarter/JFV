@@ -52,6 +52,12 @@ export default async function handler(
       !state ||
       !verifyState(stateCookie, state, env.sessionSecret)
     ) {
+      if (oauthError) {
+        console.error('oauth provider returned an error', {
+          error: oauthError,
+          description: queryValue(req.query.error_description),
+        });
+      }
       res.setHeader('Set-Cookie', clearStateCookie);
       redirectToApp(res, env.appOrigin, 'error');
       return;
