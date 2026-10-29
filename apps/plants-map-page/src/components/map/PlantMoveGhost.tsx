@@ -77,10 +77,11 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
     }
 
     draggingRef.current = false;
-    mainMap?.dragPan.enable();
 
     if (mainMap) {
-      mainMap.getCanvas().style.cursor = '';
+      const map = mainMap.getMap();
+      map.dragPan.enable();
+      map.getCanvas().style.cursor = '';
     }
   }, [mainMap]);
 
@@ -113,7 +114,8 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
       return;
     }
 
-    const canvas = mainMap.getCanvas();
+    const map = mainMap.getMap();
+    const canvas = map.getCanvas();
 
     const onMouseDown = (event: MapLayerMouseEvent) => {
       if (savingRef.current || event.originalEvent.button !== 0) {
@@ -126,7 +128,7 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
         lat: currentPositionRef.current.lat - event.lngLat.lat,
         lon: currentPositionRef.current.lon - event.lngLat.lng,
       };
-      mainMap.dragPan.disable();
+      map.dragPan.disable();
       canvas.style.cursor = 'grabbing';
     };
 
@@ -158,28 +160,28 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
     };
 
     for (const layer of GHOST_LAYERS) {
-      mainMap.on('mousedown', layer, onMouseDown);
-      mainMap.on('mouseenter', layer, onMouseEnter);
-      mainMap.on('mouseleave', layer, onMouseLeave);
+      map.on('mousedown', layer, onMouseDown);
+      map.on('mouseenter', layer, onMouseEnter);
+      map.on('mouseleave', layer, onMouseLeave);
     }
 
-    mainMap.on('mousemove', onMouseMove);
-    mainMap.on('mouseup', onMouseUp);
+    map.on('mousemove', onMouseMove);
+    map.on('mouseup', onMouseUp);
     window.addEventListener('mouseup', onMouseUp);
     window.addEventListener('blur', onMouseUp);
 
     return () => {
       for (const layer of GHOST_LAYERS) {
-        mainMap.off('mousedown', layer, onMouseDown);
-        mainMap.off('mouseenter', layer, onMouseEnter);
-        mainMap.off('mouseleave', layer, onMouseLeave);
+        map.off('mousedown', layer, onMouseDown);
+        map.off('mouseenter', layer, onMouseEnter);
+        map.off('mouseleave', layer, onMouseLeave);
       }
 
-      mainMap.off('mousemove', onMouseMove);
-      mainMap.off('mouseup', onMouseUp);
+      map.off('mousemove', onMouseMove);
+      map.off('mouseup', onMouseUp);
       window.removeEventListener('mouseup', onMouseUp);
       window.removeEventListener('blur', onMouseUp);
-      mainMap.dragPan.enable();
+      map.dragPan.enable();
       canvas.style.cursor = '';
     };
   }, [endDrag, mainMap]);
