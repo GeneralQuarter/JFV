@@ -62,13 +62,17 @@ pnpm --filter plants-map-page build
 
 ## Deployment
 
-`jfv-app` and `jfv-app-api` are deployed as separate Vercel projects. Set the Vercel Root Directory to the app folder and enable “Include source files outside of the Root Directory in the Build Step” so workspace packages are available.
+Deployment and cutover are documented in [`docs/deployment.md`](docs/deployment.md), including:
 
-The three Contentful micro apps are built and uploaded as Contentful bundles:
+- Vercel project settings and `vercel.json` files
+- environment variables for `jfv-app` and `jfv-app-api`
+- PWA/service-worker cache headers
+- Contentful app definitions and micro-app bundle uploads
+- staging validation, cutover, and rollback steps
+
+The short version: `jfv-app`, `jfv-app-api`, and `plants-map-page` are separate Vercel projects with **Root Directory** set to their app folder and **Include source files outside of the Root Directory** enabled. The three Contentful micro apps are uploaded as Contentful bundles:
 
 ```bash
 pnpm --filter sidebar-plants build
-pnpm --filter sidebar-plants upload --ci --bundle-dir ./build
+pnpm --filter sidebar-plants upload:ci
 ```
-
-See the migration and deployment plan for the full details.
