@@ -11,6 +11,8 @@ import { type FC, useMemo } from 'react';
 import useEntries from '../../hooks/useEntries';
 import type { SelectedFeature } from '../../hooks/useMapSelection';
 import useMapSelection from '../../hooks/useMapSelection';
+import { plantPosition } from '../../lib/entries';
+import { downloadText, plantsToCsv } from '../../lib/points';
 import SelectionHeader from './SelectionHeader';
 
 type MultiSelectionProps = {
@@ -37,6 +39,24 @@ const MultiSelection: FC<MultiSelectionProps> = ({ features }) => {
         .sort(sortBySelectionOrder(plantFeatures)),
     [plants, plantFeatures],
   );
+  const exportablePlants = useMemo(
+    () => plantEntries.filter((plant) => plantPosition(plant) !== undefined),
+    [plantEntries],
+  );
+
+  const exportPlants = () => {
+    if (exportablePlants.length === 0) {
+      return;
+    }
+
+    const date = new Date().toISOString().slice(0, 10);
+
+    downloadText(
+      `jfv-selected-plants-${date}.csv`,
+      plantsToCsv(exportablePlants),
+      'text/csv;charset=utf-8;',
+    );
+  };
 
   return (
     <Stack flexDirection="column" spacing="none" fullHeight>
@@ -44,7 +64,13 @@ const MultiSelection: FC<MultiSelectionProps> = ({ features }) => {
         title="Multi selection"
         ariaLabel="clear all selected features"
         actions={
-          <Button size="small" startIcon={<TrayArrowUpIcon />}>
+          <Button
+            isDisabled={exportablePlants.length === 0}
+            onClick={exportPlants}
+            size="small"
+            startIcon={<TrayArrowUpIcon />}
+            title="Export selected plants as CSV"
+          >
             Export
           </Button>
         }

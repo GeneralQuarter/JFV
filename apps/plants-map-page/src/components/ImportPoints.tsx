@@ -1,16 +1,16 @@
 import type { PageAppSDK } from '@contentful/app-sdk';
 import { Button } from '@contentful/f36-components';
-import { TrayArrowDownIcon, TrayArrowUpIcon } from '@contentful/f36-icons';
+import { TrayArrowDownIcon } from '@contentful/f36-icons';
 import { useSDK } from '@contentful/react-apps-toolkit';
 import { type ChangeEvent, type FC, useRef, useState } from 'react';
 import useEntries from '../hooks/useEntries';
-import { entryCode, plantPosition } from '../lib/entries';
+import { entryCode } from '../lib/entries';
 import {
   findPlantByCode,
   setLocalPlantPosition,
   updatePlantPosition,
 } from '../lib/mutations/plant-actions';
-import { downloadText, parsePointsFile, plantsToCsv } from '../lib/points';
+import { parsePointsFile } from '../lib/points';
 
 const ImportPoints: FC = () => {
   const sdk = useSDK<PageAppSDK>();
@@ -113,25 +113,6 @@ const ImportPoints: FC = () => {
     }
   };
 
-  const exportPlants = () => {
-    const positionedPlants = plants.filter(
-      (plant) => plantPosition(plant) !== undefined,
-    );
-
-    if (positionedPlants.length === 0) {
-      sdk.notifier.error('There are no positioned plants to export.');
-      return;
-    }
-
-    const date = new Date().toISOString().slice(0, 10);
-
-    downloadText(
-      `jfv-plants-${date}.csv`,
-      plantsToCsv(positionedPlants),
-      'text/csv;charset=utf-8;',
-    );
-  };
-
   return (
     <>
       <Button
@@ -143,14 +124,6 @@ const ImportPoints: FC = () => {
         title="Import plant positions from CSV or JSON"
       >
         Import
-      </Button>
-      <Button
-        onClick={exportPlants}
-        size="small"
-        startIcon={<TrayArrowUpIcon />}
-        title="Export positioned plants as CSV"
-      >
-        Export
       </Button>
       <input
         accept=".csv,.json,text/csv,application/json"
