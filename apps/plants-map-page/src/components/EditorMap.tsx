@@ -1,10 +1,11 @@
 import { createMapStyle, MAP_LAYER_IDS, mapDefaults } from '@jfv/map-data';
 import type { MapGeoJSONFeature, MapLayerMouseEvent } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import { type FC, useCallback, useState } from 'react';
+import { type FC, useCallback, useEffect, useState } from 'react';
 import { Map as MapLibreMap, type ViewState } from 'react-map-gl/maplibre';
 import useEntries from '../hooks/useEntries';
 import useMapSelection from '../hooks/useMapSelection';
+import useSectorDrawing from '../hooks/useSectorDrawing';
 import {
   entryCode,
   entryCoords,
@@ -22,6 +23,7 @@ import MeasuredPoints from './map/MeasuredPoints';
 import PlantMoveGhost from './map/PlantMoveGhost';
 import Plants from './map/Plants';
 import Rectangles from './map/Rectangles';
+import SectorDraft from './map/SectorDraft';
 import ShapeMoveGhost, { type ShapeKind } from './map/ShapeMoveGhost';
 import StaticFeatures from './map/StaticFeatures';
 
@@ -92,12 +94,20 @@ const EditorMap: FC = () => {
   const hover = useMapSelection((state) => state.hover);
   const clearHovered = useMapSelection((state) => state.clearHovered);
   const toggleSelect = useMapSelection((state) => state.toggleSelect);
+  const isDrawing = useSectorDrawing((state) => state.isDrawing);
   const [movingPlant, setMovingPlant] = useState<MovingPlant>();
   const [movingShape, setMovingShape] = useState<MovingShape>();
 
+  useEffect(() => {
+    if (isDrawing) {
+      setMovingPlant(undefined);
+      setMovingShape(undefined);
+    }
+  }, [isDrawing]);
+
   const onMouseMove = useCallback(
     (e: MapLayerMouseEvent) => {
-      if (movingPlant || movingShape) {
+      if (movingPlant || movingShape || isDrawing) {
         return;
       }
 
@@ -108,7 +118,7 @@ const EditorMap: FC = () => {
         hover(id);
       }
     },
-    [hover, movingPlant, movingShape],
+    [hover, isDrawing, movingPlant, movingShape],
   );
 
   const onMouseLeave = useCallback(() => {
@@ -117,7 +127,7 @@ const EditorMap: FC = () => {
 
   const onClick = useCallback(
     (e: MapLayerMouseEvent) => {
-      if (movingPlant || movingShape) {
+      if (movingPlant || movingShape || isDrawing) {
         return;
       }
 
@@ -137,14 +147,14 @@ const EditorMap: FC = () => {
         toggleSelect({ id, type }, !e.originalEvent.ctrlKey);
       }
     },
-    [movingPlant, movingShape, toggleSelect],
+    [isDrawing, movingPlant, movingShape, toggleSelect],
   );
 
   const onContextMenu = useCallback(
     (e: MapLayerMouseEvent) => {
       e.originalEvent.preventDefault();
 
-      if (movingPlant || movingShape) {
+      if (movingPlant || movingShape || isDrawing) {
         return;
       }
 
@@ -226,7 +236,15 @@ const EditorMap: FC = () => {
         position,
       });
     },
-    [mapZones, movingPlant, movingShape, plantCards, plants, rectangles],
+    [
+      isDrawing,
+      mapZones,
+      movingPlant,
+      movingShape,
+      plantCards,
+      plants,
+      rectangles,
+    ],
   );
 
   return (
@@ -250,6 +268,7 @@ const EditorMap: FC = () => {
       <MapSectors />
       <Plants />
       <MeasuredPoints />
+      <SectorDraft />
       {movingPlant && (
         <PlantMoveGhost
           key={movingPlant.id}

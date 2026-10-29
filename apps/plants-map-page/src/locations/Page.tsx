@@ -8,6 +8,7 @@ import EditorMap from '../components/EditorMap';
 import EntriesSearch from '../components/EntriesSearch';
 import ImportPoints from '../components/ImportPoints';
 import PlantMetrics from '../components/PlantMetrics';
+import SectorDrawing from '../components/SectorDrawing';
 import MapSelection from '../components/selection/MapSelection';
 import TagsSelector from '../components/TagsSelector';
 import VisibilityToggles from '../components/VisibilityToggles';
@@ -68,6 +69,7 @@ const Page = () => {
     >
       <Layout.Body css={{ padding: 0, position: 'relative' }}>
         <EditorMap />
+        <SectorDrawing />
         {loading && (
           <div
             style={{

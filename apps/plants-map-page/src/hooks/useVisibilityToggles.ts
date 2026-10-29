@@ -36,6 +36,7 @@ type VisibilityTogglesState = {
   [P in keyof Writeable<typeof visibilityToggleMap>]: boolean;
 } & {
   toggle: (toggle: VisibilityToggleKey) => () => void;
+  setVisibility: (toggle: VisibilityToggleKey, value: boolean) => void;
 };
 
 const useVisibilityToggles = create<VisibilityTogglesState>((set) => ({
@@ -51,6 +52,12 @@ const useVisibilityToggles = create<VisibilityTogglesState>((set) => ({
     set(
       produce((state) => {
         state[toggle] = !state[toggle];
+      }),
+    ),
+  setVisibility: (toggle: VisibilityToggleKey, value: boolean) =>
+    set(
+      produce((state) => {
+        state[toggle] = value;
       }),
     ),
 }));

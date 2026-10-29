@@ -67,6 +67,7 @@ type EntriesState = {
   error?: string;
   fetchAllEntries: (cma: CMAClient) => Promise<void>;
   addPlant: (plant: CmaEntry) => void;
+  addMapSector: (sector: CmaEntry) => void;
   updateEntry: (entryId: string, updater: (entry: CmaEntry) => void) => void;
   updatePlant: (plantId: string, updater: (entry: CmaEntry) => void) => void;
   removePlant: (plantId: string) => void;
@@ -121,6 +122,15 @@ const useEntries = create<EntriesState>((set) => ({
       produce((state: EntriesState) => {
         if (!state.plants.some((item) => item.sys.id === plant.sys.id)) {
           state.plants.push(plant);
+        }
+      }),
+    );
+  },
+  addMapSector: (sector: CmaEntry) => {
+    set(
+      produce((state: EntriesState) => {
+        if (!state.mapSectors.some((item) => item.sys.id === sector.sys.id)) {
+          state.mapSectors.push(sector);
         }
       }),
     );

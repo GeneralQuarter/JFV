@@ -8,6 +8,7 @@ import { Layer, Source, useMap } from 'react-map-gl/maplibre';
 import useEntries from '../../hooks/useEntries';
 import useMapSelection from '../../hooks/useMapSelection';
 import useMeasuredPoints from '../../hooks/useMeasuredPoints';
+import useSectorDrawing from '../../hooks/useSectorDrawing';
 import { entryCode } from '../../lib/entries';
 import {
   setLocalPlantPosition,
@@ -34,6 +35,7 @@ const MeasuredPoints: FC = () => {
   const updatePlant = useEntries((state) => state.updatePlant);
   const selectedFeatures = useMapSelection((state) => state.selectedFeatures);
   const points = useMeasuredPoints((state) => state.points);
+  const isDrawing = useSectorDrawing((state) => state.isDrawing);
   const busyRef = useRef(false);
 
   const featureCollection = useMemo<
@@ -69,7 +71,7 @@ const MeasuredPoints: FC = () => {
       const point = typeof index === 'number' ? points[index] : undefined;
       const original = event.originalEvent;
 
-      if (!point || busyRef.current) {
+      if (!point || busyRef.current || isDrawing) {
         return;
       }
 
@@ -149,7 +151,7 @@ const MeasuredPoints: FC = () => {
         map.off('click', layer, onPointClick);
       }
     };
-  }, [mainMap, plants, points, sdk, selectedFeatures, updatePlant]);
+  }, [isDrawing, mainMap, plants, points, sdk, selectedFeatures, updatePlant]);
 
   if (points.length === 0) {
     return null;
