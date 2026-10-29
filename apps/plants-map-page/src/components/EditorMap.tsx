@@ -5,7 +5,11 @@ import { type FC, useCallback } from 'react';
 import { Map as MapLibreMap, type ViewState } from 'react-map-gl/maplibre';
 import useMapSelection from '../hooks/useMapSelection';
 import { mapBackgroundColor } from '../theme';
+import Hedges from './map/Hedges';
+import MapSectors from './map/MapSectors';
+import MapZones from './map/MapZones';
 import Plants from './map/Plants';
+import Rectangles from './map/Rectangles';
 import StaticFeatures from './map/StaticFeatures';
 
 const interactiveLayerIds = [MAP_LAYER_IDS.plant];
@@ -88,6 +92,10 @@ const EditorMap: FC = () => {
       onClick={onClick}
     >
       <StaticFeatures />
+      <Rectangles />
+      <Hedges />
+      <MapZones />
+      <MapSectors />
       <Plants />
     </MapLibreMap>
   );

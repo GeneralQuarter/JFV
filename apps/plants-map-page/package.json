@@ -5,6 +5,7 @@
   "dependencies": {
     "@contentful/app-sdk": "^4.47.0",
     "@jfv/contentful-app": "workspace:*",
+    "@jfv/core": "workspace:*",
     "@jfv/map-data": "workspace:*",
     "@contentful/f36-components": "5.9.0",
     "@contentful/f36-icons": "^5.9.0",

@@ -480,6 +480,9 @@ importers:
       '@jfv/contentful-app':
         specifier: workspace:*
         version: link:../../packages/contentful-app
+      '@jfv/core':
+        specifier: workspace:*
+        version: link:../../packages/core
       '@jfv/map-data':
         specifier: workspace:*
         version: link:../../packages/map-data

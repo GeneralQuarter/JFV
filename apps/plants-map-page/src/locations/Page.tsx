@@ -1,5 +1,5 @@
 import type { PageAppSDK } from '@contentful/app-sdk';
-import { Header, Layout } from '@contentful/f36-components';
+import { Header, Layout, Note, Spinner } from '@contentful/f36-components';
 import { useSDK } from '@contentful/react-apps-toolkit';
 import { useEffect } from 'react';
 import AddMenu from '../components/AddMenu';
@@ -16,22 +16,12 @@ const Page = () => {
   const sdk = useSDK<PageAppSDK>();
   const cma = sdk.cma;
   const fetchAllEntries = useEntries((state) => state.fetchAllEntries);
+  const loading = useEntries((state) => state.loading);
+  const error = useEntries((state) => state.error);
 
   useEffect(() => {
-    (async () => {
-      if (import.meta.env.DEV) {
-        return;
-      }
-
-      await fetchAllEntries(cma);
-    })();
+    void fetchAllEntries(cma);
   }, [cma, fetchAllEntries]);
-
-  /*
-     To use the cma, access it as follows.
-     If it is not needed, you can remove the next line.
-  */
-  // const cma = sdk.cma;
 
   return (
     <Layout
@@ -63,8 +53,37 @@ const Page = () => {
         </Layout.Sidebar>
       }
     >
-      <Layout.Body css={{ padding: 0 }}>
+      <Layout.Body css={{ padding: 0, position: 'relative' }}>
         <EditorMap />
+        {loading && (
+          <div
+            style={{
+              alignItems: 'center',
+              background: 'rgba(255, 255, 255, 0.45)',
+              display: 'flex',
+              inset: 0,
+              justifyContent: 'center',
+              position: 'absolute',
+              zIndex: 1,
+            }}
+          >
+            <Spinner size="large" />
+          </div>
+        )}
+        {error && (
+          <Note
+            style={{
+              bottom: 16,
+              left: 16,
+              position: 'absolute',
+              right: 16,
+              zIndex: 2,
+            }}
+            variant="negative"
+          >
+            Impossible de charger le contenu : {error}
+          </Note>
+        )}
       </Layout.Body>
     </Layout>
   );
