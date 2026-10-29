@@ -1,3 +1,6 @@
+import type { PageAppSDK } from '@contentful/app-sdk';
+import { useSDK } from '@contentful/react-apps-toolkit';
+import { TAG_IDS } from '@jfv/core/domain';
 import { createMapStyle, MAP_LAYER_IDS, mapDefaults } from '@jfv/map-data';
 import type { MapGeoJSONFeature, MapLayerMouseEvent } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
@@ -10,6 +13,7 @@ import {
   entryCode,
   entryCoords,
   entryName,
+  entryTags,
   plantCardId,
   plantPosition,
 } from '../lib/entries';
@@ -108,6 +112,7 @@ const pickSelectableFeature = (features?: MapGeoJSONFeature[]) => {
 };
 
 const EditorMap: FC = () => {
+  const sdk = useSDK<PageAppSDK>();
   const plants = useEntries((state) => state.plants);
   const plantCards = useEntries((state) => state.plantCards);
   const rectangles = useEntries((state) => state.rectangles);
@@ -243,6 +248,11 @@ const EditorMap: FC = () => {
         return;
       }
 
+      if (entryTags(plant).includes(TAG_IDS.planted)) {
+        sdk.notifier.error('Planted plants cannot be moved.');
+        return;
+      }
+
       const cardId = plantCardId(plant);
       const plantCard = cardId
         ? plantCards.find((card) => card.sys.id === cardId)
@@ -263,6 +273,7 @@ const EditorMap: FC = () => {
       plantCards,
       plants,
       rectangles,
+      sdk,
     ],
   );
 

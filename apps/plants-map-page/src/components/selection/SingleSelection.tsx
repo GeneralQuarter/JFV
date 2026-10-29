@@ -10,6 +10,7 @@ import {
 import { PencilSimpleIcon } from '@contentful/f36-icons';
 import tokens from '@contentful/f36-tokens';
 import { useSDK } from '@contentful/react-apps-toolkit';
+import { TAG_IDS } from '@jfv/core/domain';
 import { type FC, useMemo } from 'react';
 import useEntries from '../../hooks/useEntries';
 import type { SelectedFeature } from '../../hooks/useMapSelection';
@@ -83,6 +84,7 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
   }, [entry, plantCards]);
 
   const plantTags = useMemo(() => (entry ? entryTags(entry) : []), [entry]);
+  const isPlanted = plantTags.includes(TAG_IDS.planted);
 
   return (
     <Stack flexDirection="column" fullHeight>
@@ -163,19 +165,22 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
               marginBlockStart: tokens.spacingM,
             }}
           >
-            {feature.type === 'plant' && (
-              <>
-                <List.Item>
-                  <KeyboardShortcut>Right-click</KeyboardShortcut> the plant to
-                  move it
-                </List.Item>
-                <List.Item>
-                  <KeyboardShortcut>Right-click</KeyboardShortcut> the
-                  transparent copy to confirm, or{' '}
-                  <KeyboardShortcut>Escape</KeyboardShortcut> to cancel
-                </List.Item>
-              </>
-            )}
+            {feature.type === 'plant' &&
+              (isPlanted ? (
+                <List.Item>Planted plants cannot be moved.</List.Item>
+              ) : (
+                <>
+                  <List.Item>
+                    <KeyboardShortcut>Right-click</KeyboardShortcut> the plant
+                    to move it
+                  </List.Item>
+                  <List.Item>
+                    <KeyboardShortcut>Right-click</KeyboardShortcut> the
+                    transparent copy to confirm, or{' '}
+                    <KeyboardShortcut>Escape</KeyboardShortcut> to cancel
+                  </List.Item>
+                </>
+              ))}
             {feature.type === 'rectangle' && (
               <>
                 <List.Item>
