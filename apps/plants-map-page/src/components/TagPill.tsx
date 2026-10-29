@@ -1,7 +1,7 @@
-import { Pill } from '@contentful/f36-components';
-import tokens from '@contentful/f36-tokens';
+import { XIcon } from '@contentful/f36-icons';
 import type { FC } from 'react';
 import { colorFromHueIndex } from '../lib/colors';
+import { PillNext } from './PillNext';
 
 type TagPillProps = {
   label: string;
@@ -11,26 +11,30 @@ type TagPillProps = {
 
 const TagPill: FC<TagPillProps> = ({ label, hueIndex, onClose }) => {
   return (
-    <Pill
-      closeButtonAriaLabel={`Remove ${label}`}
+    <PillNext
+      actionButtonLabel={`Remove ${label}`}
+      actionIcon={onClose ? <XIcon /> : undefined}
       label={label}
-      onClose={onClose}
-      variant={hueIndex === undefined ? 'idle' : 'active'}
-      css={
-        hueIndex === undefined
-          ? undefined
-          : {
-              '&::before': {
-                alignSelf: 'stretch',
-                background: colorFromHueIndex(hueIndex, 1),
-                borderRadius: tokens.borderRadiusSmall,
-                content: '""',
-                flexShrink: 0,
-                width: 8,
-              },
-            }
-      }
-    />
+      onAction={onClose}
+      variant="secondary"
+      size="medium"
+    >
+      {hueIndex !== undefined && (
+        <span
+          aria-hidden="true"
+          css={{
+            alignSelf: 'center',
+            background: colorFromHueIndex(hueIndex, 1),
+            borderRadius: '50%',
+            flexShrink: 0,
+            height: 9,
+            marginRight: 8,
+            order: -1,
+            width: 9,
+          }}
+        />
+      )}
+    </PillNext>
   );
 };
 
