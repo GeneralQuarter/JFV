@@ -1,7 +1,7 @@
 import type { PageAppSDK } from '@contentful/app-sdk';
 import { useSDK } from '@contentful/react-apps-toolkit';
-import { mapDefaults } from '@jfv/map-data';
 import circle from '@turf/circle';
+import type { Feature, Polygon } from 'geojson';
 import {
   type FC,
   type MouseEvent as ReactMouseEvent,
@@ -9,7 +9,7 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { Marker, useMap } from 'react-map-gl/maplibre';
+import { Layer, Marker, Source } from 'react-map-gl/maplibre';
 import useEntries from '../../hooks/useEntries';
 import useVisibilityToggles from '../../hooks/useVisibilityToggles';
 import {
@@ -35,33 +35,9 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
   const sdk = useSDK<PageAppSDK>();
   const updatePlant = useEntries((state) => state.updatePlant);
   const showCanopy = useVisibilityToggles((state) => state.canopy);
-  const { mainMap } = useMap();
   const [currentPosition, setCurrentPosition] = useState(position);
-  const [zoom, setZoom] = useState(mainMap?.getZoom() ?? mapDefaults.zoom);
   const [dragging, setDragging] = useState(false);
   const [saving, setSaving] = useState(false);
-
-  useEffect(() => {
-    if (!mainMap) {
-      return;
-    }
-
-    const updateZoom = () => {
-      const nextZoom = mainMap.getZoom();
-      setZoom((currentZoom) =>
-        currentZoom === nextZoom ? currentZoom : nextZoom,
-      );
-    };
-
-    updateZoom();
-    mainMap.on('zoom', updateZoom);
-    mainMap.on('move', updateZoom);
-
-    return () => {
-      mainMap.off('zoom', updateZoom);
-      mainMap.off('move', updateZoom);
-    };
-  }, [mainMap]);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -75,37 +51,14 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [onCancel]);
 
-  const metersPerPixel =
-    (156543.03392 * Math.cos((currentPosition.lat * Math.PI) / 180)) /
-    2 ** zoom;
-  const visibleDiameter = showCanopy ? diameter : Math.min(diameter, 2);
-
-  const visualSize = useMemo(() => {
-    if (!mainMap) {
-      return visibleDiameter / metersPerPixel;
-    }
-
-    const geometry = circle(
-      [currentPosition.lon, currentPosition.lat],
-      visibleDiameter / 2000,
-    ).geometry.coordinates[0];
-    let minX = Number.POSITIVE_INFINITY;
-    let maxX = Number.NEGATIVE_INFINITY;
-    let minY = Number.POSITIVE_INFINITY;
-    let maxY = Number.NEGATIVE_INFINITY;
-
-    for (const [lon, lat] of geometry) {
-      const point = mainMap.project([lon, lat]);
-      minX = Math.min(minX, point.x);
-      maxX = Math.max(maxX, point.x);
-      minY = Math.min(minY, point.y);
-      maxY = Math.max(maxY, point.y);
-    }
-
-    return Math.max(maxX - minX, maxY - minY);
-  }, [currentPosition, mainMap, metersPerPixel, visibleDiameter]);
-
-  const hitSize = Math.max(28, visualSize + 12);
+  const ghostFeature = useMemo<Feature<Polygon>>(
+    () =>
+      circle(
+        [currentPosition.lon, currentPosition.lat],
+        (showCanopy || diameter < 2 ? diameter : 2) / 2000,
+      ),
+    [currentPosition.lat, currentPosition.lon, diameter, showCanopy],
+  );
 
   const commitMove = async (event: ReactMouseEvent) => {
     event.preventDefault();
@@ -132,50 +85,74 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
   };
 
   return (
-    <Marker
-      anchor="center"
-      draggable
-      latitude={currentPosition.lat}
-      longitude={currentPosition.lon}
-      onDragEnd={(event) =>
-        setCurrentPosition({
-          lat: event.lngLat.lat,
-          lon: event.lngLat.lng,
-        })
-      }
-      onDragStart={() => setDragging(true)}
-    >
-      <button
-        aria-label="Right-click to confirm the new plant position"
-        onClick={(event) => event.stopPropagation()}
-        onContextMenu={commitMove}
-        style={{
-          alignItems: 'center',
-          background: 'transparent',
-          border: 'none',
-          cursor: dragging ? 'grabbing' : 'grab',
-          display: 'flex',
-          height: hitSize,
-          justifyContent: 'center',
-          opacity: saving ? 0.55 : 1,
-          padding: 0,
-          width: hitSize,
-        }}
-        title="Right-click to confirm; Escape to cancel"
-        type="button"
-      >
-        <span
-          style={{
-            background: 'rgba(47, 111, 78, 0.14)',
-            border: '2px dashed #2f6f4e',
-            borderRadius: '50%',
-            height: visualSize,
-            pointerEvents: 'none',
-            width: visualSize,
+    <>
+      <Source type="geojson" data={ghostFeature}>
+        <Layer
+          id="plant-move-ghost"
+          type="fill"
+          paint={{
+            'fill-color': 'rgba(47, 111, 78, 0.14)',
           }}
         />
-      </button>
-    </Marker>
+        <Layer
+          type="line"
+          paint={{
+            'line-color': '#2f6f4e',
+            'line-dasharray': [2, 2],
+            'line-width': 2,
+          }}
+        />
+      </Source>
+      <Marker
+        anchor="center"
+        draggable
+        latitude={currentPosition.lat}
+        longitude={currentPosition.lon}
+        onDrag={(event) =>
+          setCurrentPosition({
+            lat: event.lngLat.lat,
+            lon: event.lngLat.lng,
+          })
+        }
+        onDragEnd={(event) =>
+          setCurrentPosition({
+            lat: event.lngLat.lat,
+            lon: event.lngLat.lng,
+          })
+        }
+        onDragStart={() => setDragging(true)}
+      >
+        <button
+          aria-label="Right-click to confirm the new plant position"
+          onClick={(event) => event.stopPropagation()}
+          onContextMenu={commitMove}
+          style={{
+            alignItems: 'center',
+            background: 'transparent',
+            border: 'none',
+            cursor: dragging ? 'grabbing' : 'grab',
+            display: 'flex',
+            height: 120,
+            justifyContent: 'center',
+            opacity: saving ? 0.55 : 1,
+            padding: 0,
+            width: 120,
+          }}
+          title="Right-click to confirm; Escape to cancel"
+          type="button"
+        >
+          <span
+            style={{
+              background: 'rgba(47, 111, 78, 0.55)',
+              borderRadius: '50%',
+              height: 10,
+              pointerEvents: 'none',
+              width: 10,
+            }}
+          />
+        </button>
+      </Marker>
+    </>
   );
 };
 
