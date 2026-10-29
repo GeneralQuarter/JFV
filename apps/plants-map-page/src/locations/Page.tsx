@@ -12,6 +12,10 @@ import MapSelection from '../components/selection/MapSelection';
 import VisibilityToggles from '../components/VisibilityToggles';
 import useEntries from '../hooks/useEntries';
 
+if (import.meta.env.DEV) {
+  console.info('[JFV editor] local dev build: ghost-v2');
+}
+
 const Page = () => {
   const sdk = useSDK<PageAppSDK>();
   const cma = sdk.cma;
