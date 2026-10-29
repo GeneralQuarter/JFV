@@ -1,17 +1,25 @@
 import { createMapStyle, MAP_LAYER_IDS, mapDefaults } from '@jfv/map-data';
 import type { MapGeoJSONFeature, MapLayerMouseEvent } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import { type FC, useCallback } from 'react';
+import { type FC, useCallback, useState } from 'react';
 import { Map as MapLibreMap, type ViewState } from 'react-map-gl/maplibre';
+import useEntries from '../hooks/useEntries';
 import useMapSelection from '../hooks/useMapSelection';
+import { plantCardId, plantPosition } from '../lib/entries';
 import { mapBackgroundColor } from '../theme';
 import Hedges from './map/Hedges';
 import MapSectors from './map/MapSectors';
 import MapZones from './map/MapZones';
-import PlantMoveHandle from './map/PlantMoveHandle';
+import PlantMoveGhost from './map/PlantMoveGhost';
 import Plants from './map/Plants';
 import Rectangles from './map/Rectangles';
 import StaticFeatures from './map/StaticFeatures';
+
+type MovingPlant = {
+  id: string;
+  position: { lat: number; lon: number };
+  diameter: number;
+};
 
 const interactiveLayerIds = [MAP_LAYER_IDS.plant];
 
@@ -45,9 +53,12 @@ const getSmallestFeature = (features?: MapGeoJSONFeature[]) => {
 };
 
 const EditorMap: FC = () => {
+  const plants = useEntries((state) => state.plants);
+  const plantCards = useEntries((state) => state.plantCards);
   const hover = useMapSelection((state) => state.hover);
   const clearHovered = useMapSelection((state) => state.clearHovered);
   const toggleSelect = useMapSelection((state) => state.toggleSelect);
+  const [movingPlant, setMovingPlant] = useState<MovingPlant>();
 
   const onMouseMove = useCallback(
     (e: MapLayerMouseEvent) => {
@@ -81,6 +92,48 @@ const EditorMap: FC = () => {
     [toggleSelect],
   );
 
+  const onContextMenu = useCallback(
+    (e: MapLayerMouseEvent) => {
+      e.originalEvent.preventDefault();
+
+      if (movingPlant) {
+        setMovingPlant(undefined);
+        return;
+      }
+
+      const firstFeature = e.features?.[0];
+
+      if (
+        !firstFeature ||
+        firstFeature.layer.id !== MAP_LAYER_IDS.plant ||
+        typeof firstFeature.properties.id !== 'string'
+      ) {
+        return;
+      }
+
+      const plant = plants.find(
+        (candidate) => candidate.sys.id === firstFeature.properties.id,
+      );
+      const position = plant ? plantPosition(plant) : undefined;
+
+      if (!plant || !position) {
+        return;
+      }
+
+      const cardId = plantCardId(plant);
+      const plantCard = cardId
+        ? plantCards.find((card) => card.sys.id === cardId)
+        : undefined;
+
+      setMovingPlant({
+        diameter: Number(plantCard?.fields.width?.fr ?? 1),
+        id: plant.sys.id,
+        position,
+      });
+    },
+    [movingPlant, plantCards, plants],
+  );
+
   return (
     <MapLibreMap
       id="mainMap"
@@ -91,6 +144,7 @@ const EditorMap: FC = () => {
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
       onClick={onClick}
+      onContextMenu={onContextMenu}
     >
       <StaticFeatures />
       <Rectangles />
@@ -98,7 +152,16 @@ const EditorMap: FC = () => {
       <MapZones />
       <MapSectors />
       <Plants />
-      <PlantMoveHandle />
+      {movingPlant && (
+        <PlantMoveGhost
+          key={movingPlant.id}
+          diameter={movingPlant.diameter}
+          onCancel={() => setMovingPlant(undefined)}
+          onDone={() => setMovingPlant(undefined)}
+          plantId={movingPlant.id}
+          position={movingPlant.position}
+        />
+      )}
     </MapLibreMap>
   );
 };

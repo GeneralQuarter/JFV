@@ -82,7 +82,9 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
         {entry?.sys.contentType.sys.id === 'plant' && (
           <>
             <Paragraph>
-              Drag the handle on the map to move this plant.
+              Right-click the plant to start moving it. Right-click the
+              transparent copy to confirm; press Escape or right-click elsewhere
+              to cancel.
             </Paragraph>
             <PlantQuickActions entry={entry} />
           </>
