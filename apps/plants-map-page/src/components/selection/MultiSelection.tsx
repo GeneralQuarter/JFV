@@ -112,9 +112,7 @@ const MultiSelection: FC<MultiSelectionProps> = ({ features }) => {
           overflowX: 'hidden',
           overflowY: 'auto',
           padding: tokens.spacingS,
-          scrollbarWidth: 'none',
           '& li': { cursor: 'pointer' },
-          '&::-webkit-scrollbar': { display: 'none' },
         }}
         fullWidth
       >

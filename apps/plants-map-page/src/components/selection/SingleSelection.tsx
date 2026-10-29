@@ -112,8 +112,6 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
           overflowX: 'hidden',
           overflowY: 'auto',
           paddingInline: tokens.spacingS,
-          scrollbarWidth: 'none',
-          '&::-webkit-scrollbar': { display: 'none' },
         }}
         fullWidth
       >
