@@ -2,6 +2,7 @@ import type { PageAppSDK } from '@contentful/app-sdk';
 import {
   Button,
   EntryCard,
+  List,
   Paragraph,
   SectionHeading,
   Stack,
@@ -16,6 +17,7 @@ import useMapSelection from '../../hooks/useMapSelection';
 import useSelectedTags from '../../hooks/useSelectedTags';
 import useTags from '../../hooks/useTags';
 import { entryCode, entryName, entryTags, localized } from '../../lib/entries';
+import KeyboardShortcut from '../KeyboardShortcut';
 import TagPill from '../TagPill';
 import PlantQuickActions from './plant/PlantQuickActions';
 import SelectionHeader from './SelectionHeader';
@@ -108,32 +110,10 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
         fullWidth
       >
         {entry?.sys.contentType.sys.id === 'plant' && (
-          <>
-            <Paragraph>
-              Right-click the plant to start moving it. Right-click the
-              transparent copy to confirm; press Escape or right-click elsewhere
-              to cancel.
-            </Paragraph>
-            <PlantQuickActions entry={entry} />
-          </>
+          <PlantQuickActions entry={entry} />
         )}
-        {entry?.sys.contentType.sys.id === 'rectangle' && (
-          <>
-            {rectangleLabel && (
-              <Paragraph marginBottom="none">{rectangleLabel}</Paragraph>
-            )}
-            <Paragraph>
-              Right-click the rectangle to move it. While moving, scroll over it
-              to rotate around its centre. Right-click the ghost to confirm;
-              press Escape or right-click elsewhere to cancel.
-            </Paragraph>
-          </>
-        )}
-        {entry?.sys.contentType.sys.id === 'mapZone' && (
-          <Paragraph>
-            Right-click the zone to move it. Right-click the ghost to confirm;
-            press Escape or right-click elsewhere to cancel.
-          </Paragraph>
+        {entry?.sys.contentType.sys.id === 'rectangle' && rectangleLabel && (
+          <Paragraph>{rectangleLabel}</Paragraph>
         )}
         {plantCard && (
           <>
@@ -169,6 +149,58 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
               </Paragraph>
             )}
           </>
+        )}
+        {entry && (
+          <List
+            css={{
+              color: tokens.gray600,
+              marginBlockStart: tokens.spacingM,
+            }}
+          >
+            {feature.type === 'plant' && (
+              <>
+                <List.Item>
+                  <KeyboardShortcut>Right-click</KeyboardShortcut> the plant to
+                  move it
+                </List.Item>
+                <List.Item>
+                  <KeyboardShortcut>Right-click</KeyboardShortcut> the
+                  transparent copy to confirm, or{' '}
+                  <KeyboardShortcut>Escape</KeyboardShortcut> to cancel
+                </List.Item>
+              </>
+            )}
+            {feature.type === 'rectangle' && (
+              <>
+                <List.Item>
+                  <KeyboardShortcut>Right-click</KeyboardShortcut> the rectangle
+                  to move it
+                </List.Item>
+                <List.Item>
+                  <KeyboardShortcut>Scroll</KeyboardShortcut> over the moving
+                  rectangle to rotate it
+                </List.Item>
+                <List.Item>
+                  <KeyboardShortcut>Right-click</KeyboardShortcut> the copy to
+                  confirm, or <KeyboardShortcut>Escape</KeyboardShortcut> to
+                  cancel
+                </List.Item>
+              </>
+            )}
+            {feature.type === 'mapZone' && (
+              <>
+                <List.Item>
+                  <KeyboardShortcut>Right-click</KeyboardShortcut> the zone to
+                  move it
+                </List.Item>
+                <List.Item>
+                  <KeyboardShortcut>Right-click</KeyboardShortcut> the copy to
+                  confirm, or <KeyboardShortcut>Escape</KeyboardShortcut> to
+                  cancel
+                </List.Item>
+              </>
+            )}
+          </List>
         )}
       </Stack>
     </Stack>
