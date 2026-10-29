@@ -166,6 +166,7 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
     mainMap.on('mousemove', onMouseMove);
     mainMap.on('mouseup', onMouseUp);
     window.addEventListener('mouseup', onMouseUp);
+    window.addEventListener('blur', onMouseUp);
 
     return () => {
       for (const layer of GHOST_LAYERS) {
@@ -177,6 +178,7 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
       mainMap.off('mousemove', onMouseMove);
       mainMap.off('mouseup', onMouseUp);
       window.removeEventListener('mouseup', onMouseUp);
+      window.removeEventListener('blur', onMouseUp);
       mainMap.dragPan.enable();
       canvas.style.cursor = '';
     };
