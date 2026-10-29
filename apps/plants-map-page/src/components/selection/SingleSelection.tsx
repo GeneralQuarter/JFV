@@ -2,11 +2,11 @@ import type { PageAppSDK } from '@contentful/app-sdk';
 import {
   Button,
   EntryCard,
-  List,
   Note,
   Paragraph,
   SectionHeading,
   Stack,
+  Text,
 } from '@contentful/f36-components';
 import { PencilSimpleIcon } from '@contentful/f36-icons';
 import tokens from '@contentful/f36-tokens';
@@ -169,71 +169,71 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
           </>
         )}
         {entry && (
-          <Note variant="primary" css={{ marginBlockStart: tokens.spacingM }}>
-            <List css={{ color: tokens.gray700 }}>
+          <Note variant="neutral" css={{ marginBlockStart: tokens.spacingM }}>
+            <Stack flexDirection="column" spacing="spacing2Xs">
               {feature.type === 'plant' &&
                 (isPlanted ? (
-                  <List.Item>
+                  <Text>
                     <Trans>Planted plants cannot be moved.</Trans>
-                  </List.Item>
+                  </Text>
                 ) : (
                   <>
-                    <List.Item>
+                    <Text>
                       <Trans>
                         <KeyboardShortcut>Right-click</KeyboardShortcut> the
                         plant to move it
                       </Trans>
-                    </List.Item>
-                    <List.Item>
+                    </Text>
+                    <Text>
                       <Trans>
                         <KeyboardShortcut>Right-click</KeyboardShortcut> the
                         transparent copy to confirm, or{' '}
                         <KeyboardShortcut>Escape</KeyboardShortcut> to cancel
                       </Trans>
-                    </List.Item>
+                    </Text>
                   </>
                 ))}
               {feature.type === 'rectangle' && (
                 <>
-                  <List.Item>
+                  <Text>
                     <Trans>
                       <KeyboardShortcut>Right-click</KeyboardShortcut> the
                       rectangle to move it
                     </Trans>
-                  </List.Item>
-                  <List.Item>
+                  </Text>
+                  <Text>
                     <Trans>
                       <KeyboardShortcut>Scroll</KeyboardShortcut> over the
                       moving rectangle to rotate it
                     </Trans>
-                  </List.Item>
-                  <List.Item>
+                  </Text>
+                  <Text>
                     <Trans>
                       <KeyboardShortcut>Right-click</KeyboardShortcut> the copy
                       to confirm, or <KeyboardShortcut>Escape</KeyboardShortcut>{' '}
                       to cancel
                     </Trans>
-                  </List.Item>
+                  </Text>
                 </>
               )}
               {feature.type === 'mapZone' && (
                 <>
-                  <List.Item>
+                  <Text>
                     <Trans>
                       <KeyboardShortcut>Right-click</KeyboardShortcut> the zone
                       to move it
                     </Trans>
-                  </List.Item>
-                  <List.Item>
+                  </Text>
+                  <Text>
                     <Trans>
                       <KeyboardShortcut>Right-click</KeyboardShortcut> the copy
                       to confirm, or <KeyboardShortcut>Escape</KeyboardShortcut>{' '}
                       to cancel
                     </Trans>
-                  </List.Item>
+                  </Text>
                 </>
               )}
-            </List>
+            </Stack>
           </Note>
         )}
       </Stack>

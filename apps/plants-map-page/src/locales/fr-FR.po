@@ -52,28 +52,28 @@ msgstr "{marked} plantes marquées. Sélectionnez l’étiquette Marqué pour le
 msgid "<0>Click</0> on a feature to select it"
 msgstr "<0>Cliquez</0> sur un élément pour le sélectionner"
 
-#: src/components/selection/SingleSelection.tsx:212
-#: src/components/selection/SingleSelection.tsx:229
+#: src/components/selection/SingleSelection.tsx:211
+#: src/components/selection/SingleSelection.tsx:228
 msgid "<0>Right-click</0> the copy to confirm, or <1>Escape</1> to cancel"
 msgstr "<0>Clic droit</0> sur la copie pour confirmer, ou <1>Échap</1> pour annuler"
 
-#: src/components/selection/SingleSelection.tsx:183
+#: src/components/selection/SingleSelection.tsx:182
 msgid "<0>Right-click</0> the plant to move it"
 msgstr "<0>Clic droit</0> sur la plante pour la déplacer"
 
-#: src/components/selection/SingleSelection.tsx:200
+#: src/components/selection/SingleSelection.tsx:199
 msgid "<0>Right-click</0> the rectangle to move it"
 msgstr "<0>Clic droit</0> sur le rectangle pour le déplacer"
 
-#: src/components/selection/SingleSelection.tsx:189
+#: src/components/selection/SingleSelection.tsx:188
 msgid "<0>Right-click</0> the transparent copy to confirm, or <1>Escape</1> to cancel"
 msgstr "<0>Clic droit</0> sur la copie transparente pour confirmer, ou <1>Échap</1> pour annuler"
 
-#: src/components/selection/SingleSelection.tsx:223
+#: src/components/selection/SingleSelection.tsx:222
 msgid "<0>Right-click</0> the zone to move it"
 msgstr "<0>Clic droit</0> sur la zone pour la déplacer"
 
-#: src/components/selection/SingleSelection.tsx:206
+#: src/components/selection/SingleSelection.tsx:205
 msgid "<0>Scroll</0> over the moving rectangle to rotate it"
 msgstr "<0>Faites défiler</0> sur le rectangle en déplacement pour le faire pivoter"
 
@@ -198,7 +198,7 @@ msgstr "Plantes mortes"
 msgid "Draw sector"
 msgstr "Dessiner un secteur"
 
-#: src/components/selection/SingleSelection.tsx:106
+#: src/components/selection/SingleSelection.tsx:109
 msgid "Edit"
 msgstr "Modifier"
 
@@ -234,7 +234,7 @@ msgstr "Chargement des étiquettes…"
 msgid "Map sectors"
 msgstr "Secteurs de la carte"
 
-#: src/lib/tag-labels.ts:8
+#: src/lib/tag-labels.ts:5
 msgid "Marked"
 msgstr "Marqué"
 
@@ -270,7 +270,7 @@ msgstr "Aucune plante chargée ne correspond à cette liste."
 msgid "No points found. Use name, latitude and longitude columns."
 msgstr "Aucun point trouvé. Utilisez les colonnes nom, latitude et longitude."
 
-#: src/components/selection/SingleSelection.tsx:163
+#: src/components/selection/SingleSelection.tsx:166
 msgid "No tags"
 msgstr "Aucune étiquette"
 
@@ -292,8 +292,8 @@ msgstr "Jalonner"
 
 #: src/components/AddMenu.tsx:25
 #: src/components/selection/plant/PlantQuickActions.tsx:101
-#: src/components/selection/SingleSelection.tsx:59
-#: src/components/selection/SingleSelection.tsx:59
+#: src/components/selection/SingleSelection.tsx:60
+#: src/components/selection/SingleSelection.tsx:60
 msgid "Plant"
 msgstr "Planter"
 
@@ -321,7 +321,7 @@ msgstr "Fiche plante"
 msgid "Plant cards"
 msgstr "Fiches plantes"
 
-#: src/components/selection/SingleSelection.tsx:132
+#: src/components/selection/SingleSelection.tsx:135
 msgid "Plant Cards"
 msgstr "Fiches plantes"
 
@@ -354,7 +354,7 @@ msgid "Planted"
 msgstr "Plantées"
 
 #: src/components/EditorMap.tsx:253
-#: src/components/selection/SingleSelection.tsx:178
+#: src/components/selection/SingleSelection.tsx:177
 msgid "Planted plants cannot be moved."
 msgstr "Les plantes plantées ne peuvent pas être déplacées."
 
@@ -376,8 +376,8 @@ msgid "Quick Actions"
 msgstr "Actions rapides"
 
 #: src/components/selection/MultiSelection.tsx:143
-#: src/components/selection/SingleSelection.tsx:62
-#: src/components/selection/SingleSelection.tsx:63
+#: src/components/selection/SingleSelection.tsx:65
+#: src/components/selection/SingleSelection.tsx:66
 msgid "Rectangle"
 msgstr "Rectangle"
 
@@ -440,7 +440,7 @@ msgstr "Affiché sur la carte"
 msgid "Sponsor"
 msgstr "Parrain/Marraine"
 
-#: src/components/selection/SingleSelection.tsx:147
+#: src/components/selection/SingleSelection.tsx:150
 #: src/components/TagsSelector.tsx:62
 msgid "Tags"
 msgstr "Étiquettes"
@@ -453,11 +453,11 @@ msgstr "La plante sera placée au centre actuel de la carte."
 msgid "Undo"
 msgstr "Défaire"
 
-#: src/components/selection/SingleSelection.tsx:67
+#: src/components/selection/SingleSelection.tsx:70
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: src/components/selection/SingleSelection.tsx:96
+#: src/components/selection/SingleSelection.tsx:99
 msgid "Unselect feature"
 msgstr "Désélectionner l’élément"
 
@@ -465,13 +465,13 @@ msgstr "Désélectionner l’élément"
 msgid "Up to {HUE_COUNT} tags can be highlighted at once."
 msgstr "Jusqu’à {HUE_COUNT} étiquettes peuvent être mises en évidence à la fois."
 
-#: src/components/selection/EmptySelection.tsx:30
+#: src/components/selection/EmptySelection.tsx:29
 msgid "You can select multiple features by holding <0>Ctrl</0>"
 msgstr "Vous pouvez sélectionner plusieurs éléments en maintenant <0>Ctrl</0>"
 
 #: src/components/selection/MultiSelection.tsx:157
-#: src/components/selection/SingleSelection.tsx:65
-#: src/components/selection/SingleSelection.tsx:65
+#: src/components/selection/SingleSelection.tsx:68
+#: src/components/selection/SingleSelection.tsx:68
 msgid "Zone"
 msgstr "Zone"
 
