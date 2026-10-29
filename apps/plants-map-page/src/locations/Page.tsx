@@ -15,7 +15,7 @@ import useEntries from '../hooks/useEntries';
 import useTags from '../hooks/useTags';
 
 if (import.meta.env.DEV) {
-  console.info('[JFV editor] local dev build: ghost-v2');
+  console.info('[JFV editor] local dev build: tags-v2');
 }
 
 const Page = () => {
