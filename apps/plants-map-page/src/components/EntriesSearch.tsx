@@ -99,7 +99,7 @@ const EntriesSearch: FC = () => {
           [code, commonName, latinName, sponsor].join(' '),
         ),
         type: 'plant',
-        zoom: 19,
+        zoom: 21,
       });
     }
 
@@ -132,7 +132,7 @@ const EntriesSearch: FC = () => {
         label: title || '(no label)',
         searchText: normalizeSearchTerm([code, label].join(' ')),
         type: 'rectangle',
-        zoom: 18,
+        zoom: 20,
       });
     }
 
@@ -160,7 +160,7 @@ const EntriesSearch: FC = () => {
         label: name || '(no name)',
         searchText: normalizeSearchTerm(name),
         type: 'hedge',
-        zoom: 18,
+        zoom: 20,
       });
     }
 
