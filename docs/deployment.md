@@ -17,9 +17,10 @@ Create one Vercel project per deployed app. For every project:
 | --- | --- | --- | --- |
 | `jfv-app` | `apps/jfv-app` | `pnpm build` | `dist` |
 | `jfv-app-api` | `apps/jfv-app-api` | Vercel functions | — |
-| `plants-map-page` | `apps/plants-map-page` | `pnpm build` | `build` |
 
 The checked-in `vercel.json` files set the build command, output directory, PWA cache headers, and an ignored-build step that skips deploys when only unrelated files changed. Vercel detects the root `pnpm-lock.yaml` and installs the workspace dependencies automatically.
+
+`plants-map-page` is deployed as a **Contentful-hosted bundle** instead of a Vercel project. The current build is 4 files / ~2.7 MB, within Contentful's 10 MB and 500-file bundle limits, and uses relative asset paths. A Vercel deployment remains an option for previews, but it is not needed for production.
 
 ### PWA strategy for `jfv-app`
 
@@ -60,30 +61,27 @@ That keeps the session cookie same-site with `SameSite=Lax`. Otherwise set `COOK
 
 ### `plants-map-page`
 
-The editor gets Contentful access through the App SDK, so it has no runtime environment variables. Its Page location URL must be the deployed editor URL:
-
-```text
-https://<plants-map-page-project>.vercel.app
-```
-
-During local development use `https://editor.localhost`.
+The editor gets Contentful access through the App SDK, so it has no runtime environment variables. During local development, point the Page location URL at `https://editor.localhost`. For staging and production, upload the built app as a Contentful bundle and select the bundle as the app definition source.
 
 ## Contentful app definitions
 
 | App | Location | Deployment |
 | --- | --- | --- |
-| `plants-map-page` | Page | Vercel |
+| `plants-map-page` | Page | Contentful-hosted bundle |
 | `sidebar-plants` | Entry sidebar (`PlantCommonInfo`) | Contentful-hosted bundle |
 | `field-editor-full-latin-name` | Field editor | Contentful-hosted bundle |
 | `field-editor-plant-code` | Field editor | Contentful-hosted bundle |
 
-For local editor development, the Page location URL is `https://editor.localhost`. For staging and production, point it at the matching Vercel deployment.
+Use separate app definitions for local development and staging/production. The local definition points its Page location at `https://editor.localhost`; staging and production use uploaded bundles.
 
 ### Contentful-hosted bundles
 
-Build and upload each micro app:
+Build and upload each app:
 
 ```bash
+pnpm --filter plants-map-page build
+pnpm --filter plants-map-page upload:ci
+
 pnpm --filter sidebar-plants build
 pnpm --filter sidebar-plants upload:ci
 
@@ -123,21 +121,19 @@ Compare hedges, labels, canopy sizing, and map colours with the legacy editor du
 ## Cutover
 
 1. Deploy staging and complete the validation checklist.
-2. Configure production Vercel projects and environment variables.
-3. Install the production Contentful app definitions.
-4. Deploy production `jfv-app-api`, then `jfv-app`, then `plants-map-page`.
-5. Point the production Page app URL at the new editor.
-6. Verify login, reads, one plant action, and one editor write in production.
-7. Keep the legacy apps deployed for rollback.
+2. Configure production Vercel projects and environment variables for `jfv-app` and `jfv-app-api`.
+3. Build and upload the production `plants-map-page` bundle, then set the app definition source to that bundle.
+4. Deploy production `jfv-app-api`, then `jfv-app`.
+5. Verify login, reads, one plant action, and one editor write in production.
+6. Keep the legacy apps deployed for rollback.
 
 ### Rollback
 
-Point the Page app URL back to the legacy `plants-map` deployment. The legacy apps and their Vercel projects remain untouched until the new editor has been stable for an agreed period.
+Point the Page app definition back to the legacy `plants-map` URL, or select the previous editor bundle if you are rolling back to an earlier editor build. The legacy apps and their Vercel projects remain untouched until the new editor has been stable for an agreed period.
 
 ### After cutover
 
 - Remove the legacy Page app definition from the production space.
-- Remove the temporary `plants-map-page` Vercel project if the editor is later moved to a Contentful-hosted bundle.
 - Archive `treeviewer-api` when `jfv-map` is retired.
 - Remove the legacy apps from Vercel once the rollback window has passed.
 

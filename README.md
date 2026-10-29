@@ -8,7 +8,7 @@ Monorepo for the JFV plantation applications.
 | --- | --- | --- |
 | `apps/jfv-app` | React PWA viewer | Vercel |
 | `apps/jfv-app-api` | Write-only API and Contentful OAuth broker | Vercel |
-| `apps/plants-map-page` | Contentful editor rewrite | Vercel during rewrite |
+| `apps/plants-map-page` | Contentful page editor | Contentful-hosted bundle |
 | `apps/sidebar-plants` | Contentful sidebar micro app | Contentful-hosted bundle |
 | `apps/field-editor-full-latin-name` | Contentful field editor | Contentful-hosted bundle |
 | `apps/field-editor-plant-code` | Contentful field editor | Contentful-hosted bundle |
@@ -70,9 +70,12 @@ Deployment and cutover are documented in [`docs/deployment.md`](docs/deployment.
 - Contentful app definitions and micro-app bundle uploads
 - staging validation, cutover, and rollback steps
 
-The short version: `jfv-app`, `jfv-app-api`, and `plants-map-page` are separate Vercel projects with **Root Directory** set to their app folder and **Include source files outside of the Root Directory** enabled. The three Contentful micro apps are uploaded as Contentful bundles:
+The short version: `jfv-app` and `jfv-app-api` are separate Vercel projects with **Root Directory** set to their app folder and **Include source files outside of the Root Directory** enabled. The Page editor and the three Contentful micro apps are uploaded as Contentful-hosted bundles:
 
 ```bash
+pnpm --filter plants-map-page build
+pnpm --filter plants-map-page upload:ci
+
 pnpm --filter sidebar-plants build
 pnpm --filter sidebar-plants upload:ci
 ```
