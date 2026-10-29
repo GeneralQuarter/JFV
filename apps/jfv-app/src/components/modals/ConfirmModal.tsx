@@ -18,8 +18,8 @@ const ConfirmModal = NiceModal.create<{ message: string }>(({ message }) => {
         <DialogContentText>{message}</DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => modal.hide()}>Annuler</Button>
-        <Button onClick={() => modal.resolve()}>Valider</Button>
+        <Button onClick={() => modal.reject('Cancelled')}>Annuler</Button>
+        <Button onClick={() => modal.resolve(true)}>Valider</Button>
       </DialogActions>
     </Dialog>
   );
