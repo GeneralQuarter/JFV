@@ -3,6 +3,7 @@ import {
   Button,
   EntryCard,
   List,
+  Note,
   Paragraph,
   SectionHeading,
   Stack,
@@ -168,75 +169,72 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
           </>
         )}
         {entry && (
-          <List
-            css={{
-              color: tokens.gray600,
-              marginBlockStart: tokens.spacingM,
-            }}
-          >
-            {feature.type === 'plant' &&
-              (isPlanted ? (
-                <List.Item>
-                  <Trans>Planted plants cannot be moved.</Trans>
-                </List.Item>
-              ) : (
+          <Note variant="primary" css={{ marginBlockStart: tokens.spacingM }}>
+            <List css={{ color: tokens.gray700 }}>
+              {feature.type === 'plant' &&
+                (isPlanted ? (
+                  <List.Item>
+                    <Trans>Planted plants cannot be moved.</Trans>
+                  </List.Item>
+                ) : (
+                  <>
+                    <List.Item>
+                      <Trans>
+                        <KeyboardShortcut>Right-click</KeyboardShortcut> the
+                        plant to move it
+                      </Trans>
+                    </List.Item>
+                    <List.Item>
+                      <Trans>
+                        <KeyboardShortcut>Right-click</KeyboardShortcut> the
+                        transparent copy to confirm, or{' '}
+                        <KeyboardShortcut>Escape</KeyboardShortcut> to cancel
+                      </Trans>
+                    </List.Item>
+                  </>
+                ))}
+              {feature.type === 'rectangle' && (
                 <>
                   <List.Item>
                     <Trans>
-                      <KeyboardShortcut>Right-click</KeyboardShortcut> the plant
+                      <KeyboardShortcut>Right-click</KeyboardShortcut> the
+                      rectangle to move it
+                    </Trans>
+                  </List.Item>
+                  <List.Item>
+                    <Trans>
+                      <KeyboardShortcut>Scroll</KeyboardShortcut> over the
+                      moving rectangle to rotate it
+                    </Trans>
+                  </List.Item>
+                  <List.Item>
+                    <Trans>
+                      <KeyboardShortcut>Right-click</KeyboardShortcut> the copy
+                      to confirm, or <KeyboardShortcut>Escape</KeyboardShortcut>{' '}
+                      to cancel
+                    </Trans>
+                  </List.Item>
+                </>
+              )}
+              {feature.type === 'mapZone' && (
+                <>
+                  <List.Item>
+                    <Trans>
+                      <KeyboardShortcut>Right-click</KeyboardShortcut> the zone
                       to move it
                     </Trans>
                   </List.Item>
                   <List.Item>
                     <Trans>
-                      <KeyboardShortcut>Right-click</KeyboardShortcut> the
-                      transparent copy to confirm, or{' '}
-                      <KeyboardShortcut>Escape</KeyboardShortcut> to cancel
+                      <KeyboardShortcut>Right-click</KeyboardShortcut> the copy
+                      to confirm, or <KeyboardShortcut>Escape</KeyboardShortcut>{' '}
+                      to cancel
                     </Trans>
                   </List.Item>
                 </>
-              ))}
-            {feature.type === 'rectangle' && (
-              <>
-                <List.Item>
-                  <Trans>
-                    <KeyboardShortcut>Right-click</KeyboardShortcut> the
-                    rectangle to move it
-                  </Trans>
-                </List.Item>
-                <List.Item>
-                  <Trans>
-                    <KeyboardShortcut>Scroll</KeyboardShortcut> over the moving
-                    rectangle to rotate it
-                  </Trans>
-                </List.Item>
-                <List.Item>
-                  <Trans>
-                    <KeyboardShortcut>Right-click</KeyboardShortcut> the copy to
-                    confirm, or <KeyboardShortcut>Escape</KeyboardShortcut> to
-                    cancel
-                  </Trans>
-                </List.Item>
-              </>
-            )}
-            {feature.type === 'mapZone' && (
-              <>
-                <List.Item>
-                  <Trans>
-                    <KeyboardShortcut>Right-click</KeyboardShortcut> the zone to
-                    move it
-                  </Trans>
-                </List.Item>
-                <List.Item>
-                  <Trans>
-                    <KeyboardShortcut>Right-click</KeyboardShortcut> the copy to
-                    confirm, or <KeyboardShortcut>Escape</KeyboardShortcut> to
-                    cancel
-                  </Trans>
-                </List.Item>
-              </>
-            )}
-          </List>
+              )}
+            </List>
+          </Note>
         )}
       </Stack>
     </Stack>
