@@ -1,9 +1,7 @@
 import type { FC } from 'react';
 
-type SelectionCardProps = {};
-
-const SelectionCard: FC<SelectionCardProps> = () => {
-  return <></>;
+const SelectionCard: FC = () => {
+  return null;
 };
 
 export default SelectionCard;

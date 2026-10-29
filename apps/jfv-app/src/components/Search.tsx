@@ -1,3 +1,4 @@
+import type { Plant, SearchEntry, Tag } from '@jfv/core/domain';
 import type { SvgIconComponent } from '@mui/icons-material';
 import FaceIcon from '@mui/icons-material/Face';
 import ParkIcon from '@mui/icons-material/Park';
@@ -17,9 +18,6 @@ import {
 } from '@mui/material';
 import { type FC, useCallback, useMemo, useRef, useState } from 'react';
 import useSearchWorker from '../hooks/useSearchWorker';
-import type { Plant } from '../lib/db/entities/plant';
-import type { Tag } from '../lib/db/entities/tag';
-import type { SearchEntry } from '../types/search-entry';
 
 type SearchProps = {
   plants: Plant[] | undefined;

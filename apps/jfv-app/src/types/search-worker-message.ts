@@ -1,5 +1,4 @@
-import type { Plant } from '../lib/db/entities/plant';
-import type { Tag } from '../lib/db/entities/tag';
+import type { Plant, Tag } from '@jfv/core/domain';
 
 type GenericSearchWorkerMessage<K extends string, T> = {
   type: K;

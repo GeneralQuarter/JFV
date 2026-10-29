@@ -1,6 +1,8 @@
 import type { FieldAppSDK } from '@contentful/app-sdk';
 import { SlugEditor } from '@contentful/field-editor-slug';
 import { useSDK } from '@contentful/react-apps-toolkit';
+import { useAutoResizer } from '@jfv/contentful-app';
+import { formatFullLatinName } from '@jfv/core/domain';
 import { useCallback, useEffect } from 'react';
 import './Field.css';
 
@@ -13,33 +15,18 @@ const Field = () => {
   const sdk = useSDK<FieldAppSDK>();
   const field = sdk.field;
 
-  useEffect(() => {
-    sdk.window.startAutoResizer();
-
-    return () => sdk.window.stopAutoResizer();
-  }, [sdk]);
+  useAutoResizer();
 
   const genusField = sdk.entry.fields.genus;
   const speciesField = sdk.entry.fields.species;
   const varietyCultivarField = sdk.entry.fields.varietyCultivar;
 
   const updateFullLatinName = useCallback(() => {
-    const genus = genusField.getValue() as string;
-    const species = speciesField.getValue() as string;
-    const varietyCultivar = varietyCultivarField.getValue() as string;
-
-    if (!genus || !species) {
-      field.setValue('');
-      return;
-    }
-
-    const parts = [genus, species];
-
-    if (varietyCultivar) {
-      parts.push(`'${varietyCultivar}'`);
-    }
-
-    const newValue = parts.join(' ');
+    const newValue = formatFullLatinName({
+      genus: genusField.getValue() as string,
+      species: speciesField.getValue() as string,
+      varietyOrCultivar: varietyCultivarField.getValue() as string,
+    });
 
     if (field.getValue() === newValue) {
       return;

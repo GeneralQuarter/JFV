@@ -1,7 +1,7 @@
+import type { Rectangle } from '@jfv/core/domain';
 import type { FeatureCollection } from 'geojson';
 import { type FC, useMemo } from 'react';
 import { Layer, Source } from 'react-map-gl/maplibre';
-import type { Rectangle } from '../../lib/db/entities/rectangle';
 
 type RectanglesProps = {
   rectangles: Rectangle[] | undefined;

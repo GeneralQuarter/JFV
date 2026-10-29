@@ -1,8 +1,8 @@
+import type { Hedge } from '@jfv/core/domain';
 import buffer from '@turf/buffer';
 import type { FeatureCollection } from 'geojson';
 import { type FC, useMemo } from 'react';
 import { Layer, Source } from 'react-map-gl/maplibre';
-import type { Hedge } from '../../lib/db/entities/hedge';
 
 type HedgesProps = {
   hedges: Hedge[] | undefined;

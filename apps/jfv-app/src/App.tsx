@@ -1,3 +1,4 @@
+import type { SearchEntry } from '@jfv/core/domain';
 import GpsFixedIcon from '@mui/icons-material/GpsFixed';
 import GrassIcon from '@mui/icons-material/Grass';
 import LocationDisabledIcon from '@mui/icons-material/LocationDisabled';
@@ -28,7 +29,6 @@ import useSelectedPlantId from './hooks/useSelectedPlantId';
 import useSyncDb from './hooks/useSyncDb';
 import useTags from './hooks/useTags';
 import useToggle from './hooks/useToggle';
-import type { SearchEntry } from './types/search-entry';
 
 const FullContainer = styled('div')({
   height: '100vh',

@@ -1,4 +1,5 @@
 import type { Entry, EntryFieldTypes, EntrySkeletonType } from 'contentful';
+import type { plantCommonInfoContentTypeId } from './content-types';
 
 type PlantCommonInfoFields = {
   genus: EntryFieldTypes.Symbol;
@@ -11,7 +12,6 @@ type PlantCommonInfoFields = {
   sourceLinks?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
 };
 
-export const plantCommonInfoContentTypeId = 'PlantCommonInfo';
 export type PlantCommonInfoEntrySkeleton = EntrySkeletonType<
   PlantCommonInfoFields,
   typeof plantCommonInfoContentTypeId

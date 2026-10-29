@@ -1,10 +1,11 @@
 import { locations } from '@contentful/app-sdk';
 import { useSDK } from '@contentful/react-apps-toolkit';
-import { useEffect, useMemo } from 'react';
+import { ContentfulApp } from '@jfv/contentful-app';
+import { useEffect } from 'react';
 import { loadCatalog } from './i18n';
 import Sidebar from './locations/Sidebar';
 
-const ComponentLocationSettings = {
+const locationMap = {
   [locations.LOCATION_ENTRY_SIDEBAR]: Sidebar,
 };
 
@@ -15,17 +16,7 @@ const App = () => {
     loadCatalog(sdk.uiLanguageLocale ?? 'en-US');
   }, [sdk]);
 
-  const Component = useMemo(() => {
-    for (const [location, component] of Object.entries(
-      ComponentLocationSettings,
-    )) {
-      if (sdk.location.is(location)) {
-        return component;
-      }
-    }
-  }, [sdk.location]);
-
-  return Component ? <Component /> : null;
+  return <ContentfulApp locations={locationMap} />;
 };
 
 export default App;

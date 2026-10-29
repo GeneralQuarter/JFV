@@ -1,26 +1,11 @@
 import { locations } from '@contentful/app-sdk';
-import { useSDK } from '@contentful/react-apps-toolkit';
-import { useMemo } from 'react';
+import { ContentfulApp } from '@jfv/contentful-app';
 import Field from './locations/Field';
 
-const ComponentLocationSettings = {
+const locationMap = {
   [locations.LOCATION_ENTRY_FIELD]: Field,
 };
 
-const App = () => {
-  const sdk = useSDK();
-
-  const Component = useMemo(() => {
-    for (const [location, component] of Object.entries(
-      ComponentLocationSettings,
-    )) {
-      if (sdk.location.is(location)) {
-        return component;
-      }
-    }
-  }, [sdk.location]);
-
-  return Component ? <Component /> : null;
-};
+const App = () => <ContentfulApp locations={locationMap} />;
 
 export default App;

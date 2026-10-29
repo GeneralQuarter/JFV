@@ -1,8 +1,5 @@
-import type {
-  MapGeoJSONFeature,
-  MapLayerMouseEvent,
-  StyleSpecification,
-} from 'maplibre-gl';
+import { createMapStyle, MAP_LAYER_IDS, mapDefaults } from '@jfv/map-data';
+import type { MapGeoJSONFeature, MapLayerMouseEvent } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { type FC, useCallback } from 'react';
 import { Map as MapLibreMap, type ViewState } from 'react-map-gl/maplibre';
@@ -11,27 +8,14 @@ import { mapBackgroundColor } from '../theme';
 import Plants from './map/Plants';
 import StaticFeatures from './map/StaticFeatures';
 
-const interactiveLayerIds = ['plant'];
+const interactiveLayerIds = [MAP_LAYER_IDS.plant];
 
-type EditorMapProps = {};
-
-const mapStyle: StyleSpecification = {
-  version: 8,
-  glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
-  sources: {},
-  layers: [
-    {
-      id: 'background',
-      type: 'background',
-      paint: { 'background-color': mapBackgroundColor },
-    },
-  ],
-};
+const mapStyle = createMapStyle(mapBackgroundColor);
 
 const initialViewState: Partial<ViewState> = {
-  longitude: 0.88279,
-  latitude: 46.37926,
-  zoom: 17,
+  longitude: mapDefaults.longitude,
+  latitude: mapDefaults.latitude,
+  zoom: mapDefaults.zoom,
 };
 
 const getSmallestFeature = (features?: MapGeoJSONFeature[]) => {
@@ -55,7 +39,7 @@ const getSmallestFeature = (features?: MapGeoJSONFeature[]) => {
   }, features[0]);
 };
 
-const EditorMap: FC<EditorMapProps> = () => {
+const EditorMap: FC = () => {
   const hover = useMapSelection((state) => state.hover);
   const clearHovered = useMapSelection((state) => state.clearHovered);
   const toggleSelect = useMapSelection((state) => state.toggleSelect);

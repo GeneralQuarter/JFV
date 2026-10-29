@@ -15,6 +15,16 @@ Monorepo for the JFV plantation applications.
 
 Legacy apps (`jfv-map`, `plants-map`, `treeviewer-api`) remain in their original repositories until cutover.
 
+## Packages
+
+| Package | Purpose |
+| --- | --- |
+| `packages/core` | Canonical domain models, Contentful entry types/converters, tag constants, and shared domain rules |
+| `packages/map-data` | Canonical static GeoJSON, map defaults, layer IDs, and map style factory |
+| `packages/contentful-app` | Contentful app shell, location routing, provider mounting, auto-resizer, and plant-code generation |
+
+Workspace packages are source-only TypeScript consumed directly by Vite; they do not need a separate build step.
+
 ## Requirements
 
 - Node.js 22 (see `.nvmrc`)

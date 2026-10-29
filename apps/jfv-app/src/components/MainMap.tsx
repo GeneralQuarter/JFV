@@ -1,4 +1,8 @@
-import type { StyleSpecification } from 'maplibre-gl';
+import {
+  createMapStyle,
+  MAP_BACKGROUND_COLOR,
+  mapDefaults,
+} from '@jfv/map-data';
 import { type FC, type PropsWithChildren, useCallback } from 'react';
 import {
   type MapLayerMouseEvent,
@@ -20,23 +24,12 @@ type MainMapProps = {
   onBearingChange: (bearing: number) => void;
 };
 
-const mapStyle: StyleSpecification = {
-  version: 8,
-  glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
-  sources: {},
-  layers: [
-    {
-      id: 'background',
-      type: 'background',
-      paint: { 'background-color': '#fffbec' },
-    },
-  ],
-};
+const mapStyle = createMapStyle(MAP_BACKGROUND_COLOR);
 
 const initialViewState: Partial<ViewState> = {
-  longitude: 0.88279,
-  latitude: 46.37926,
-  zoom: 17,
+  longitude: mapDefaults.longitude,
+  latitude: mapDefaults.latitude,
+  zoom: mapDefaults.zoom,
 };
 
 const MainMap: FC<PropsWithChildren<MainMapProps>> = ({

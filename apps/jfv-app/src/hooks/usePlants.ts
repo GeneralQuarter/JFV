@@ -1,10 +1,11 @@
+import { isDead } from '@jfv/core/domain';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../lib/db/db';
 
 export default function usePlants() {
   return useLiveQuery(async () => {
     const plants = await db.plants
-      .filter((plant) => !!plant.position && !plant.tags.includes('dead'))
+      .filter((plant) => !!plant.position && !isDead(plant))
       .toArray();
 
     await Promise.all(

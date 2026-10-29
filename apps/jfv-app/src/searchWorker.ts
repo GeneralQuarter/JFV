@@ -1,15 +1,12 @@
+import {
+  normalizeSearchTerm,
+  type Plant,
+  type SearchEntry,
+  type SearchEntryGroup,
+  type Tag,
+} from '@jfv/core/domain';
 import MiniSearch, { type SearchOptions } from 'minisearch';
-import type { Plant } from './lib/db/entities/plant';
-import type { Tag } from './lib/db/entities/tag';
-import type { SearchEntry, SearchEntryGroup } from './types/search-entry';
 import type { SearchWorkerMessage } from './types/search-worker-message';
-
-function normalizeSearchTerm(term: string): string {
-  return term
-    .normalize('NFD')
-    .replace(/\p{Diacritic}/gu, '')
-    .toLowerCase();
-}
 
 let resultsCache: Record<string, SearchEntryGroup[]> = {};
 

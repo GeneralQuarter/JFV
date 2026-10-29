@@ -1,4 +1,5 @@
 import type { Entry, EntryFieldTypes, EntrySkeletonType } from 'contentful';
+import type { rectangleContentTypeId } from './content-types';
 import type { CoordsJsonArray } from './coords-json-array';
 
 type RectangleFields = {
@@ -9,7 +10,6 @@ type RectangleFields = {
   coords?: EntryFieldTypes.Object<CoordsJsonArray>;
 };
 
-export const rectangleContentTypeId = 'rectangle';
 export type RectangleEntrySkeleton = EntrySkeletonType<
   RectangleFields,
   typeof rectangleContentTypeId

@@ -1,10 +1,9 @@
+import type { Plant, Tags } from '@jfv/core/domain';
 import { Chip, Stack, Typography } from '@mui/material';
 import { type FC, useMemo } from 'react';
 import useDateTimeFormat from '../hooks/useDateTimeFormat';
 import useFullLatinName from '../hooks/useFullLatinName';
 import useNumberFormat from '../hooks/useNumberFormat';
-import type { Plant } from '../lib/db/entities/plant';
-import type { Tags } from '../types/tags';
 
 type PlantDetailsProps = {
   plant: Plant;

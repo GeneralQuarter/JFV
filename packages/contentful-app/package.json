@@ -1,0 +1,38 @@
+{
+  "name": "@jfv/contentful-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@jfv/core": "workspace:*"
+  },
+  "peerDependencies": {
+    "@contentful/app-sdk": "^4.47.0",
+    "@contentful/f36-components": "^5.9.0",
+    "@contentful/react-apps-toolkit": "^1.2.16",
+    "@emotion/react": "^11.14.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@contentful/app-sdk": "^4.47.0",
+    "@contentful/f36-components": "^5.9.0",
+    "@contentful/react-apps-toolkit": "1.2.16",
+    "@emotion/react": "^11.14.0",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "contentful-management": "^11.67.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "typescript": "~5.9.3"
+  }
+}

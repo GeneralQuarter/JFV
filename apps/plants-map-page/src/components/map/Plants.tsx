@@ -8,8 +8,6 @@ import useMapSelection from '../../hooks/useMapSelection';
 import useVisibilityToggles from '../../hooks/useVisibilityToggles';
 import { mapBackgroundColor } from '../../theme';
 
-type PlantsProps = {};
-
 type RenderPlant = {
   id: string;
   code: string;
@@ -43,7 +41,7 @@ const renderPlantsToFeatureCollection =
     features: renderPlants.map(renderPlantToFeature(showCanopy)),
   });
 
-const Plants: FC<PlantsProps> = () => {
+const Plants: FC = () => {
   const plants = useEntries((state) => state.plants);
   const plantCards = useEntries((state) => state.plantCards);
   const showCanopy = useVisibilityToggles((state) => state.canopy);

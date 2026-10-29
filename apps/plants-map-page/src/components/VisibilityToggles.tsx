@@ -6,9 +6,7 @@ import {
 } from '../hooks/useVisibilityToggles';
 import VisibilityToggle from './VisibilityToggle';
 
-type VisibilityTogglesProps = {};
-
-const VisibilityToggles: FC<VisibilityTogglesProps> = () => {
+const VisibilityToggles: FC = () => {
   return (
     <Box>
       <SectionHeading marginBottom="spacingS">Shown on map</SectionHeading>

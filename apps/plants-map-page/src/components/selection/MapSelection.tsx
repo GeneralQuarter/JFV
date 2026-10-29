@@ -4,9 +4,7 @@ import EmptySelection from './EmptySelection';
 import MultiSelection from './MultiSelection';
 import SingleSelection from './SingleSelection';
 
-type MapSelectionProps = {};
-
-const MapSelection: FC<MapSelectionProps> = () => {
+const MapSelection: FC = () => {
   const selectedFeatures = useMapSelection((state) => state.selectedFeatures);
 
   return (

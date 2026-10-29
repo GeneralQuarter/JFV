@@ -1,14 +1,17 @@
+import {
+  contentfulTagToTag,
+  entryToHedge,
+  entryToPlant,
+  entryToPlantCard,
+  entryToRectangle,
+  hedgeContentTypeId,
+  plantCommonInfoContentTypeId,
+  plantContentTypeId,
+  rectangleContentTypeId,
+} from '@jfv/core/contentful';
+import type { Hedge, Plant, PlantCard, Rectangle, Tag } from '@jfv/core/domain';
 import { createClient, type SyncQuery } from 'contentful';
 import Dexie, { type BulkError, type EntityTable } from 'dexie';
-import { hedgeContentTypeId } from '../contentful/hedge.entry';
-import { plantContentTypeId } from '../contentful/plant.entry';
-import { plantCommonInfoContentTypeId } from '../contentful/plant-common-info.entry';
-import { rectangleContentTypeId } from '../contentful/rectangle.entry';
-import { entryToHedge, type Hedge } from './entities/hedge';
-import { entryToPlant, type Plant } from './entities/plant';
-import { entryToPlantCard, type PlantCard } from './entities/plant-card';
-import { entryToRectangle, type Rectangle } from './entities/rectangle';
-import { contentfulTagToTag, type Tag } from './entities/tag';
 
 const entryToEntity = {
   [plantContentTypeId]: {

@@ -1,9 +1,9 @@
+import type { Plant } from '@jfv/core/domain';
 import circle from '@turf/circle';
 import type { FeatureCollection } from 'geojson';
 import { type FC, useMemo } from 'react';
 import { Layer, Source } from 'react-map-gl/maplibre';
 import type { Filter, FilterType } from '../../hooks/useFilters';
-import type { Plant } from '../../lib/db/entities/plant';
 import theme from '../../theme';
 
 type PlantsProps = {

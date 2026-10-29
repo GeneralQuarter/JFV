@@ -1,8 +1,6 @@
+import type { Plant, SearchEntryGroup, Tag } from '@jfv/core/domain';
 import { useEffect, useRef, useState } from 'react';
-import type { Plant } from '../lib/db/entities/plant';
-import type { Tag } from '../lib/db/entities/tag';
 import searchWorkerUrl from '../searchWorker?worker&url';
-import type { SearchEntryGroup } from '../types/search-entry';
 import type {
   LoadDataSearchWorkerMessage,
   SearchForSearchWorkerMessage,

@@ -1,4 +1,5 @@
 import type { Entry, EntryFieldTypes, EntrySkeletonType } from 'contentful';
+import type { plantContentTypeId } from './content-types';
 import type { PlantCommonInfoEntrySkeleton } from './plant-common-info.entry';
 
 type PlantFields = {
@@ -10,7 +11,6 @@ type PlantFields = {
   declaredDeadAt?: EntryFieldTypes.Date;
 };
 
-export const plantContentTypeId = 'plant';
 export type PlantEntrySkeleton = EntrySkeletonType<
   PlantFields,
   typeof plantContentTypeId

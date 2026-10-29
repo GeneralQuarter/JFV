@@ -1,5 +1,5 @@
+import type { Plant } from '@jfv/core/domain';
 import { useMemo } from 'react';
-import type { Plant } from '../lib/db/entities/plant';
 
 export default function useSelectedPlant(
   plants: Plant[] | undefined,

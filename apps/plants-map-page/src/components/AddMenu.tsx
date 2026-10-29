@@ -2,9 +2,7 @@ import { Button, Menu } from '@contentful/f36-components';
 import { CaretDownIcon, PlusIcon } from '@contentful/f36-icons';
 import type { FC } from 'react';
 
-type AddMenuProps = {};
-
-const AddMenu: FC<AddMenuProps> = () => {
+const AddMenu: FC = () => {
   return (
     <Menu>
       <Menu.Trigger>

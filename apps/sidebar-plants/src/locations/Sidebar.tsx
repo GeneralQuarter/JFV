@@ -7,6 +7,7 @@ import {
 } from '@contentful/f36-components';
 import { PlusIcon } from '@contentful/f36-icons';
 import { useSDK } from '@contentful/react-apps-toolkit';
+import { generateNextPlantCode, useAutoResizer } from '@jfv/contentful-app';
 import { useEffect, useMemo, useState } from 'react';
 import './Sidebar.css';
 import { t } from '@lingui/core/macro';
@@ -16,12 +17,6 @@ type Plant = {
   id: string;
   code: string;
 };
-
-const CODE_NUMBER_LENGTH = 3;
-
-function generatePaddedNumber(n: number): string {
-  return n.toString().padStart(CODE_NUMBER_LENGTH, '0');
-}
 
 function getCode(field: EntryFieldAPI) {
   return ((field.getValue() as string) ?? '').slice(0, 2).toUpperCase();
@@ -50,13 +45,7 @@ const Sidebar = () => {
     return () => detach();
   }, [entry]);
 
-  useEffect(() => {
-    sdk.window.startAutoResizer();
-
-    return () => {
-      sdk.window.stopAutoResizer();
-    };
-  }, [sdk]);
+  useAutoResizer();
 
   useEffect(() => {
     const detach = genusField.onValueChanged(() =>
@@ -98,34 +87,14 @@ const Sidebar = () => {
     })();
   }, [cma, sys]);
 
-  const getNextPlantCode = async () => {
-    const query = {
-      content_type: 'plant',
-      'fields.code[match]': codeStart,
-      order: '-fields.code',
-      limit: 1,
-    };
-
-    const results = await cma.entry.getMany({
-      query,
-    });
-
-    if (results.total === 0) {
-      return `${codeStart}-${generatePaddedNumber(1)}`;
-    }
-
-    const lastPlant = results.items[0];
-    const lastNumber = parseInt(lastPlant.fields.code.fr.split('-')[1], 10);
-    const nextNumber = generatePaddedNumber(lastNumber + 1);
-
-    return `${codeStart}-${nextNumber}`;
-  };
-
   const createNewPlant = async () => {
     setIsCreatingPlant(true);
 
     try {
-      const nextCode = await getNextPlantCode();
+      const nextCode = await generateNextPlantCode(cma, {
+        genus: String(genusField.getValue() ?? ''),
+        species: String(speciesField.getValue() ?? ''),
+      });
 
       const newPlant = await cma.entry.create(
         {

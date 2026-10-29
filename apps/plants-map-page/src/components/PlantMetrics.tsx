@@ -3,9 +3,7 @@ import { type FC, useMemo } from 'react';
 import useEntries from '../hooks/useEntries';
 import Metric from './Metric';
 
-type PlantMetricsProps = {};
-
-const PlantMetrics: FC<PlantMetricsProps> = () => {
+const PlantMetrics: FC = () => {
   const plants = useEntries((state) => state.plants);
   const positioned = useMemo(
     () => plants.filter((p) => !p.fields.declaredDeadAt),

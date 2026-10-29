@@ -1,4 +1,5 @@
 import type { Entry, EntryFieldTypes, EntrySkeletonType } from 'contentful';
+import type { hedgeContentTypeId } from './content-types';
 import type { CoordsJsonArray } from './coords-json-array';
 import type { PlantEntrySkeleton } from './plant.entry';
 
@@ -9,7 +10,6 @@ type HedgeFields = {
   wateredAt: EntryFieldTypes.Date;
 };
 
-export const hedgeContentTypeId = 'hedge';
 export type HedgeEntrySkeleton = EntrySkeletonType<
   HedgeFields,
   typeof hedgeContentTypeId

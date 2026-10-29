@@ -1,0 +1,22 @@
+{
+  "name": "@jfv/map-data",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@types/geojson": "^7946.0.16"
+  },
+  "devDependencies": {
+    "maplibre-gl": "^5.14.0",
+    "typescript": "~5.9.3"
+  }
+}
