@@ -2,6 +2,7 @@ export type AuthUser = {
   id: string;
   email?: string;
   name?: string;
+  avatarUrl?: string;
 };
 
 export type ApiResult<T = undefined> =

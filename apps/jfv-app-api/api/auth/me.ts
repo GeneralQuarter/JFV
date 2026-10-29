@@ -37,6 +37,7 @@ export default async function handler(
         id: authenticated.session.userId,
         email: authenticated.session.email,
         name: authenticated.session.name,
+        avatarUrl: authenticated.session.avatarUrl,
       },
     });
   } catch (error) {

@@ -89,6 +89,7 @@ export default async function handler(
       userId: user.id,
       email: user.email,
       name: user.name,
+      avatarUrl: user.avatarUrl,
       accessToken: tokens.accessToken,
       refreshToken: tokens.refreshToken,
       accessTokenExpiresAt: tokens.expiresAt,

@@ -8,6 +8,7 @@ export type ContentfulUser = {
   id: string;
   email?: string;
   name?: string;
+  avatarUrl?: string;
 };
 
 export type TokenSet = {
@@ -39,6 +40,7 @@ type UserResponse = {
   email?: string;
   firstName?: string;
   lastName?: string;
+  avatarUrl?: string;
 };
 
 export function buildAuthorizeUrl(state: string): string {
@@ -152,5 +154,6 @@ export async function fetchCurrentUser(
     id,
     email: data.email,
     name: name || undefined,
+    avatarUrl: data.avatarUrl,
   };
 }
