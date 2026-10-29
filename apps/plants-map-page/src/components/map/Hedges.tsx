@@ -69,6 +69,10 @@ const Hedges: FC = () => {
       <Layer
         id={MAP_LAYER_IDS.hedge}
         type="line"
+        layout={{
+          'line-cap': 'round',
+          'line-join': 'round',
+        }}
         paint={{
           'line-color': 'brown',
           'line-opacity': 0.3,
