@@ -1,6 +1,6 @@
 import type { PageAppSDK } from '@contentful/app-sdk';
 import { Button } from '@contentful/f36-components';
-import { TrayArrowDownIcon } from '@contentful/f36-icons';
+import { TrashSimpleIcon, TrayArrowDownIcon } from '@contentful/f36-icons';
 import { useSDK } from '@contentful/react-apps-toolkit';
 import { type ChangeEvent, type FC, useRef, useState } from 'react';
 import useEntries from '../hooks/useEntries';
@@ -13,7 +13,9 @@ const ImportPoints: FC = () => {
   const sdk = useSDK<PageAppSDK>();
   const plants = useEntries((state) => state.plants);
   const updatePlant = useEntries((state) => state.updatePlant);
+  const points = useMeasuredPoints((state) => state.points);
   const setPoints = useMeasuredPoints((state) => state.setPoints);
+  const clearPoints = useMeasuredPoints((state) => state.clearPoints);
   const fileInput = useRef<HTMLInputElement>(null);
   const [importing, setImporting] = useState(false);
 
@@ -92,6 +94,18 @@ const ImportPoints: FC = () => {
         title="Import measured points (CSV) or marked plants (JSON)"
       >
         Import
+      </Button>
+      <Button
+        isDisabled={importing || points.length === 0}
+        onClick={() => {
+          clearPoints();
+          sdk.notifier.success('Measured points cleared.');
+        }}
+        size="small"
+        startIcon={<TrashSimpleIcon />}
+        title="Clear measured points"
+      >
+        Clear
       </Button>
       <input
         accept=".csv,.json,text/csv,application/json"
