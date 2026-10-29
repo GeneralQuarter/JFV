@@ -1,7 +1,7 @@
 import type { PageAppSDK } from '@contentful/app-sdk';
 import { useSDK } from '@contentful/react-apps-toolkit';
 import circle from '@turf/circle';
-import type { Feature, Polygon } from 'geojson';
+import type { Feature, Point, Polygon } from 'geojson';
 import type { MapLayerMouseEvent, MapMouseEvent } from 'maplibre-gl';
 import {
   type FC,
@@ -21,8 +21,9 @@ import {
 import { mapBackgroundColor } from '../../theme';
 
 const GHOST_FILL_LAYER = 'plant-move-ghost';
+const GHOST_CENTER_LAYER = 'plant-move-ghost-center';
 const GHOST_LABEL_LAYER = 'plant-move-ghost-label';
-const GHOST_LAYERS = [GHOST_FILL_LAYER, GHOST_LABEL_LAYER];
+const GHOST_LAYERS = [GHOST_FILL_LAYER, GHOST_CENTER_LAYER, GHOST_LABEL_LAYER];
 
 type PlantMoveGhostProps = {
   plantId: string;
@@ -69,6 +70,18 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
         },
       ),
     [code, currentPosition.lat, currentPosition.lon, diameter, showCanopy],
+  );
+
+  const ghostCenterFeature = useMemo<Feature<Point>>(
+    () => ({
+      type: 'Feature',
+      properties: {},
+      geometry: {
+        type: 'Point',
+        coordinates: [currentPosition.lon, currentPosition.lat],
+      },
+    }),
+    [currentPosition.lat, currentPosition.lon],
   );
 
   const endDrag = useCallback(() => {
@@ -223,37 +236,52 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
   }, [onCancel]);
 
   return (
-    <Source type="geojson" data={ghostFeature}>
-      <Layer
-        id={GHOST_FILL_LAYER}
-        type="fill"
-        paint={{
-          'fill-color': 'rgba(47, 111, 78, 0.14)',
-        }}
-      />
-      <Layer
-        type="line"
-        paint={{
-          'line-color': '#2f6f4e',
-          'line-dasharray': [2, 2],
-          'line-width': 2,
-        }}
-      />
-      <Layer
-        id={GHOST_LABEL_LAYER}
-        type="symbol"
-        layout={{
-          'text-field': ['get', 'code'],
-          visibility: showLabels ? 'visible' : 'none',
-        }}
-        paint={{
-          'text-color': '#1f4d13',
-          'text-opacity': ['step', ['zoom'], 0, 19, 1],
-          'text-halo-color': mapBackgroundColor,
-          'text-halo-width': 2,
-        }}
-      />
-    </Source>
+    <>
+      <Source type="geojson" data={ghostFeature}>
+        <Layer
+          id={GHOST_FILL_LAYER}
+          type="fill"
+          paint={{
+            'fill-color': 'rgba(47, 111, 78, 0.14)',
+          }}
+        />
+        <Layer
+          type="line"
+          paint={{
+            'line-color': '#2f6f4e',
+            'line-dasharray': [2, 2],
+            'line-width': 2,
+          }}
+        />
+      </Source>
+      <Source type="geojson" data={ghostCenterFeature}>
+        <Layer
+          id={GHOST_CENTER_LAYER}
+          type="circle"
+          paint={{
+            'circle-color': 'rgba(31, 77, 19, 0.55)',
+            'circle-radius': 4,
+            'circle-stroke-color': 'rgba(255, 255, 255, 0.9)',
+            'circle-stroke-width': 1,
+          }}
+        />
+        <Layer
+          id={GHOST_LABEL_LAYER}
+          type="symbol"
+          layout={{
+            'text-field': ['get', 'code'],
+            'text-offset': [0, 1.1],
+            visibility: showLabels ? 'visible' : 'none',
+          }}
+          paint={{
+            'text-color': '#1f4d13',
+            'text-opacity': ['step', ['zoom'], 0, 19, 1],
+            'text-halo-color': mapBackgroundColor,
+            'text-halo-width': 2,
+          }}
+        />
+      </Source>
+    </>
   );
 };
 
