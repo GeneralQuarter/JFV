@@ -66,9 +66,19 @@ type EntriesState = {
   loading: boolean;
   error?: string;
   fetchAllEntries: (cma: CMAClient) => Promise<void>;
+  updateEntry: (entryId: string, updater: (entry: CmaEntry) => void) => void;
   updatePlant: (plantId: string, updater: (entry: CmaEntry) => void) => void;
   removePlant: (plantId: string) => void;
 };
+
+const entryKeys: EntryKey[] = [
+  'plants',
+  'plantCards',
+  'hedges',
+  'rectangles',
+  'mapZones',
+  'mapSectors',
+];
 
 const initialEntries = Object.keys(entryQueryMap).reduce(
   (acc, key) => {
@@ -104,6 +114,20 @@ const useEntries = create<EntriesState>((set) => ({
         loading: false,
       });
     }
+  },
+  updateEntry: (entryId: string, updater: (entry: CmaEntry) => void) => {
+    set(
+      produce((state: EntriesState) => {
+        for (const key of entryKeys) {
+          const entry = state[key].find((item) => item.sys.id === entryId);
+
+          if (entry) {
+            updater(entry);
+            return;
+          }
+        }
+      }),
+    );
   },
   updatePlant: (plantId: string, updater: (entry: CmaEntry) => void) => {
     set(

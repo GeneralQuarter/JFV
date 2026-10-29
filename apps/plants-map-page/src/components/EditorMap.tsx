@@ -5,7 +5,13 @@ import { type FC, useCallback, useState } from 'react';
 import { Map as MapLibreMap, type ViewState } from 'react-map-gl/maplibre';
 import useEntries from '../hooks/useEntries';
 import useMapSelection from '../hooks/useMapSelection';
-import { entryCode, plantCardId, plantPosition } from '../lib/entries';
+import {
+  entryCode,
+  entryCoords,
+  entryName,
+  plantCardId,
+  plantPosition,
+} from '../lib/entries';
 import { mapBackgroundColor } from '../theme';
 import Hedges from './map/Hedges';
 import MapSectors from './map/MapSectors';
@@ -13,6 +19,7 @@ import MapZones from './map/MapZones';
 import PlantMoveGhost from './map/PlantMoveGhost';
 import Plants from './map/Plants';
 import Rectangles from './map/Rectangles';
+import ShapeMoveGhost, { type ShapeKind } from './map/ShapeMoveGhost';
 import StaticFeatures from './map/StaticFeatures';
 
 type MovingPlant = {
@@ -22,7 +29,18 @@ type MovingPlant = {
   diameter: number;
 };
 
-const interactiveLayerIds = [MAP_LAYER_IDS.plant];
+type MovingShape = {
+  coords: [lat: number, lon: number][];
+  id: string;
+  kind: ShapeKind;
+  label: string;
+};
+
+const interactiveLayerIds = [
+  MAP_LAYER_IDS.plant,
+  MAP_LAYER_IDS.rectangle,
+  MAP_LAYER_IDS.mapZone,
+];
 
 const mapStyle = createMapStyle(mapBackgroundColor);
 
@@ -56,24 +74,28 @@ const getSmallestFeature = (features?: MapGeoJSONFeature[]) => {
 const EditorMap: FC = () => {
   const plants = useEntries((state) => state.plants);
   const plantCards = useEntries((state) => state.plantCards);
+  const rectangles = useEntries((state) => state.rectangles);
+  const mapZones = useEntries((state) => state.mapZones);
   const hover = useMapSelection((state) => state.hover);
   const clearHovered = useMapSelection((state) => state.clearHovered);
   const toggleSelect = useMapSelection((state) => state.toggleSelect);
   const [movingPlant, setMovingPlant] = useState<MovingPlant>();
+  const [movingShape, setMovingShape] = useState<MovingShape>();
 
   const onMouseMove = useCallback(
     (e: MapLayerMouseEvent) => {
-      if (movingPlant) {
+      if (movingPlant || movingShape) {
         return;
       }
 
       const smallestFeature = getSmallestFeature(e.features);
+      const { id, type } = smallestFeature?.properties ?? {};
 
-      if (smallestFeature?.properties?.id) {
-        hover(smallestFeature.properties.id);
+      if (type === 'plant' && typeof id === 'string') {
+        hover(id);
       }
     },
-    [hover, movingPlant],
+    [hover, movingPlant, movingShape],
   );
 
   const onMouseLeave = useCallback(() => {
@@ -82,7 +104,7 @@ const EditorMap: FC = () => {
 
   const onClick = useCallback(
     (e: MapLayerMouseEvent) => {
-      if (movingPlant) {
+      if (movingPlant || movingShape) {
         return;
       }
 
@@ -94,34 +116,76 @@ const EditorMap: FC = () => {
 
       const { id, type } = smallestFeature.properties;
 
-      if (typeof id === 'string' && typeof type === 'string') {
+      if (typeof id === 'string' && type === 'plant') {
         toggleSelect({ id, type }, !e.originalEvent.ctrlKey);
       }
     },
-    [movingPlant, toggleSelect],
+    [movingPlant, movingShape, toggleSelect],
   );
 
   const onContextMenu = useCallback(
     (e: MapLayerMouseEvent) => {
       e.originalEvent.preventDefault();
 
-      if (movingPlant) {
+      if (movingPlant || movingShape) {
         return;
       }
 
-      const firstFeature = e.features?.[0];
+      const features = e.features ?? [];
+      const firstFeature =
+        features.find((feature) => feature.layer.id === MAP_LAYER_IDS.plant) ??
+        features.find(
+          (feature) => feature.layer.id === MAP_LAYER_IDS.rectangle,
+        ) ??
+        features.find((feature) => feature.layer.id === MAP_LAYER_IDS.mapZone);
 
-      if (
-        !firstFeature ||
-        firstFeature.layer.id !== MAP_LAYER_IDS.plant ||
-        typeof firstFeature.properties.id !== 'string'
-      ) {
+      if (!firstFeature || typeof firstFeature.properties.id !== 'string') {
         return;
       }
 
-      const plant = plants.find(
-        (candidate) => candidate.sys.id === firstFeature.properties.id,
-      );
+      const featureId = firstFeature.properties.id;
+
+      if (firstFeature.layer.id === MAP_LAYER_IDS.rectangle) {
+        const rectangle = rectangles.find(
+          (candidate) => candidate.sys.id === featureId,
+        );
+        const coords = rectangle ? entryCoords(rectangle) : undefined;
+
+        if (rectangle && coords && coords.length >= 3) {
+          setMovingShape({
+            coords,
+            id: rectangle.sys.id,
+            kind: 'rectangle',
+            label: entryCode(rectangle),
+          });
+        }
+
+        return;
+      }
+
+      if (firstFeature.layer.id === MAP_LAYER_IDS.mapZone) {
+        const zone = mapZones.find(
+          (candidate) => candidate.sys.id === featureId,
+        );
+        const coords = zone ? entryCoords(zone) : undefined;
+
+        if (zone && coords && coords.length >= 3) {
+          setMovingShape({
+            coords,
+            id: zone.sys.id,
+            kind: 'mapZone',
+            label: entryName(zone),
+          });
+        }
+
+        return;
+      }
+
+      if (firstFeature.layer.id !== MAP_LAYER_IDS.plant) {
+        return;
+      }
+
+      const plant = plants.find((candidate) => candidate.sys.id === featureId);
       const position = plant ? plantPosition(plant) : undefined;
 
       if (!plant || !position) {
@@ -140,7 +204,7 @@ const EditorMap: FC = () => {
         position,
       });
     },
-    [movingPlant, plantCards, plants],
+    [mapZones, movingPlant, movingShape, plantCards, plants, rectangles],
   );
 
   return (
@@ -170,6 +234,17 @@ const EditorMap: FC = () => {
           onDone={() => setMovingPlant(undefined)}
           plantId={movingPlant.id}
           position={movingPlant.position}
+        />
+      )}
+      {movingShape && (
+        <ShapeMoveGhost
+          key={movingShape.id}
+          coords={movingShape.coords}
+          id={movingShape.id}
+          kind={movingShape.kind}
+          label={movingShape.label}
+          onCancel={() => setMovingShape(undefined)}
+          onDone={() => setMovingShape(undefined)}
         />
       )}
     </MapLibreMap>

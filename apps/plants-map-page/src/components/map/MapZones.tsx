@@ -5,24 +5,13 @@ import { Layer, Source } from 'react-map-gl/maplibre';
 import useEntries from '../../hooks/useEntries';
 import useVisibilityToggles from '../../hooks/useVisibilityToggles';
 import { entryCoords, entryName } from '../../lib/entries';
+import { closeRing } from '../../lib/geo';
 
 type ZoneProperties = {
   id: string;
   type: 'mapZone';
   name: string;
 };
-
-function closeRing(coords: [lat: number, lon: number][]): [number, number][] {
-  const ring: [number, number][] = coords.map(([lat, lon]) => [lon, lat]);
-  const first = ring[0];
-  const last = ring[ring.length - 1];
-
-  if (first && last && (first[0] !== last[0] || first[1] !== last[1])) {
-    ring.push(first);
-  }
-
-  return ring;
-}
 
 const MapZones: FC = () => {
   const mapZones = useEntries((state) => state.mapZones);
