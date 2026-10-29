@@ -1,3 +1,4 @@
+import { TAG_IDS } from '@jfv/core/domain';
 import { produce } from 'immer';
 import { create } from 'zustand';
 import { HUE_COUNT } from '../lib/colors';
@@ -14,7 +15,7 @@ type SelectedTagsState = {
 };
 
 const useSelectedTags = create<SelectedTagsState>((set) => ({
-  selected: [],
+  selected: [{ hueIndex: 0, id: TAG_IDS.planted }],
   toggleTag: (tagId: string) => {
     set(
       produce((state: SelectedTagsState) => {
