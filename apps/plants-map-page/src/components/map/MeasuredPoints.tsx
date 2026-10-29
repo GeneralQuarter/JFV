@@ -50,7 +50,7 @@ const MeasuredPoints: FC = () => {
         properties: {
           color: point.height > 10 ? '#e07b1f' : '#2f6fbf',
           index,
-          label: `${point.name} · ${point.height.toFixed(3)} m`,
+          label: point.name,
         },
       })),
     }),
