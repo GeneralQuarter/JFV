@@ -85,7 +85,7 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
   const plantTags = useMemo(() => (entry ? entryTags(entry) : []), [entry]);
 
   return (
-    <Stack flexDirection="column">
+    <Stack flexDirection="column" fullHeight>
       <SelectionHeader
         title={title}
         ariaLabel="Unselect feature"
@@ -106,7 +106,15 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
       <Stack
         flexDirection="column"
         alignItems="flex-start"
-        css={{ overflow: 'auto', paddingInline: tokens.spacingS }}
+        css={{
+          flex: 1,
+          minHeight: 0,
+          overflowX: 'hidden',
+          overflowY: 'auto',
+          paddingInline: tokens.spacingS,
+          scrollbarWidth: 'none',
+          '&::-webkit-scrollbar': { display: 'none' },
+        }}
         fullWidth
       >
         {entry?.sys.contentType.sys.id === 'plant' && (

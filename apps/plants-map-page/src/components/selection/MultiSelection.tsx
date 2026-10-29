@@ -107,8 +107,14 @@ const MultiSelection: FC<MultiSelectionProps> = ({ features }) => {
         alignItems="flex-start"
         css={{
           '& nav': { width: '100%', overflow: 'auto' },
+          flex: 1,
+          minHeight: 0,
+          overflowX: 'hidden',
+          overflowY: 'auto',
           padding: tokens.spacingS,
+          scrollbarWidth: 'none',
           '& li': { cursor: 'pointer' },
+          '&::-webkit-scrollbar': { display: 'none' },
         }}
         fullWidth
       >
