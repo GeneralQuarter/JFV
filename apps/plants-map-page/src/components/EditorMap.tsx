@@ -21,7 +21,8 @@ type MovingPlant = {
   diameter: number;
 };
 
-const interactiveLayerIds = [MAP_LAYER_IDS.plant];
+const GHOST_LAYER_ID = 'plant-move-ghost';
+const interactiveLayerIds = [MAP_LAYER_IDS.plant, GHOST_LAYER_ID];
 
 const mapStyle = createMapStyle(mapBackgroundColor);
 
@@ -102,6 +103,10 @@ const EditorMap: FC = () => {
       }
 
       const firstFeature = e.features?.[0];
+
+      if (firstFeature?.layer.id === GHOST_LAYER_ID) {
+        return;
+      }
 
       if (
         !firstFeature ||

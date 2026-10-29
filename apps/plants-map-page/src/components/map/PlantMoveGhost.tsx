@@ -2,14 +2,17 @@ import type { PageAppSDK } from '@contentful/app-sdk';
 import { useSDK } from '@contentful/react-apps-toolkit';
 import circle from '@turf/circle';
 import type { Feature, Polygon } from 'geojson';
+import type { MapMouseEvent } from 'maplibre-gl';
 import {
   type FC,
   type MouseEvent as ReactMouseEvent,
+  useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from 'react';
-import { Layer, Marker, Source } from 'react-map-gl/maplibre';
+import { Layer, Marker, Source, useMap } from 'react-map-gl/maplibre';
 import useEntries from '../../hooks/useEntries';
 import useVisibilityToggles from '../../hooks/useVisibilityToggles';
 import {
@@ -33,11 +36,13 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
   onCancel,
 }) => {
   const sdk = useSDK<PageAppSDK>();
+  const { mainMap } = useMap();
   const updatePlant = useEntries((state) => state.updatePlant);
   const showCanopy = useVisibilityToggles((state) => state.canopy);
   const [currentPosition, setCurrentPosition] = useState(position);
   const [dragging, setDragging] = useState(false);
   const [saving, setSaving] = useState(false);
+  const commitRef = useRef<(() => Promise<void>) | undefined>(undefined);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -60,10 +65,7 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
     [currentPosition.lat, currentPosition.lon, diameter, showCanopy],
   );
 
-  const commitMove = async (event: ReactMouseEvent) => {
-    event.preventDefault();
-    event.stopPropagation();
-
+  const commitPosition = useCallback(async () => {
     if (saving) {
       return;
     }
@@ -82,6 +84,37 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
       sdk.notifier.error('Could not update the plant position.');
       setSaving(false);
     }
+  }, [currentPosition, onDone, plantId, saving, sdk, updatePlant]);
+
+  commitRef.current = commitPosition;
+
+  useEffect(() => {
+    if (!mainMap) {
+      return;
+    }
+
+    const onMapContextMenu = (event: MapMouseEvent) => {
+      const features = mainMap.queryRenderedFeatures(event.point, {
+        layers: ['plant-move-ghost'],
+      });
+
+      if (features.length > 0) {
+        event.preventDefault();
+        void commitRef.current?.();
+      }
+    };
+
+    mainMap.on('contextmenu', onMapContextMenu);
+
+    return () => {
+      mainMap.off('contextmenu', onMapContextMenu);
+    };
+  }, [mainMap]);
+
+  const commitMove = (event: ReactMouseEvent) => {
+    event.preventDefault();
+    event.stopPropagation();
+    void commitPosition();
   };
 
   return (
