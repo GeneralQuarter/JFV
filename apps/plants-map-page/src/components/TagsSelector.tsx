@@ -10,6 +10,7 @@ import tokens from '@contentful/f36-tokens';
 import { type FC, useMemo, useState } from 'react';
 import useSelectedTags from '../hooks/useSelectedTags';
 import useTags from '../hooks/useTags';
+import { HUE_COUNT } from '../lib/colors';
 import TagPill from './TagPill';
 
 type TagItem = {
@@ -71,6 +72,11 @@ const TagsSelector: FC = () => {
         {error && (
           <Text as="p" fontColor="colorNegative" marginBottom="none">
             {error}
+          </Text>
+        )}
+        {selected.length >= HUE_COUNT && unselectedTags.length > 0 && (
+          <Text as="p" fontColor="gray600" marginBottom="none">
+            Up to {HUE_COUNT} tags can be highlighted at once.
           </Text>
         )}
         {selectedTags.length > 0 && (

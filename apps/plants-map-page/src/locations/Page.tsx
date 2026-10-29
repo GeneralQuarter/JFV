@@ -96,7 +96,7 @@ const Page = () => {
             }}
             variant="negative"
           >
-            Impossible de charger le contenu : {error}
+            Could not load content: {error}
           </Note>
         )}
       </Layout.Body>
