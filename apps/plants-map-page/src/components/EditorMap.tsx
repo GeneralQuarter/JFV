@@ -18,6 +18,7 @@ import MapFocus from './map/MapFocus';
 import MapSectors from './map/MapSectors';
 import MapView from './map/MapView';
 import MapZones from './map/MapZones';
+import MeasuredPoints from './map/MeasuredPoints';
 import PlantMoveGhost from './map/PlantMoveGhost';
 import Plants from './map/Plants';
 import Rectangles from './map/Rectangles';
@@ -42,7 +43,17 @@ const interactiveLayerIds = [
   MAP_LAYER_IDS.plant,
   MAP_LAYER_IDS.rectangle,
   MAP_LAYER_IDS.mapZone,
+  MAP_LAYER_IDS.measuredPoint,
+  MAP_LAYER_IDS.measuredPointLabel,
 ];
+
+const MEASURED_POINT_LAYERS = [
+  MAP_LAYER_IDS.measuredPoint,
+  MAP_LAYER_IDS.measuredPointLabel,
+];
+
+const isMeasuredPointFeature = (feature: MapGeoJSONFeature) =>
+  MEASURED_POINT_LAYERS.some((layerId) => layerId === feature.layer.id);
 
 const mapStyle = createMapStyle(mapBackgroundColor);
 
@@ -110,6 +121,10 @@ const EditorMap: FC = () => {
         return;
       }
 
+      if (e.features?.some(isMeasuredPointFeature)) {
+        return;
+      }
+
       const smallestFeature = getSmallestFeature(e.features);
 
       if (!smallestFeature) {
@@ -134,6 +149,11 @@ const EditorMap: FC = () => {
       }
 
       const features = e.features ?? [];
+
+      if (features.some(isMeasuredPointFeature)) {
+        return;
+      }
+
       const firstFeature =
         features.find((feature) => feature.layer.id === MAP_LAYER_IDS.plant) ??
         features.find(
@@ -229,6 +249,7 @@ const EditorMap: FC = () => {
       <MapZones />
       <MapSectors />
       <Plants />
+      <MeasuredPoints />
       {movingPlant && (
         <PlantMoveGhost
           key={movingPlant.id}

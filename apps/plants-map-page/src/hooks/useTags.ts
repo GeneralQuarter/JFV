@@ -1,5 +1,10 @@
 import type { CMAClient } from '@contentful/app-sdk';
 import { create } from 'zustand';
+import { MARKED_TAG_ID } from '../lib/keys';
+
+const LOCAL_TAGS: Record<string, string> = {
+  [MARKED_TAG_ID]: 'Marked',
+};
 
 type TagsState = {
   tags: Record<string, string>;
@@ -10,7 +15,7 @@ type TagsState = {
 };
 
 const useTags = create<TagsState>((set, get) => ({
-  tags: {},
+  tags: { ...LOCAL_TAGS },
   loading: false,
   loaded: false,
   error: undefined,
@@ -32,7 +37,7 @@ const useTags = create<TagsState>((set, get) => ({
         {},
       );
 
-      set({ loaded: true, loading: false, tags });
+      set({ loaded: true, loading: false, tags: { ...LOCAL_TAGS, ...tags } });
     } catch (error) {
       set({
         error: error instanceof Error ? error.message : 'Could not load tags',

@@ -18,6 +18,8 @@ export const MAP_LAYER_IDS = {
   rectangle: 'rectangle',
   mapZone: 'map-zone',
   mapSector: 'map-sector',
+  measuredPoint: 'measured-point',
+  measuredPointLabel: 'measured-point-label',
   measure: 'measure',
 } as const;
 

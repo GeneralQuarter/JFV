@@ -2,22 +2,23 @@ import { parse, unparse } from 'papaparse';
 import type { CmaEntry } from './entries';
 import { entryCode, plantPosition } from './entries';
 
-export type ImportedPoint = {
-  code: string;
-  lat: number;
-  lon: number;
+export type MeasuredPoint = {
+  name: string;
+  coords: { lat: number; lon: number };
+  height: number;
+  description?: string;
 };
 
 type PointRow = Record<string, string | number | undefined>;
 
-const CODE_KEYS = ['name', 'code', 'plant code'];
+const NAME_KEYS = ['name', 'code', 'plant code'];
 const LAT_KEYS = ['latitude', 'lat'];
 const LON_KEYS = ['longitude', 'lon', 'lng'];
+const HEIGHT_KEYS = ['ellipsoidal height', 'height', 'elevation'];
+const DESCRIPTION_KEYS = ['description', 'desc'];
 
 function pick(row: PointRow, keys: string[]): string | undefined {
-  const entries = Object.entries(row);
-
-  for (const [key, value] of entries) {
+  for (const [key, value] of Object.entries(row)) {
     if (keys.includes(key.trim().toLowerCase()) && value !== undefined) {
       return String(value);
     }
@@ -26,44 +27,66 @@ function pick(row: PointRow, keys: string[]): string | undefined {
   return undefined;
 }
 
-function rowToPoint(row: PointRow): ImportedPoint | undefined {
-  const code = pick(row, CODE_KEYS)?.trim();
-  const lat = Number(pick(row, LAT_KEYS));
-  const lon = Number(pick(row, LON_KEYS));
-
-  if (!code || !Number.isFinite(lat) || !Number.isFinite(lon)) {
-    return undefined;
-  }
-
-  return { code, lat, lon };
-}
-
-function rowsToPoints(rows: PointRow[]): ImportedPoint[] {
-  return rows
-    .map(rowToPoint)
-    .filter((point): point is ImportedPoint => point !== undefined);
-}
-
-export function parsePointsFile(
-  text: string,
-  fileName: string,
-): ImportedPoint[] {
-  if (fileName.toLowerCase().endsWith('.json')) {
-    const data: unknown = JSON.parse(text);
-
-    if (!Array.isArray(data)) {
-      return [];
-    }
-
-    return rowsToPoints(data as PointRow[]);
-  }
-
+export function parseMeasuredPointsCsv(text: string): MeasuredPoint[] {
   const parsed = parse<PointRow>(text, {
     header: true,
     skipEmptyLines: true,
   });
 
-  return rowsToPoints(parsed.data);
+  return parsed.data.flatMap((row) => {
+    const name = pick(row, NAME_KEYS)?.trim();
+    const lat = Number(pick(row, LAT_KEYS));
+    const lon = Number(pick(row, LON_KEYS));
+
+    if (!name || !Number.isFinite(lat) || !Number.isFinite(lon)) {
+      return [];
+    }
+
+    const height = Number(pick(row, HEIGHT_KEYS));
+
+    return [
+      {
+        coords: { lat, lon },
+        description: pick(row, DESCRIPTION_KEYS)?.trim() || undefined,
+        height: Number.isFinite(height) ? height : 0,
+        name,
+      },
+    ];
+  });
+}
+
+export function parsePlantIdsJson(text: string): string[] {
+  const data: unknown = JSON.parse(text);
+
+  if (!Array.isArray(data)) {
+    return [];
+  }
+
+  return data.flatMap((item) => {
+    if (typeof item === 'string') {
+      return [item];
+    }
+
+    if (
+      item &&
+      typeof item === 'object' &&
+      typeof (item as { id?: unknown }).id === 'string'
+    ) {
+      return [(item as { id: string }).id];
+    }
+
+    return [];
+  });
+}
+
+export function pointToCopyText(point: MeasuredPoint): string {
+  return `[${point.coords.lon}, ${point.coords.lat}],`;
+}
+
+export function coordsToJsonText(points: MeasuredPoint[]): string {
+  return `[\n${points
+    .map((point) => `    [${point.coords.lat}, ${point.coords.lon}]`)
+    .join(',\n')}\n]`;
 }
 
 export function plantsToCsv(plants: CmaEntry[]): string {

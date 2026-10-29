@@ -4,21 +4,43 @@ import { TrayArrowDownIcon } from '@contentful/f36-icons';
 import { useSDK } from '@contentful/react-apps-toolkit';
 import { type ChangeEvent, type FC, useRef, useState } from 'react';
 import useEntries from '../hooks/useEntries';
-import { entryCode } from '../lib/entries';
-import {
-  findPlantByCode,
-  setLocalPlantPosition,
-  updatePlantPosition,
-} from '../lib/mutations/plant-actions';
-import { parsePointsFile } from '../lib/points';
+import useMeasuredPoints from '../hooks/useMeasuredPoints';
+import { addEntryTag, entryTags } from '../lib/entries';
+import { MARKED_TAG_ID } from '../lib/keys';
+import { parseMeasuredPointsCsv, parsePlantIdsJson } from '../lib/points';
 
 const ImportPoints: FC = () => {
   const sdk = useSDK<PageAppSDK>();
   const plants = useEntries((state) => state.plants);
-  const addPlant = useEntries((state) => state.addPlant);
   const updatePlant = useEntries((state) => state.updatePlant);
+  const setPoints = useMeasuredPoints((state) => state.setPoints);
   const fileInput = useRef<HTMLInputElement>(null);
   const [importing, setImporting] = useState(false);
+
+  const markPlants = (ids: string[]) => {
+    const idSet = new Set(ids.map((id) => id.trim()));
+    let marked = 0;
+
+    for (const plant of plants) {
+      if (
+        !idSet.has(plant.sys.id) ||
+        entryTags(plant).includes(MARKED_TAG_ID)
+      ) {
+        continue;
+      }
+
+      updatePlant(plant.sys.id, (entry) => addEntryTag(entry, MARKED_TAG_ID));
+      marked += 1;
+    }
+
+    if (marked > 0) {
+      sdk.notifier.success(
+        `${marked} plant${marked === 1 ? '' : 's'} marked. Select the Marked tag to highlight them.`,
+      );
+    } else {
+      sdk.notifier.error('No loaded plants matched that list.');
+    }
+  };
 
   const importFile = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -31,80 +53,26 @@ const ImportPoints: FC = () => {
     setImporting(true);
 
     try {
-      const points = parsePointsFile(await file.text(), file.name);
+      const text = await file.text();
+
+      if (file.name.toLowerCase().endsWith('.json')) {
+        markPlants(parsePlantIdsJson(text));
+        return;
+      }
+
+      const points = parseMeasuredPointsCsv(text);
 
       if (points.length === 0) {
         sdk.notifier.error(
-          'No points found. Use code/name, latitude and longitude columns.',
+          'No points found. Use name, latitude and longitude columns.',
         );
         return;
       }
 
-      const plantsByCode = new Map(
-        plants.map((plant) => [entryCode(plant).trim().toLowerCase(), plant]),
+      setPoints(points);
+      sdk.notifier.success(
+        `${points.length} measured point${points.length === 1 ? '' : 's'} loaded. Ctrl/Cmd+click one to move the selected plant; Shift+Ctrl/Cmd copies coordinates.`,
       );
-      const missing: string[] = [];
-      let updated = 0;
-      let failed = 0;
-
-      for (const point of points) {
-        const position = { lat: point.lat, lon: point.lon };
-        const knownPlant = plantsByCode.get(point.code.toLowerCase());
-
-        try {
-          const plant =
-            knownPlant ?? (await findPlantByCode(sdk.cma, point.code.trim()));
-
-          if (!plant) {
-            missing.push(point.code);
-            continue;
-          }
-
-          const published = await updatePlantPosition(
-            sdk.cma,
-            plant.sys.id,
-            position,
-          );
-
-          if (knownPlant) {
-            updatePlant(plant.sys.id, (entry) =>
-              setLocalPlantPosition(entry, position),
-            );
-          } else {
-            addPlant(published);
-          }
-
-          updated += 1;
-        } catch (error) {
-          console.error('Point import failed', point.code, error);
-          failed += 1;
-        }
-      }
-
-      if (updated > 0) {
-        sdk.notifier.success(
-          `${updated} plant position${updated === 1 ? '' : 's'} updated.`,
-        );
-      }
-
-      if (missing.length > 0 || failed > 0) {
-        if (missing.length > 0) {
-          console.warn('Unknown plant codes', missing);
-        }
-
-        sdk.notifier.error(
-          [
-            missing.length > 0
-              ? `${missing.length} unknown code${missing.length === 1 ? '' : 's'}`
-              : null,
-            failed > 0
-              ? `${failed} update${failed === 1 ? '' : 's'} failed`
-              : null,
-          ]
-            .filter(Boolean)
-            .join(' · ') || 'Some points could not be applied.',
-        );
-      }
     } catch (error) {
       console.error('Points import failed', error);
       sdk.notifier.error('Could not read that file.');
@@ -121,7 +89,7 @@ const ImportPoints: FC = () => {
         onClick={() => fileInput.current?.click()}
         size="small"
         startIcon={<TrayArrowDownIcon />}
-        title="Import plant positions from CSV or JSON"
+        title="Import measured points (CSV) or marked plants (JSON)"
       >
         Import
       </Button>
