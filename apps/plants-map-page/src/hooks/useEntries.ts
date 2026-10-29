@@ -1,4 +1,5 @@
 import type { CMAClient } from '@contentful/app-sdk';
+import { t } from '@lingui/core/macro';
 import type {
   EntryProps,
   KeyValueMap,
@@ -112,7 +113,7 @@ const useEntries = create<EntriesState>((set) => ({
     } catch (error) {
       set({
         error:
-          error instanceof Error ? error.message : 'Could not load content',
+          error instanceof Error ? error.message : t`Could not load content`,
         loading: false,
       });
     }

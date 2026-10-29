@@ -11,6 +11,8 @@ import { PencilSimpleIcon } from '@contentful/f36-icons';
 import tokens from '@contentful/f36-tokens';
 import { useSDK } from '@contentful/react-apps-toolkit';
 import { TAG_IDS } from '@jfv/core/domain';
+import { t } from '@lingui/core/macro';
+import { Trans } from '@lingui/react/macro';
 import { type FC, useMemo } from 'react';
 import useEntries from '../../hooks/useEntries';
 import type { SelectedFeature } from '../../hooks/useMapSelection';
@@ -18,6 +20,7 @@ import useMapSelection from '../../hooks/useMapSelection';
 import useSelectedTags from '../../hooks/useSelectedTags';
 import useTags from '../../hooks/useTags';
 import { entryCode, entryName, entryTags, localized } from '../../lib/entries';
+import { tagLabel } from '../../lib/tag-labels';
 import KeyboardShortcut from '../KeyboardShortcut';
 import TagPill from '../TagPill';
 import PlantQuickActions from './plant/PlantQuickActions';
@@ -53,15 +56,17 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
   const title = useMemo(() => {
     switch (feature.type) {
       case 'plant':
-        return entry ? entryCode(entry) || 'Plant' : 'Plant';
+        return entry ? entryCode(entry) || t`Plant` : t`Plant`;
       case 'rectangle':
         return entry
-          ? entryCode(entry) || localized<string>(entry, 'label') || 'Rectangle'
-          : 'Rectangle';
+          ? entryCode(entry) ||
+              localized<string>(entry, 'label') ||
+              t`Rectangle`
+          : t`Rectangle`;
       case 'mapZone':
-        return entry ? entryName(entry) || 'Zone' : 'Zone';
+        return entry ? entryName(entry) || t`Zone` : t`Zone`;
       default:
-        return 'Unknown';
+        return t`Unknown`;
     }
   }, [entry, feature.type]);
 
@@ -90,7 +95,7 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
     <Stack flexDirection="column" fullHeight>
       <SelectionHeader
         title={title}
-        ariaLabel="Unselect feature"
+        ariaLabel={t`Unselect feature`}
         actions={
           <Button
             size="small"
@@ -100,7 +105,7 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
               sdk.navigator.openEntry(feature.id, { slideIn: true })
             }
           >
-            Edit
+            <Trans>Edit</Trans>
           </Button>
         }
         onCloseClick={() => toggleSelect(feature, false)}
@@ -125,7 +130,9 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
         )}
         {plantCard && (
           <>
-            <SectionHeading marginBottom="none">Plant Cards</SectionHeading>
+            <SectionHeading marginBottom="none">
+              <Trans>Plant Cards</Trans>
+            </SectionHeading>
             <EntryCard
               contentType="Rootstock"
               title={plantCard.fields.fullLatinName.fr}
@@ -138,7 +145,9 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
         )}
         {entry && (
           <>
-            <SectionHeading marginBottom="none">Tags</SectionHeading>
+            <SectionHeading marginBottom="none">
+              <Trans>Tags</Trans>
+            </SectionHeading>
             {plantTags.length > 0 ? (
               <Stack css={{ flexWrap: 'wrap', gap: tokens.spacingS }}>
                 {plantTags.map((tagId) => (
@@ -147,13 +156,13 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
                     hueIndex={
                       selectedTags.find((tag) => tag.id === tagId)?.hueIndex
                     }
-                    label={tags[tagId] ?? tagId}
+                    label={tagLabel(tagId, tags)}
                   />
                 ))}
               </Stack>
             ) : (
               <Paragraph marginBottom="none" css={{ color: tokens.gray600 }}>
-                No tags
+                <Trans>No tags</Trans>
               </Paragraph>
             )}
           </>
@@ -167,47 +176,63 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
           >
             {feature.type === 'plant' &&
               (isPlanted ? (
-                <List.Item>Planted plants cannot be moved.</List.Item>
+                <List.Item>
+                  <Trans>Planted plants cannot be moved.</Trans>
+                </List.Item>
               ) : (
                 <>
                   <List.Item>
-                    <KeyboardShortcut>Right-click</KeyboardShortcut> the plant
-                    to move it
+                    <Trans>
+                      <KeyboardShortcut>Right-click</KeyboardShortcut> the plant
+                      to move it
+                    </Trans>
                   </List.Item>
                   <List.Item>
-                    <KeyboardShortcut>Right-click</KeyboardShortcut> the
-                    transparent copy to confirm, or{' '}
-                    <KeyboardShortcut>Escape</KeyboardShortcut> to cancel
+                    <Trans>
+                      <KeyboardShortcut>Right-click</KeyboardShortcut> the
+                      transparent copy to confirm, or{' '}
+                      <KeyboardShortcut>Escape</KeyboardShortcut> to cancel
+                    </Trans>
                   </List.Item>
                 </>
               ))}
             {feature.type === 'rectangle' && (
               <>
                 <List.Item>
-                  <KeyboardShortcut>Right-click</KeyboardShortcut> the rectangle
-                  to move it
+                  <Trans>
+                    <KeyboardShortcut>Right-click</KeyboardShortcut> the
+                    rectangle to move it
+                  </Trans>
                 </List.Item>
                 <List.Item>
-                  <KeyboardShortcut>Scroll</KeyboardShortcut> over the moving
-                  rectangle to rotate it
+                  <Trans>
+                    <KeyboardShortcut>Scroll</KeyboardShortcut> over the moving
+                    rectangle to rotate it
+                  </Trans>
                 </List.Item>
                 <List.Item>
-                  <KeyboardShortcut>Right-click</KeyboardShortcut> the copy to
-                  confirm, or <KeyboardShortcut>Escape</KeyboardShortcut> to
-                  cancel
+                  <Trans>
+                    <KeyboardShortcut>Right-click</KeyboardShortcut> the copy to
+                    confirm, or <KeyboardShortcut>Escape</KeyboardShortcut> to
+                    cancel
+                  </Trans>
                 </List.Item>
               </>
             )}
             {feature.type === 'mapZone' && (
               <>
                 <List.Item>
-                  <KeyboardShortcut>Right-click</KeyboardShortcut> the zone to
-                  move it
+                  <Trans>
+                    <KeyboardShortcut>Right-click</KeyboardShortcut> the zone to
+                    move it
+                  </Trans>
                 </List.Item>
                 <List.Item>
-                  <KeyboardShortcut>Right-click</KeyboardShortcut> the copy to
-                  confirm, or <KeyboardShortcut>Escape</KeyboardShortcut> to
-                  cancel
+                  <Trans>
+                    <KeyboardShortcut>Right-click</KeyboardShortcut> the copy to
+                    confirm, or <KeyboardShortcut>Escape</KeyboardShortcut> to
+                    cancel
+                  </Trans>
                 </List.Item>
               </>
             )}

@@ -7,10 +7,13 @@ import {
   Text,
 } from '@contentful/f36-components';
 import tokens from '@contentful/f36-tokens';
+import { t } from '@lingui/core/macro';
+import { Trans } from '@lingui/react/macro';
 import { type FC, useMemo, useState } from 'react';
 import useSelectedTags from '../hooks/useSelectedTags';
 import useTags from '../hooks/useTags';
 import { HUE_COUNT } from '../lib/colors';
+import { tagLabel } from '../lib/tag-labels';
 import TagPill from './TagPill';
 
 type TagItem = {
@@ -30,13 +33,16 @@ const TagsSelector: FC = () => {
   const unselectedTags = useMemo<TagItem[]>(
     () =>
       Object.entries(tags)
-        .filter(
-          ([id, label]) =>
+        .filter(([id]) => {
+          const label = tagLabel(id, tags);
+
+          return (
             !selected.some((tag) => tag.id === id) &&
             (!inputValue ||
-              label.toLowerCase().includes(inputValue.toLowerCase())),
-        )
-        .map(([id, label]) => ({ id, label }))
+              label.toLowerCase().includes(inputValue.toLowerCase()))
+          );
+        })
+        .map(([id]) => ({ id, label: tagLabel(id, tags) }))
         .sort((a, b) => a.label.localeCompare(b.label)),
     [inputValue, selected, tags],
   );
@@ -45,14 +51,16 @@ const TagsSelector: FC = () => {
     () =>
       selected.map((tag) => ({
         ...tag,
-        label: tags[tag.id] ?? tag.id,
+        label: tagLabel(tag.id, tags),
       })),
     [selected, tags],
   );
 
   return (
     <Box>
-      <SectionHeading marginBottom="spacingS">Tags</SectionHeading>
+      <SectionHeading marginBottom="spacingS">
+        <Trans>Tags</Trans>
+      </SectionHeading>
       <Stack flexDirection="column" alignItems="stretch" spacing="spacingS">
         <Autocomplete
           isDisabled={loading}
@@ -65,7 +73,7 @@ const TagsSelector: FC = () => {
             toggleTag(item.id);
             setInputValue('');
           }}
-          placeholder={loading ? 'Loading tags…' : 'Filter by tag'}
+          placeholder={loading ? t`Loading tags…` : t`Filter by tag`}
           renderItem={(item) => item.label}
           textOnAfterSelect="clear"
         />
@@ -76,7 +84,7 @@ const TagsSelector: FC = () => {
         )}
         {selected.length >= HUE_COUNT && unselectedTags.length > 0 && (
           <Text as="p" fontColor="gray600" marginBottom="none">
-            Up to {HUE_COUNT} tags can be highlighted at once.
+            <Trans>Up to {HUE_COUNT} tags can be highlighted at once.</Trans>
           </Text>
         )}
         {selectedTags.length > 0 && (
@@ -102,7 +110,7 @@ const TagsSelector: FC = () => {
               variant="transparent"
               css={{ alignSelf: 'flex-start' }}
             >
-              Clear tags
+              <Trans>Clear tags</Trans>
             </Button>
           </>
         )}

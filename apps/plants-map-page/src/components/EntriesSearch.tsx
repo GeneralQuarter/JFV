@@ -2,6 +2,8 @@ import type { PageAppSDK } from '@contentful/app-sdk';
 import { Autocomplete, Flex, Text } from '@contentful/f36-components';
 import { useSDK } from '@contentful/react-apps-toolkit';
 import { normalizeSearchTerm } from '@jfv/core/domain';
+import { msg, t } from '@lingui/core/macro';
+import { useLingui } from '@lingui/react';
 import { type FC, useMemo, useState } from 'react';
 import useEntries from '../hooks/useEntries';
 import useMapFocus from '../hooks/useMapFocus';
@@ -40,19 +42,20 @@ type SearchGroup = {
   options: SearchResult[];
 };
 
-const GROUP_ORDER: { title: string; type: SearchType }[] = [
-  { title: 'Plants', type: 'plant' },
-  { title: 'Plant cards', type: 'plantCard' },
-  { title: 'Rectangles', type: 'rectangle' },
-  { title: 'Zones', type: 'mapZone' },
-  { title: 'Hedges', type: 'hedge' },
-  { title: 'Sectors', type: 'mapSector' },
-];
+const GROUP_ORDER = [
+  { title: msg`Plants`, type: 'plant' },
+  { title: msg`Plant cards`, type: 'plantCard' },
+  { title: msg`Rectangles`, type: 'rectangle' },
+  { title: msg`Zones`, type: 'mapZone' },
+  { title: msg`Hedges`, type: 'hedge' },
+  { title: msg`Sectors`, type: 'mapSector' },
+] as const;
 
 const joiner = ' · ';
 
 const EntriesSearch: FC = () => {
   const sdk = useSDK<PageAppSDK>();
+  const { i18n } = useLingui();
   const plants = useEntries((state) => state.plants);
   const plantCards = useEntries((state) => state.plantCards);
   const rectangles = useEntries((state) => state.rectangles);
@@ -94,7 +97,7 @@ const EntriesSearch: FC = () => {
         center: position,
         detail: detail || undefined,
         id: plant.sys.id,
-        label: code || '(no code)',
+        label: code || t`(no code)`,
         searchText: normalizeSearchTerm(
           [code, commonName, latinName, sponsor].join(' '),
         ),
@@ -111,7 +114,7 @@ const EntriesSearch: FC = () => {
       list.push({
         detail: [commonName, code].filter(Boolean).join(joiner) || undefined,
         id: card.sys.id,
-        label: latinName || commonName || code || '(no name)',
+        label: latinName || commonName || code || t`(no name)`,
         searchText: normalizeSearchTerm(
           [code, commonName, latinName].join(' '),
         ),
@@ -129,7 +132,7 @@ const EntriesSearch: FC = () => {
         center: coords ? coordsCenter(coords) : undefined,
         detail: code && label ? label : undefined,
         id: rectangle.sys.id,
-        label: title || '(no label)',
+        label: title || t`(no label)`,
         searchText: normalizeSearchTerm([code, label].join(' ')),
         type: 'rectangle',
         zoom: 20,
@@ -143,7 +146,7 @@ const EntriesSearch: FC = () => {
       list.push({
         center: coords ? coordsCenter(coords) : undefined,
         id: zone.sys.id,
-        label: name || '(no name)',
+        label: name || t`(no name)`,
         searchText: normalizeSearchTerm(name),
         type: 'mapZone',
         zoom: 18,
@@ -157,7 +160,7 @@ const EntriesSearch: FC = () => {
       list.push({
         center: coords ? coordsCenter(coords) : undefined,
         id: hedge.sys.id,
-        label: name || '(no name)',
+        label: name || t`(no name)`,
         searchText: normalizeSearchTerm(name),
         type: 'hedge',
         zoom: 20,
@@ -174,7 +177,7 @@ const EntriesSearch: FC = () => {
           ? coordsCenter(ring.map(([lon, lat]) => [lat, lon]))
           : undefined,
         id: sector.sys.id,
-        label: name || '(no name)',
+        label: name || t`(no name)`,
         searchText: normalizeSearchTerm(name),
         type: 'mapSector',
         zoom: 18,
@@ -192,7 +195,7 @@ const EntriesSearch: FC = () => {
     }
 
     return GROUP_ORDER.map(({ title, type }) => ({
-      groupTitle: title,
+      groupTitle: i18n._(title),
       options: results
         .filter(
           (result) => result.type === type && result.searchText.includes(term),
@@ -200,7 +203,7 @@ const EntriesSearch: FC = () => {
         .sort((a, b) => a.label.localeCompare(b.label))
         .slice(0, 20),
     })).filter((group) => group.options.length > 0);
-  }, [inputValue, results]);
+  }, [i18n, inputValue, results]);
 
   const onSelect = (result: SearchResult) => {
     setInputValue('');
@@ -237,7 +240,7 @@ const EntriesSearch: FC = () => {
       listWidth="full"
       onInputValueChange={setInputValue}
       onSelectItem={onSelect}
-      placeholder="Search"
+      placeholder={t`Search`}
       renderItem={(result) => (
         <Flex flexDirection="column" alignItems="flex-start">
           <Text fontWeight="fontWeightMedium">{result.label}</Text>

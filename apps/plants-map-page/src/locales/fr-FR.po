@@ -1,0 +1,486 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2026-10-29 22:48+0100\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: fr-FR\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/components/EntriesSearch.tsx:100
+msgid "(no code)"
+msgstr "(sans code)"
+
+#: src/components/EntriesSearch.tsx:135
+msgid "(no label)"
+msgstr "(sans libellé)"
+
+#: src/components/AddPlantModal.tsx:69
+#: src/components/EntriesSearch.tsx:117
+#: src/components/EntriesSearch.tsx:149
+#: src/components/EntriesSearch.tsx:163
+#: src/components/EntriesSearch.tsx:180
+msgid "(no name)"
+msgstr "(sans nom)"
+
+#. placeholder {0}: points.length
+#: src/components/ImportPoints.tsx:88
+msgid "{0} measured points loaded. Ctrl/Cmd+click one to move the selected plant; Shift+Ctrl/Cmd copies coordinates."
+msgstr "{0} points mesurés chargés. Ctrl/Cmd+clic sur un point pour déplacer la plante sélectionnée ; Maj+Ctrl/Cmd copie les coordonnées."
+
+#. placeholder {0}: vertices.length
+#: src/components/SectorDrawing.tsx:132
+msgid "{0} points"
+msgstr "{0} points"
+
+#. placeholder {0}: pending?.length ?? 0
+#: src/components/SectorDrawing.tsx:180
+msgid "{0} points · the sector will appear on the map right away."
+msgstr "{0} points · le secteur apparaîtra immédiatement sur la carte."
+
+#: src/components/ImportPoints.tsx:51
+msgid "{marked} plants marked. Select the Marked tag to highlight them."
+msgstr "{marked} plantes marquées. Sélectionnez l’étiquette Marqué pour les mettre en évidence."
+
+#: src/components/selection/EmptySelection.tsx:24
+msgid "<0>Click</0> on a feature to select it"
+msgstr "<0>Cliquez</0> sur un élément pour le sélectionner"
+
+#: src/components/selection/SingleSelection.tsx:212
+#: src/components/selection/SingleSelection.tsx:229
+msgid "<0>Right-click</0> the copy to confirm, or <1>Escape</1> to cancel"
+msgstr "<0>Clic droit</0> sur la copie pour confirmer, ou <1>Échap</1> pour annuler"
+
+#: src/components/selection/SingleSelection.tsx:183
+msgid "<0>Right-click</0> the plant to move it"
+msgstr "<0>Clic droit</0> sur la plante pour la déplacer"
+
+#: src/components/selection/SingleSelection.tsx:200
+msgid "<0>Right-click</0> the rectangle to move it"
+msgstr "<0>Clic droit</0> sur le rectangle pour le déplacer"
+
+#: src/components/selection/SingleSelection.tsx:189
+msgid "<0>Right-click</0> the transparent copy to confirm, or <1>Escape</1> to cancel"
+msgstr "<0>Clic droit</0> sur la copie transparente pour confirmer, ou <1>Échap</1> pour annuler"
+
+#: src/components/selection/SingleSelection.tsx:223
+msgid "<0>Right-click</0> the zone to move it"
+msgstr "<0>Clic droit</0> sur la zone pour la déplacer"
+
+#: src/components/selection/SingleSelection.tsx:206
+msgid "<0>Scroll</0> over the moving rectangle to rotate it"
+msgstr "<0>Faites défiler</0> sur le rectangle en déplacement pour le faire pivoter"
+
+#: src/components/ImportPoints.tsx:50
+msgid "1 plant marked. Select the Marked tag to highlight it."
+msgstr "1 plante marquée. Sélectionnez l’étiquette Marqué pour la mettre en évidence."
+
+#: src/components/SectorDrawing.tsx:130
+msgid "1 point"
+msgstr "1 point"
+
+#: src/components/AddMenu.tsx:20
+msgid "Add"
+msgstr "Ajouter"
+
+#: src/components/AddPlantModal.tsx:110
+#: src/components/AddPlantModal.tsx:181
+msgid "Add plant"
+msgstr "Ajouter une plante"
+
+#: src/components/AddPlantModal.tsx:173
+#: src/components/SectorDrawing.tsx:144
+#: src/components/SectorDrawing.tsx:188
+msgid "Cancel"
+msgstr "Annuler"
+
+#: src/hooks/useVisibilityToggles.ts:21
+msgid "Canopy"
+msgstr "Canopée"
+
+#: src/components/selection/MultiSelection.tsx:93
+msgid "Clear all selected features"
+msgstr "Effacer tous les éléments sélectionnés"
+
+#: src/components/ImportPoints.tsx:137
+msgid "Clear measurements"
+msgstr "Effacer les mesures"
+
+#: src/components/ImportPoints.tsx:128
+msgid "Clear points"
+msgstr "Effacer les points"
+
+#: src/components/TagsSelector.tsx:113
+msgid "Clear tags"
+msgstr "Effacer les étiquettes"
+
+#: src/components/SectorDrawing.tsx:118
+msgid "Click the map to add points. Press Enter to finish or Escape to cancel."
+msgstr "Cliquez sur la carte pour ajouter des points. Appuyez sur Entrée pour terminer ou sur Échap pour annuler."
+
+#: src/components/map/MeasuredPoints.tsx:166
+msgid "Coordinates copied."
+msgstr "Coordonnées copiées."
+
+#: src/components/map/MeasuredPoints.tsx:169
+msgid "Coordinates copied. Select a plant first to assign the point."
+msgstr "Coordonnées copiées. Sélectionnez d’abord une plante pour lui affecter le point."
+
+#: src/components/map/MeasuredPoints.tsx:178
+msgid "Could not copy the coordinates."
+msgstr "Impossible de copier les coordonnées."
+
+#: src/components/AddPlantModal.tsx:103
+msgid "Could not create the plant. Please try again."
+msgstr "Impossible de créer la plante. Veuillez réessayer."
+
+#: src/components/SectorDrawing.tsx:92
+msgid "Could not create the sector. Please try again."
+msgstr "Impossible de créer le secteur. Veuillez réessayer."
+
+#: src/hooks/useEntries.ts:116
+msgid "Could not load content"
+msgstr "Impossible de charger le contenu"
+
+#: src/locations/Page.tsx:100
+msgid "Could not load content: {error}"
+msgstr "Impossible de charger le contenu : {error}"
+
+#: src/hooks/useTags.ts:44
+msgid "Could not load tags"
+msgstr "Impossible de charger les étiquettes"
+
+#: src/components/map/MeasuredPoints.tsx:144
+msgid "Could not move the plant to that point."
+msgstr "Impossible de déplacer la plante vers ce point."
+
+#: src/components/map/ShapeMoveGhost.tsx:161
+msgid "Could not move this shape."
+msgstr "Impossible de déplacer cette forme."
+
+#: src/components/ImportPoints.tsx:92
+msgid "Could not read that file."
+msgstr "Impossible de lire ce fichier."
+
+#: src/components/map/PlantMoveGhost.tsx:119
+msgid "Could not update the plant position."
+msgstr "Impossible de mettre à jour la position de la plante."
+
+#: src/components/selection/plant/PlantQuickActions.tsx:60
+msgid "Could not update the plant. Please try again."
+msgstr "Impossible de mettre à jour la plante. Veuillez réessayer."
+
+#: src/components/AddPlantModal.tsx:170
+msgid "Create plant card"
+msgstr "Créer une fiche plante"
+
+#: src/components/SectorDrawing.tsx:196
+msgid "Create sector"
+msgstr "Créer le secteur"
+
+#: src/components/PlantMetrics.tsx:34
+#: src/components/selection/plant/PlantQuickActions.tsx:110
+msgid "Dead"
+msgstr "Morte"
+
+#: src/hooks/useVisibilityToggles.ts:17
+msgid "Dead plants"
+msgstr "Plantes mortes"
+
+#: src/components/AddMenu.tsx:37
+#: src/components/SectorDrawing.tsx:115
+msgid "Draw sector"
+msgstr "Dessiner un secteur"
+
+#: src/components/selection/SingleSelection.tsx:106
+msgid "Edit"
+msgstr "Modifier"
+
+#: src/components/selection/MultiSelection.tsx:102
+msgid "Export"
+msgstr "Exporter"
+
+#: src/components/selection/MultiSelection.tsx:100
+msgid "Export selected plants as CSV"
+msgstr "Exporter les plantes sélectionnées en CSV"
+
+#: src/components/TagsSelector.tsx:76
+msgid "Filter by tag"
+msgstr "Filtrer par étiquette"
+
+#: src/components/SectorDrawing.tsx:152
+msgid "Finish"
+msgstr "Terminer"
+
+#: src/components/EntriesSearch.tsx:50
+msgid "Hedges"
+msgstr "Haies"
+
+#: src/components/ImportPoints.tsx:116
+msgid "Import points (CSV/JSON)"
+msgstr "Importer des points (CSV/JSON)"
+
+#: src/components/TagsSelector.tsx:76
+msgid "Loading tags…"
+msgstr "Chargement des étiquettes…"
+
+#: src/hooks/useVisibilityToggles.ts:29
+msgid "Map sectors"
+msgstr "Secteurs de la carte"
+
+#: src/lib/tag-labels.ts:8
+msgid "Marked"
+msgstr "Marqué"
+
+#: src/components/ImportPoints.tsx:124
+msgid "Measured points and measurements cleared."
+msgstr "Points mesurés et mesures effacés."
+
+#: src/components/map/Measurements.tsx:96
+msgid "Measurement removed."
+msgstr "Mesure supprimée."
+
+#: src/components/ImportPoints.tsx:134
+msgid "Measurements cleared."
+msgstr "Mesures effacées."
+
+#: src/components/selection/MultiSelection.tsx:92
+msgid "Multi selection"
+msgstr "Sélection multiple"
+
+#: src/components/SectorDrawing.tsx:169
+msgid "Name"
+msgstr "Nom"
+
+#: src/components/SectorDrawing.tsx:164
+msgid "New sector"
+msgstr "Nouveau secteur"
+
+#: src/components/ImportPoints.tsx:54
+msgid "No loaded plants matched that list."
+msgstr "Aucune plante chargée ne correspond à cette liste."
+
+#: src/components/ImportPoints.tsx:80
+msgid "No points found. Use name, latitude and longitude columns."
+msgstr "Aucun point trouvé. Utilisez les colonnes nom, latitude et longitude."
+
+#: src/components/selection/SingleSelection.tsx:163
+msgid "No tags"
+msgstr "Aucune étiquette"
+
+#: src/hooks/useVisibilityToggles.ts:13
+msgid "Non pinned plants"
+msgstr "Plantes non jalonnées"
+
+#: src/components/selection/EmptySelection.tsx:20
+msgid "Nothing Selected"
+msgstr "Aucune sélection"
+
+#: src/components/AddPlantModal.tsx:150
+msgid "Optional"
+msgstr "Facultatif"
+
+#: src/components/selection/plant/PlantQuickActions.tsx:78
+msgid "Pin"
+msgstr "Jalonner"
+
+#: src/components/AddMenu.tsx:25
+#: src/components/selection/plant/PlantQuickActions.tsx:101
+#: src/components/selection/SingleSelection.tsx:59
+#: src/components/selection/SingleSelection.tsx:59
+msgid "Plant"
+msgstr "Planter"
+
+#. placeholder {0}: entryCode(plant)
+#: src/components/AddPlantModal.tsx:99
+msgid "Plant {0} added"
+msgstr "Plante {0} ajoutée"
+
+#. placeholder {0}: entryCode(plant)
+#: src/components/map/MeasuredPoints.tsx:163
+msgid "Plant {0} moved; coordinates copied."
+msgstr "Plante {0} déplacée ; coordonnées copiées."
+
+#. placeholder {0}: entryCode(plant)
+#: src/components/map/MeasuredPoints.tsx:176
+msgid "Plant {0} moved."
+msgstr "Plante {0} déplacée."
+
+#: src/components/AddMenu.tsx:34
+#: src/components/AddPlantModal.tsx:114
+msgid "Plant card"
+msgstr "Fiche plante"
+
+#: src/components/EntriesSearch.tsx:47
+msgid "Plant cards"
+msgstr "Fiches plantes"
+
+#: src/components/selection/SingleSelection.tsx:132
+msgid "Plant Cards"
+msgstr "Fiches plantes"
+
+#: src/hooks/useVisibilityToggles.ts:9
+msgid "Plant labels"
+msgstr "Étiquettes des plantes"
+
+#: src/components/selection/plant/PlantQuickActions.tsx:56
+msgid "Plant marked dead"
+msgstr "Plante marquée morte"
+
+#: src/components/PlantMetrics.tsx:29
+msgid "Plant metrics"
+msgstr "Statistiques des plantes"
+
+#: src/components/selection/plant/PlantQuickActions.tsx:53
+msgid "Plant pinned"
+msgstr "Plante jalonnée"
+
+#: src/components/selection/plant/PlantQuickActions.tsx:55
+msgid "Plant planted"
+msgstr "Plante plantée"
+
+#: src/components/map/PlantMoveGhost.tsx:115
+msgid "Plant position updated"
+msgstr "Position de la plante mise à jour"
+
+#: src/components/PlantMetrics.tsx:33
+msgid "Planted"
+msgstr "Plantées"
+
+#: src/components/EditorMap.tsx:253
+#: src/components/selection/SingleSelection.tsx:178
+msgid "Planted plants cannot be moved."
+msgstr "Les plantes plantées ne peuvent pas être déplacées."
+
+#: src/components/EntriesSearch.tsx:46
+#: src/components/selection/MultiSelection.tsx:124
+msgid "Plants"
+msgstr "Plantes"
+
+#: src/components/ImportPoints.tsx:108
+msgid "Points"
+msgstr "Points"
+
+#: src/components/PlantMetrics.tsx:32
+msgid "Positioned"
+msgstr "Positionnées"
+
+#: src/components/selection/plant/PlantQuickActions.tsx:69
+msgid "Quick Actions"
+msgstr "Actions rapides"
+
+#: src/components/selection/MultiSelection.tsx:143
+#: src/components/selection/SingleSelection.tsx:62
+#: src/components/selection/SingleSelection.tsx:63
+msgid "Rectangle"
+msgstr "Rectangle"
+
+#: src/components/map/ShapeMoveGhost.tsx:156
+msgid "Rectangle moved"
+msgstr "Rectangle déplacé"
+
+#: src/components/EntriesSearch.tsx:48
+#: src/components/selection/MultiSelection.tsx:138
+msgid "Rectangles"
+msgstr "Rectangles"
+
+#: src/components/TagPill.tsx:16
+msgid "Remove {label}"
+msgstr "Supprimer {label}"
+
+#: src/components/EntriesSearch.tsx:243
+msgid "Search"
+msgstr "Rechercher"
+
+#: src/components/AddPlantModal.tsx:124
+msgid "Search plant cards"
+msgstr "Rechercher des fiches plantes"
+
+#. placeholder {0}: name.trim()
+#: src/components/SectorDrawing.tsx:89
+msgid "Sector “{0}” created."
+msgstr "Secteur « {0} » créé."
+
+#: src/components/SectorDrawing.tsx:175
+msgid "Sector name"
+msgstr "Nom du secteur"
+
+#: src/components/EntriesSearch.tsx:51
+msgid "Sectors"
+msgstr "Secteurs"
+
+#. placeholder {0}: card.label
+#: src/components/AddPlantModal.tsx:140
+msgid "Selected card: {0}"
+msgstr "Fiche sélectionnée : {0}"
+
+#: src/components/selection/MultiSelection.tsx:126
+msgid "Selected plants"
+msgstr "Plantes sélectionnées"
+
+#: src/components/selection/MultiSelection.tsx:140
+msgid "Selected rectangles"
+msgstr "Rectangles sélectionnés"
+
+#: src/components/selection/MultiSelection.tsx:154
+msgid "Selected zones"
+msgstr "Zones sélectionnées"
+
+#: src/components/VisibilityToggles.tsx:17
+msgid "Shown on map"
+msgstr "Affiché sur la carte"
+
+#: src/components/AddPlantModal.tsx:145
+msgid "Sponsor"
+msgstr "Parrain/Marraine"
+
+#: src/components/selection/SingleSelection.tsx:147
+#: src/components/TagsSelector.tsx:62
+msgid "Tags"
+msgstr "Étiquettes"
+
+#: src/components/AddPlantModal.tsx:155
+msgid "The plant will be placed at the current map centre."
+msgstr "La plante sera placée au centre actuel de la carte."
+
+#: src/components/SectorDrawing.tsx:141
+msgid "Undo"
+msgstr "Défaire"
+
+#: src/components/selection/SingleSelection.tsx:67
+msgid "Unknown"
+msgstr "Inconnu"
+
+#: src/components/selection/SingleSelection.tsx:96
+msgid "Unselect feature"
+msgstr "Désélectionner l’élément"
+
+#: src/components/TagsSelector.tsx:87
+msgid "Up to {HUE_COUNT} tags can be highlighted at once."
+msgstr "Jusqu’à {HUE_COUNT} étiquettes peuvent être mises en évidence à la fois."
+
+#: src/components/selection/EmptySelection.tsx:30
+msgid "You can select multiple features by holding <0>Ctrl</0>"
+msgstr "Vous pouvez sélectionner plusieurs éléments en maintenant <0>Ctrl</0>"
+
+#: src/components/selection/MultiSelection.tsx:157
+#: src/components/selection/SingleSelection.tsx:65
+#: src/components/selection/SingleSelection.tsx:65
+msgid "Zone"
+msgstr "Zone"
+
+#: src/components/map/ShapeMoveGhost.tsx:156
+msgid "Zone moved"
+msgstr "Zone déplacée"
+
+#: src/components/EntriesSearch.tsx:49
+#: src/components/selection/MultiSelection.tsx:152
+#: src/hooks/useVisibilityToggles.ts:25
+msgid "Zones"
+msgstr "Zones"

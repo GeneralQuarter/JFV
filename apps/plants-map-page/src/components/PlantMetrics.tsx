@@ -1,5 +1,7 @@
 import { Box, SectionHeading, Stack } from '@contentful/f36-components';
 import { TAG_IDS } from '@jfv/core/domain';
+import { t } from '@lingui/core/macro';
+import { Trans } from '@lingui/react/macro';
 import { type FC, useMemo } from 'react';
 import useEntries from '../hooks/useEntries';
 import { entryTags } from '../lib/entries';
@@ -23,11 +25,13 @@ const PlantMetrics: FC = () => {
 
   return (
     <Box>
-      <SectionHeading marginBottom="spacingS">Plant metrics</SectionHeading>
+      <SectionHeading marginBottom="spacingS">
+        <Trans>Plant metrics</Trans>
+      </SectionHeading>
       <Stack spacing="spacingXs" flexDirection="column" alignItems="flex-start">
-        <Metric label="Positioned" value={counts.positioned} />
-        <Metric variant="positive" label="Planted" value={counts.planted} />
-        <Metric variant="negative" label="Dead" value={counts.dead} />
+        <Metric label={t`Positioned`} value={counts.positioned} />
+        <Metric variant="positive" label={t`Planted`} value={counts.planted} />
+        <Metric variant="negative" label={t`Dead`} value={counts.dead} />
       </Stack>
     </Box>
   );

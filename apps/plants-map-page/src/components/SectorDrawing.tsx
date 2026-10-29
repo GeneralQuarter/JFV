@@ -11,6 +11,8 @@ import {
   TextInput,
 } from '@contentful/f36-components';
 import { useSDK } from '@contentful/react-apps-toolkit';
+import { t } from '@lingui/core/macro';
+import { Trans } from '@lingui/react/macro';
 import { type FC, useEffect, useState } from 'react';
 import useEntries from '../hooks/useEntries';
 import useMapFocus from '../hooks/useMapFocus';
@@ -84,10 +86,10 @@ const SectorDrawing: FC = () => {
       setVisibility('mapSectors', true);
       focus({ ...coordsCenter(pending), zoom: 18 });
       clearPending();
-      sdk.notifier.success(`Sector “${name.trim()}” created.`);
+      sdk.notifier.success(t`Sector “${name.trim()}” created.`);
     } catch (error) {
       console.error('Sector creation failed', error);
-      sdk.notifier.error('Could not create the sector. Please try again.');
+      sdk.notifier.error(t`Could not create the sector. Please try again.`);
     } finally {
       setSaving(false);
     }
@@ -110,11 +112,13 @@ const SectorDrawing: FC = () => {
             zIndex: 3,
           }}
         >
-          <Note title="Draw sector" variant="primary">
+          <Note title={t`Draw sector`} variant="primary">
             <Stack flexDirection="column" spacing="spacingS">
               <Text>
-                Click the map to add points. Press Enter to finish or Escape to
-                cancel.
+                <Trans>
+                  Click the map to add points. Press Enter to finish or Escape
+                  to cancel.
+                </Trans>
               </Text>
               <Flex
                 alignItems="center"
@@ -122,7 +126,11 @@ const SectorDrawing: FC = () => {
                 justifyContent="space-between"
               >
                 <Text fontColor="gray600">
-                  {vertices.length} point{vertices.length === 1 ? '' : 's'}
+                  {vertices.length === 1 ? (
+                    <Trans>1 point</Trans>
+                  ) : (
+                    <Trans>{vertices.length} points</Trans>
+                  )}
                 </Text>
                 <Flex gap="spacingXs">
                   <Button
@@ -130,10 +138,10 @@ const SectorDrawing: FC = () => {
                     onClick={undo}
                     size="small"
                   >
-                    Undo
+                    <Trans>Undo</Trans>
                   </Button>
                   <Button onClick={cancel} size="small">
-                    Cancel
+                    <Trans>Cancel</Trans>
                   </Button>
                   <Button
                     isDisabled={vertices.length < 3}
@@ -141,7 +149,7 @@ const SectorDrawing: FC = () => {
                     size="small"
                     variant="primary"
                   >
-                    Finish
+                    <Trans>Finish</Trans>
                   </Button>
                 </Flex>
               </Flex>
@@ -153,27 +161,31 @@ const SectorDrawing: FC = () => {
       <Modal
         isShown={Boolean(pending)}
         onClose={clearPending}
-        title="New sector"
+        title={t`New sector`}
       >
         <Modal.Content>
           <FormControl id="sector-name" isRequired>
-            <FormControl.Label>Name</FormControl.Label>
+            <FormControl.Label>
+              <Trans>Name</Trans>
+            </FormControl.Label>
             <TextInput
               autoFocus
               id="sector-name"
               onChange={(event) => setName(event.target.value)}
-              placeholder="Sector name"
+              placeholder={t`Sector name`}
               value={name}
             />
           </FormControl>
           <Paragraph marginBottom="none">
-            {pending?.length ?? 0} points · the sector will appear on the map
-            right away.
+            <Trans>
+              {pending?.length ?? 0} points · the sector will appear on the map
+              right away.
+            </Trans>
           </Paragraph>
         </Modal.Content>
         <Modal.Controls>
           <Button isDisabled={saving} onClick={clearPending}>
-            Cancel
+            <Trans>Cancel</Trans>
           </Button>
           <Button
             isDisabled={!name.trim() || saving}
@@ -181,7 +193,7 @@ const SectorDrawing: FC = () => {
             onClick={() => void create()}
             variant="primary"
           >
-            Create sector
+            <Trans>Create sector</Trans>
           </Button>
         </Modal.Controls>
       </Modal>

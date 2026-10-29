@@ -6,6 +6,8 @@ import {
 } from '@contentful/f36-components';
 import { TrayArrowUpIcon } from '@contentful/f36-icons';
 import tokens from '@contentful/f36-tokens';
+import { t } from '@lingui/core/macro';
+import { Trans } from '@lingui/react/macro';
 import type { EntryProps, KeyValueMap } from 'contentful-management';
 import { type FC, useMemo } from 'react';
 import useEntries from '../../hooks/useEntries';
@@ -87,17 +89,17 @@ const MultiSelection: FC<MultiSelectionProps> = ({ features }) => {
   return (
     <Stack flexDirection="column" spacing="none" fullHeight>
       <SelectionHeader
-        title="Multi selection"
-        ariaLabel="clear all selected features"
+        title={t`Multi selection`}
+        ariaLabel={t`Clear all selected features`}
         actions={
           <Button
             isDisabled={exportablePlants.length === 0}
             onClick={exportPlants}
             size="small"
             startIcon={<TrayArrowUpIcon />}
-            title="Export selected plants as CSV"
+            title={t`Export selected plants as CSV`}
           >
-            Export
+            <Trans>Export</Trans>
           </Button>
         }
         onCloseClick={() => clearSelected()}
@@ -118,8 +120,10 @@ const MultiSelection: FC<MultiSelectionProps> = ({ features }) => {
       >
         {plantEntries.length > 0 && (
           <>
-            <SectionHeading marginBottom="none">Plants</SectionHeading>
-            <NavList aria-label="Selected plants">
+            <SectionHeading marginBottom="none">
+              <Trans>Plants</Trans>
+            </SectionHeading>
+            <NavList aria-label={t`Selected plants`}>
               {plantEntries.map((pe) => (
                 <NavList.Item key={pe.sys.id} as="button">
                   {entryCode(pe)}
@@ -130,11 +134,13 @@ const MultiSelection: FC<MultiSelectionProps> = ({ features }) => {
         )}
         {rectangleEntries.length > 0 && (
           <>
-            <SectionHeading marginBottom="none">Rectangles</SectionHeading>
-            <NavList aria-label="Selected rectangles">
+            <SectionHeading marginBottom="none">
+              <Trans>Rectangles</Trans>
+            </SectionHeading>
+            <NavList aria-label={t`Selected rectangles`}>
               {rectangleEntries.map((rectangle) => (
                 <NavList.Item key={rectangle.sys.id} as="button">
-                  {entryCode(rectangle) || 'Rectangle'}
+                  {entryCode(rectangle) || t`Rectangle`}
                 </NavList.Item>
               ))}
             </NavList>
@@ -142,11 +148,13 @@ const MultiSelection: FC<MultiSelectionProps> = ({ features }) => {
         )}
         {zoneEntries.length > 0 && (
           <>
-            <SectionHeading marginBottom="none">Zones</SectionHeading>
-            <NavList aria-label="Selected zones">
+            <SectionHeading marginBottom="none">
+              <Trans>Zones</Trans>
+            </SectionHeading>
+            <NavList aria-label={t`Selected zones`}>
               {zoneEntries.map((zone) => (
                 <NavList.Item key={zone.sys.id} as="button">
-                  {entryName(zone) || 'Zone'}
+                  {entryName(zone) || t`Zone`}
                 </NavList.Item>
               ))}
             </NavList>

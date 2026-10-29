@@ -2,6 +2,7 @@ import type { PageAppSDK } from '@contentful/app-sdk';
 import { useSDK } from '@contentful/react-apps-toolkit';
 import { TAG_IDS } from '@jfv/core/domain';
 import { createMapStyle, MAP_LAYER_IDS, mapDefaults } from '@jfv/map-data';
+import { t } from '@lingui/core/macro';
 import type { MapGeoJSONFeature, MapLayerMouseEvent } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { type FC, useCallback, useEffect, useState } from 'react';
@@ -249,7 +250,7 @@ const EditorMap: FC = () => {
       }
 
       if (entryTags(plant).includes(TAG_IDS.planted)) {
-        sdk.notifier.error('Planted plants cannot be moved.');
+        sdk.notifier.error(t`Planted plants cannot be moved.`);
         return;
       }
 

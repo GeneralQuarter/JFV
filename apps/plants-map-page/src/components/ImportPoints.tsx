@@ -2,6 +2,8 @@ import type { PageAppSDK } from '@contentful/app-sdk';
 import { Button, Menu } from '@contentful/f36-components';
 import { TrayArrowDownIcon } from '@contentful/f36-icons';
 import { useSDK } from '@contentful/react-apps-toolkit';
+import { t } from '@lingui/core/macro';
+import { Trans } from '@lingui/react/macro';
 import { type ChangeEvent, type FC, useRef, useState } from 'react';
 import useEntries from '../hooks/useEntries';
 import useMeasuredPoints from '../hooks/useMeasuredPoints';
@@ -44,10 +46,12 @@ const ImportPoints: FC = () => {
 
     if (marked > 0) {
       sdk.notifier.success(
-        `${marked} plant${marked === 1 ? '' : 's'} marked. Select the Marked tag to highlight them.`,
+        marked === 1
+          ? t`1 plant marked. Select the Marked tag to highlight it.`
+          : t`${marked} plants marked. Select the Marked tag to highlight them.`,
       );
     } else {
-      sdk.notifier.error('No loaded plants matched that list.');
+      sdk.notifier.error(t`No loaded plants matched that list.`);
     }
   };
 
@@ -73,7 +77,7 @@ const ImportPoints: FC = () => {
 
       if (points.length === 0) {
         sdk.notifier.error(
-          'No points found. Use name, latitude and longitude columns.',
+          t`No points found. Use name, latitude and longitude columns.`,
         );
         return;
       }
@@ -81,11 +85,11 @@ const ImportPoints: FC = () => {
       setPoints(points);
       clearMeasurements();
       sdk.notifier.success(
-        `${points.length} measured point${points.length === 1 ? '' : 's'} loaded. Ctrl/Cmd+click one to move the selected plant; Shift+Ctrl/Cmd copies coordinates.`,
+        t`${points.length} measured points loaded. Ctrl/Cmd+click one to move the selected plant; Shift+Ctrl/Cmd copies coordinates.`,
       );
     } catch (error) {
       console.error('Points import failed', error);
-      sdk.notifier.error('Could not read that file.');
+      sdk.notifier.error(t`Could not read that file.`);
     } finally {
       setImporting(false);
     }
@@ -101,7 +105,7 @@ const ImportPoints: FC = () => {
             size="small"
             startIcon={<TrayArrowDownIcon />}
           >
-            Points
+            <Trans>Points</Trans>
           </Button>
         </Menu.Trigger>
         <Menu.List>
@@ -109,26 +113,28 @@ const ImportPoints: FC = () => {
             isDisabled={importing}
             onClick={() => fileInput.current?.click()}
           >
-            Import points (CSV/JSON)
+            <Trans>Import points (CSV/JSON)</Trans>
           </Menu.Item>
           <Menu.Item
             isDisabled={importing || points.length === 0}
             onClick={() => {
               clearPoints();
               clearMeasurements();
-              sdk.notifier.success('Measured points and measurements cleared.');
+              sdk.notifier.success(
+                t`Measured points and measurements cleared.`,
+              );
             }}
           >
-            Clear points
+            <Trans>Clear points</Trans>
           </Menu.Item>
           <Menu.Item
             isDisabled={importing || measurementCount === 0}
             onClick={() => {
               clearMeasurements();
-              sdk.notifier.success('Measurements cleared.');
+              sdk.notifier.success(t`Measurements cleared.`);
             }}
           >
-            Clear measurements
+            <Trans>Clear measurements</Trans>
           </Menu.Item>
         </Menu.List>
       </Menu>

@@ -1,3 +1,4 @@
+import { msg } from '@lingui/core/macro';
 import { produce } from 'immer';
 import { create } from 'zustand';
 
@@ -5,27 +6,27 @@ type Writeable<T> = { -readonly [P in keyof T]: T[P] };
 
 export const visibilityToggleMap = {
   plantLabels: {
-    label: 'Plant labels',
+    label: msg`Plant labels`,
     initial: true,
   },
   nonPinnedPlants: {
-    label: 'Non pinned plants',
+    label: msg`Non pinned plants`,
     initial: true,
   },
   deadPlants: {
-    label: 'Dead plants',
+    label: msg`Dead plants`,
     initial: false,
   },
   canopy: {
-    label: 'Canopy',
+    label: msg`Canopy`,
     initial: false,
   },
   zones: {
-    label: 'Zones',
+    label: msg`Zones`,
     initial: false,
   },
   mapSectors: {
-    label: 'Map sectors',
+    label: msg`Map sectors`,
     initial: false,
   },
 } as const;

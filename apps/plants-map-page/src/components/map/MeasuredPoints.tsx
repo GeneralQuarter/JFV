@@ -1,6 +1,7 @@
 import type { PageAppSDK } from '@contentful/app-sdk';
 import { useSDK } from '@contentful/react-apps-toolkit';
 import { MAP_LAYER_IDS } from '@jfv/map-data';
+import { t } from '@lingui/core/macro';
 import type { FeatureCollection, Point } from 'geojson';
 import type { MapLayerMouseEvent } from 'maplibre-gl';
 import { type FC, useEffect, useMemo, useRef, useState } from 'react';
@@ -140,7 +141,7 @@ const MeasuredPoints: FC = () => {
             moved = true;
           } catch (error) {
             console.error('Point assignment failed', error);
-            sdk.notifier.error('Could not move the plant to that point.');
+            sdk.notifier.error(t`Could not move the plant to that point.`);
           }
         }
 
@@ -159,22 +160,22 @@ const MeasuredPoints: FC = () => {
 
           if (moved && plant) {
             sdk.notifier.success(
-              `Plant ${entryCode(plant)} moved; coordinates copied.`,
+              t`Plant ${entryCode(plant)} moved; coordinates copied.`,
             );
           } else if (plant) {
-            sdk.notifier.success('Coordinates copied.');
+            sdk.notifier.success(t`Coordinates copied.`);
           } else {
             sdk.notifier.success(
-              'Coordinates copied. Select a plant first to assign the point.',
+              t`Coordinates copied. Select a plant first to assign the point.`,
             );
           }
         } catch (error) {
           console.error('Clipboard write failed', error);
 
           if (moved && plant) {
-            sdk.notifier.success(`Plant ${entryCode(plant)} moved.`);
+            sdk.notifier.success(t`Plant ${entryCode(plant)} moved.`);
           } else {
-            sdk.notifier.error('Could not copy the coordinates.');
+            sdk.notifier.error(t`Could not copy the coordinates.`);
           }
         }
       } finally {

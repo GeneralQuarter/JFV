@@ -2,6 +2,8 @@ import type { PageAppSDK } from '@contentful/app-sdk';
 import { Button, SectionHeading, TextInput } from '@contentful/f36-components';
 import { useSDK } from '@contentful/react-apps-toolkit';
 import { TAG_IDS } from '@jfv/core/domain';
+import { t } from '@lingui/core/macro';
+import { Trans } from '@lingui/react/macro';
 import { type FC, useMemo, useState } from 'react';
 import useEntries from '../../../hooks/useEntries';
 import { type CmaEntry, entryTags } from '../../../lib/entries';
@@ -48,14 +50,14 @@ const PlantQuickActions: FC<PlantQuickActionsProps> = ({ entry }) => {
       );
       sdk.notifier.success(
         action === 'pin'
-          ? 'Plant pinned'
+          ? t`Plant pinned`
           : action === 'plant'
-            ? 'Plant planted'
-            : 'Plant marked dead',
+            ? t`Plant planted`
+            : t`Plant marked dead`,
       );
     } catch (error) {
       console.error('Plant action failed', error);
-      sdk.notifier.error('Could not update the plant. Please try again.');
+      sdk.notifier.error(t`Could not update the plant. Please try again.`);
     } finally {
       setPending(null);
     }
@@ -63,7 +65,9 @@ const PlantQuickActions: FC<PlantQuickActionsProps> = ({ entry }) => {
 
   return (
     <>
-      <SectionHeading marginBottom="none">Quick Actions</SectionHeading>
+      <SectionHeading marginBottom="none">
+        <Trans>Quick Actions</Trans>
+      </SectionHeading>
       {!isPinned && (
         <Button
           isDisabled={pending !== null}
@@ -71,7 +75,7 @@ const PlantQuickActions: FC<PlantQuickActionsProps> = ({ entry }) => {
           isFullWidth
           onClick={() => void run('pin')}
         >
-          Pin
+          <Trans>Pin</Trans>
         </Button>
       )}
       <TextInput.Group>
@@ -94,7 +98,7 @@ const PlantQuickActions: FC<PlantQuickActionsProps> = ({ entry }) => {
             onClick={() => void run('plant')}
             variant="positive"
           >
-            Plant
+            <Trans>Plant</Trans>
           </Button>
         ) : (
           <Button
@@ -103,7 +107,7 @@ const PlantQuickActions: FC<PlantQuickActionsProps> = ({ entry }) => {
             onClick={() => void run('dead')}
             variant="negative"
           >
-            Dead
+            <Trans>Dead</Trans>
           </Button>
         )}
       </TextInput.Group>

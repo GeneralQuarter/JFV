@@ -1,6 +1,7 @@
 import type { PageAppSDK } from '@contentful/app-sdk';
 import { Header, Layout, Note, Spinner } from '@contentful/f36-components';
 import { useSDK } from '@contentful/react-apps-toolkit';
+import { Trans } from '@lingui/react/macro';
 import { useEffect } from 'react';
 import AddMenu from '../components/AddMenu';
 import Divider from '../components/Divider';
@@ -96,7 +97,7 @@ const Page = () => {
             }}
             variant="negative"
           >
-            Could not load content: {error}
+            <Trans>Could not load content: {error}</Trans>
           </Note>
         )}
       </Layout.Body>

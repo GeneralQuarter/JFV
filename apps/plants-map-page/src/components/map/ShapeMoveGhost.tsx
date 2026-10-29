@@ -1,5 +1,6 @@
 import type { PageAppSDK } from '@contentful/app-sdk';
 import { useSDK } from '@contentful/react-apps-toolkit';
+import { t } from '@lingui/core/macro';
 import type { Feature, Polygon } from 'geojson';
 import type {
   MapLayerMouseEvent,
@@ -152,12 +153,12 @@ const ShapeMoveGhost: FC<ShapeMoveGhostProps> = ({
 
       updateEntry(id, (entry) => setLocalCoords(entry, nextCoords));
       sdk.notifier.success(
-        kind === 'rectangle' ? 'Rectangle moved' : 'Zone moved',
+        kind === 'rectangle' ? t`Rectangle moved` : t`Zone moved`,
       );
       onDone();
     } catch (error) {
       console.error('Shape position update failed', error);
-      sdk.notifier.error('Could not move this shape.');
+      sdk.notifier.error(t`Could not move this shape.`);
       setSaving(false);
     }
   }, [coords, endDrag, id, kind, onDone, sdk, updateEntry]);

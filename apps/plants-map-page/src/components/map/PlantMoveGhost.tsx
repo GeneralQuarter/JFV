@@ -1,5 +1,6 @@
 import type { PageAppSDK } from '@contentful/app-sdk';
 import { useSDK } from '@contentful/react-apps-toolkit';
+import { t } from '@lingui/core/macro';
 import circle from '@turf/circle';
 import type { Feature, Point, Polygon } from 'geojson';
 import type { MapLayerMouseEvent, MapMouseEvent } from 'maplibre-gl';
@@ -111,11 +112,11 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
       updatePlant(plantId, (plant) =>
         setLocalPlantPosition(plant, currentPosition),
       );
-      sdk.notifier.success('Plant position updated');
+      sdk.notifier.success(t`Plant position updated`);
       onDone();
     } catch (error) {
       console.error('Plant position update failed', error);
-      sdk.notifier.error('Could not update the plant position.');
+      sdk.notifier.error(t`Could not update the plant position.`);
       setSaving(false);
     }
   }, [currentPosition, endDrag, onDone, plantId, sdk, updatePlant]);

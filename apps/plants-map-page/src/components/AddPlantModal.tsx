@@ -11,6 +11,8 @@ import {
 } from '@contentful/f36-components';
 import { useSDK } from '@contentful/react-apps-toolkit';
 import { normalizeSearchTerm } from '@jfv/core/domain';
+import { t } from '@lingui/core/macro';
+import { Trans } from '@lingui/react/macro';
 import { type FC, useEffect, useMemo, useState } from 'react';
 import useEntries from '../hooks/useEntries';
 import useMapFocus from '../hooks/useMapFocus';
@@ -64,7 +66,7 @@ const AddPlantModal: FC<AddPlantModalProps> = ({ isShown, onClose }) => {
           detail: commonName || undefined,
           entry,
           id: entry.sys.id,
-          label: latinName || commonName || entryCode(entry) || '(no name)',
+          label: latinName || commonName || entryCode(entry) || t`(no name)`,
         };
       })
       .filter((item) =>
@@ -94,21 +96,23 @@ const AddPlantModal: FC<AddPlantModalProps> = ({ isShown, onClose }) => {
       addPlant(plant);
       selectFeature({ id: plant.sys.id, type: 'plant' });
       focus({ ...center, zoom: 21 });
-      sdk.notifier.success(`Plant ${entryCode(plant)} added`);
+      sdk.notifier.success(t`Plant ${entryCode(plant)} added`);
       onClose();
     } catch (error) {
       console.error('Plant creation failed', error);
-      sdk.notifier.error('Could not create the plant. Please try again.');
+      sdk.notifier.error(t`Could not create the plant. Please try again.`);
     } finally {
       setSubmitting(false);
     }
   };
 
   return (
-    <Modal isShown={isShown} onClose={onClose} title="Add plant">
+    <Modal isShown={isShown} onClose={onClose} title={t`Add plant`}>
       <Modal.Content>
         <FormControl id="add-plant-card" isRequired>
-          <FormControl.Label>Plant card</FormControl.Label>
+          <FormControl.Label>
+            <Trans>Plant card</Trans>
+          </FormControl.Label>
           <Autocomplete
             id="add-plant-card"
             items={items}
@@ -117,7 +121,7 @@ const AddPlantModal: FC<AddPlantModalProps> = ({ isShown, onClose }) => {
             listWidth="full"
             onInputValueChange={setInputValue}
             onSelectItem={setCard}
-            placeholder="Search plant cards"
+            placeholder={t`Search plant cards`}
             renderItem={(item) => (
               <Flex flexDirection="column" alignItems="flex-start">
                 <Text fontWeight="fontWeightMedium">{item.label}</Text>
@@ -131,18 +135,24 @@ const AddPlantModal: FC<AddPlantModalProps> = ({ isShown, onClose }) => {
             textOnAfterSelect="clear"
           />
         </FormControl>
-        {card && <Paragraph>Selected card: {card.label}</Paragraph>}
+        {card && (
+          <Paragraph>
+            <Trans>Selected card: {card.label}</Trans>
+          </Paragraph>
+        )}
         <FormControl id="add-plant-sponsor">
-          <FormControl.Label>Sponsor</FormControl.Label>
+          <FormControl.Label>
+            <Trans>Sponsor</Trans>
+          </FormControl.Label>
           <TextInput
             id="add-plant-sponsor"
             onChange={(event) => setSponsor(event.target.value)}
-            placeholder="Optional"
+            placeholder={t`Optional`}
             value={sponsor}
           />
         </FormControl>
         <Paragraph marginBottom="none">
-          The plant will be placed at the current map centre.
+          <Trans>The plant will be placed at the current map centre.</Trans>
         </Paragraph>
       </Modal.Content>
       <Modal.Controls>
@@ -157,10 +167,10 @@ const AddPlantModal: FC<AddPlantModalProps> = ({ isShown, onClose }) => {
           size="small"
           variant="transparent"
         >
-          Create plant card
+          <Trans>Create plant card</Trans>
         </Button>
         <Button isDisabled={submitting} onClick={onClose}>
-          Cancel
+          <Trans>Cancel</Trans>
         </Button>
         <Button
           isDisabled={!card || submitting}
@@ -168,7 +178,7 @@ const AddPlantModal: FC<AddPlantModalProps> = ({ isShown, onClose }) => {
           onClick={() => void submit()}
           variant="primary"
         >
-          Add plant
+          <Trans>Add plant</Trans>
         </Button>
       </Modal.Controls>
     </Modal>

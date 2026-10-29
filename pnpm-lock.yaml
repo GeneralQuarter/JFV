@@ -491,6 +491,12 @@ importers:
       '@jfv/map-data':
         specifier: workspace:*
         version: link:../../packages/map-data
+      '@lingui/core':
+        specifier: 5.7.0
+        version: 5.7.0(@lingui/babel-plugin-lingui-macro@5.7.0(babel-plugin-macros@3.1.0)(supports-color@7.2.0)(typescript@5.9.3))(babel-plugin-macros@3.1.0)
+      '@lingui/react':
+        specifier: 5.7.0
+        version: 5.7.0(@lingui/babel-plugin-lingui-macro@5.7.0(babel-plugin-macros@3.1.0)(supports-color@7.2.0)(typescript@5.9.3))(babel-plugin-macros@3.1.0)(react@19.2.3)
       '@tanstack/react-query':
         specifier: ^5.90.12
         version: 5.105.0(@types/react@19.2.7)(react@19.2.3)
@@ -531,6 +537,15 @@ importers:
       '@contentful/app-scripts':
         specifier: ^2.5.6
         version: 2.5.12(@types/node@25.9.9)(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0)
+      '@lingui/babel-plugin-lingui-macro':
+        specifier: ^5.7.0
+        version: 5.7.0(babel-plugin-macros@3.1.0)(supports-color@7.2.0)(typescript@5.9.3)
+      '@lingui/cli':
+        specifier: ^5.7.0
+        version: 5.7.0(babel-plugin-macros@3.1.0)(supports-color@7.2.0)(typescript@5.9.3)
+      '@lingui/vite-plugin':
+        specifier: 5.7.0
+        version: 5.7.0(babel-plugin-macros@3.1.0)(supports-color@7.2.0)(typescript@5.9.3)(vite@7.3.7(@types/node@25.9.9)(jiti@2.7.0)(terser@5.51.2))
       '@types/geojson':
         specifier: ^7946.0.16
         version: 7946.0.16

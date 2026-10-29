@@ -1,5 +1,6 @@
 import { Heading, List, Stack } from '@contentful/f36-components';
 import tokens from '@contentful/f36-tokens';
+import { Trans } from '@lingui/react/macro';
 import type { FC } from 'react';
 import KeyboardShortcut from '../KeyboardShortcut';
 
@@ -15,14 +16,20 @@ const EmptySelection: FC = () => {
         paddingInline: tokens.spacingS,
       }}
     >
-      <Heading fontColor="gray600">Nothing Selected</Heading>
+      <Heading fontColor="gray600">
+        <Trans>Nothing Selected</Trans>
+      </Heading>
       <List css={{ color: tokens.gray600 }}>
         <List.Item>
-          <KeyboardShortcut>Click</KeyboardShortcut> on a feature to select it
+          <Trans>
+            <KeyboardShortcut>Click</KeyboardShortcut> on a feature to select it
+          </Trans>
         </List.Item>
         <List.Item>
-          You can select multiple features by holding{' '}
-          <KeyboardShortcut>Ctrl</KeyboardShortcut>
+          <Trans>
+            You can select multiple features by holding{' '}
+            <KeyboardShortcut>Ctrl</KeyboardShortcut>
+          </Trans>
         </List.Item>
       </List>
     </Stack>

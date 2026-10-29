@@ -1,4 +1,5 @@
 import type { CMAClient } from '@contentful/app-sdk';
+import { t } from '@lingui/core/macro';
 import { create } from 'zustand';
 import { MARKED_TAG_ID } from '../lib/keys';
 
@@ -40,7 +41,7 @@ const useTags = create<TagsState>((set, get) => ({
       set({ loaded: true, loading: false, tags: { ...LOCAL_TAGS, ...tags } });
     } catch (error) {
       set({
-        error: error instanceof Error ? error.message : 'Could not load tags',
+        error: error instanceof Error ? error.message : t`Could not load tags`,
         loading: false,
       });
     }

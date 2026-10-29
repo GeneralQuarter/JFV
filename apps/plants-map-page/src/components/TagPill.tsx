@@ -1,4 +1,5 @@
 import { XIcon } from '@contentful/f36-icons';
+import { t } from '@lingui/core/macro';
 import type { FC } from 'react';
 import { colorFromHueIndex } from '../lib/colors';
 import { PillNext } from './PillNext';
@@ -12,7 +13,7 @@ type TagPillProps = {
 const TagPill: FC<TagPillProps> = ({ label, hueIndex, onClose }) => {
   return (
     <PillNext
-      actionButtonLabel={`Remove ${label}`}
+      actionButtonLabel={t`Remove ${label}`}
       actionIcon={onClose ? <XIcon /> : undefined}
       label={label}
       onAction={onClose}

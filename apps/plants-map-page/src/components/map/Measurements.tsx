@@ -1,6 +1,7 @@
 import type { PageAppSDK } from '@contentful/app-sdk';
 import { useSDK } from '@contentful/react-apps-toolkit';
 import { MAP_LAYER_IDS } from '@jfv/map-data';
+import { t } from '@lingui/core/macro';
 import type { Feature, FeatureCollection, LineString, Point } from 'geojson';
 import type { MapLayerMouseEvent } from 'maplibre-gl';
 import { type FC, useEffect, useMemo } from 'react';
@@ -92,7 +93,7 @@ const Measurements: FC = () => {
       }
 
       removeMeasurement([properties.aId, properties.bId]);
-      sdk.notifier.success('Measurement removed.');
+      sdk.notifier.success(t`Measurement removed.`);
     };
 
     const onMouseEnter = () => {
