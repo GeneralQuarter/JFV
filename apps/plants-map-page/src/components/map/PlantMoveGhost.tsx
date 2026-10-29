@@ -75,13 +75,13 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
   const ghostCenterFeature = useMemo<Feature<Point>>(
     () => ({
       type: 'Feature',
-      properties: {},
+      properties: { code },
       geometry: {
         type: 'Point',
         coordinates: [currentPosition.lon, currentPosition.lat],
       },
     }),
-    [currentPosition.lat, currentPosition.lon],
+    [code, currentPosition.lat, currentPosition.lon],
   );
 
   const endDrag = useCallback(() => {
@@ -269,6 +269,7 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
           id={GHOST_LABEL_LAYER}
           type="symbol"
           layout={{
+            'text-allow-overlap': true,
             'text-field': ['get', 'code'],
             'text-offset': [0, 1.1],
             visibility: showLabels ? 'visible' : 'none',
