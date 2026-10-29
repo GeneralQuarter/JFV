@@ -52,28 +52,28 @@ msgstr "{marked} plantes marquées. Sélectionnez l’étiquette Marqué pour le
 msgid "<0>Click</0> on a feature to select it"
 msgstr "<0>Cliquez</0> sur un élément pour le sélectionner"
 
-#: src/components/selection/SingleSelection.tsx:215
-#: src/components/selection/SingleSelection.tsx:232
+#: src/components/selection/SingleSelection.tsx:219
+#: src/components/selection/SingleSelection.tsx:236
 msgid "<0>Right-click</0> the copy to confirm, or <1>Escape</1> to cancel"
 msgstr "<0>Clic droit</0> sur la copie pour confirmer, ou <1>Échap</1> pour annuler"
 
-#: src/components/selection/SingleSelection.tsx:186
+#: src/components/selection/SingleSelection.tsx:190
 msgid "<0>Right-click</0> the plant to move it"
 msgstr "<0>Clic droit</0> sur la plante pour la déplacer"
 
-#: src/components/selection/SingleSelection.tsx:203
+#: src/components/selection/SingleSelection.tsx:207
 msgid "<0>Right-click</0> the rectangle to move it"
 msgstr "<0>Clic droit</0> sur le rectangle pour le déplacer"
 
-#: src/components/selection/SingleSelection.tsx:192
+#: src/components/selection/SingleSelection.tsx:196
 msgid "<0>Right-click</0> the transparent copy to confirm, or <1>Escape</1> to cancel"
 msgstr "<0>Clic droit</0> sur la copie transparente pour confirmer, ou <1>Échap</1> pour annuler"
 
-#: src/components/selection/SingleSelection.tsx:226
+#: src/components/selection/SingleSelection.tsx:230
 msgid "<0>Right-click</0> the zone to move it"
 msgstr "<0>Clic droit</0> sur la zone pour la déplacer"
 
-#: src/components/selection/SingleSelection.tsx:209
+#: src/components/selection/SingleSelection.tsx:213
 msgid "<0>Scroll</0> over the moving rectangle to rotate it"
 msgstr "<0>Faites défiler</0> sur le rectangle en déplacement pour le faire pivoter"
 
@@ -354,7 +354,7 @@ msgid "Planted"
 msgstr "Plantées"
 
 #: src/components/EditorMap.tsx:253
-#: src/components/selection/SingleSelection.tsx:181
+#: src/components/selection/SingleSelection.tsx:185
 msgid "Planted plants cannot be moved."
 msgstr "Les plantes plantées ne peuvent pas être déplacées."
 
@@ -448,6 +448,10 @@ msgstr "Étiquettes"
 #: src/components/AddPlantModal.tsx:155
 msgid "The plant will be placed at the current map centre."
 msgstr "La plante sera placée au centre actuel de la carte."
+
+#: src/components/selection/SingleSelection.tsx:173
+msgid "Tips"
+msgstr "Astuces"
 
 #: src/components/SectorDrawing.tsx:141
 msgid "Undo"
