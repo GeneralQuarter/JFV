@@ -9,3 +9,8 @@ https://jfv.local, https://jfv.localhost {
     reverse_proxy 127.0.0.1:3001
   }
 }
+
+https://editor.localhost {
+  tls internal
+  reverse_proxy 127.0.0.1:3002
+}

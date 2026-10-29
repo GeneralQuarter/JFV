@@ -10,21 +10,23 @@ Start the Vite server:
 pnpm dev:page
 ```
 
-It serves on:
+It serves directly on `http://localhost:3002`, and through Caddy at:
 
 ```text
-http://localhost:3002
+https://editor.localhost
 ```
+
+Use the HTTPS URL in Contentful so the app runs over HTTPS and Vite HMR can connect over `wss://editor.localhost`.
 
 Port 3002 is used because the local `jfv-app-api` runs on 3000 and `jfv-app` runs on 3001.
 
 In Contentful, open the app definition for this Page app and set the **Page** location URL to:
 
 ```text
-http://localhost:3002
+https://editor.localhost
 ```
 
-Reload the Contentful page. The app will load entries through `sdk.cma` and show a loading overlay while fetching.
+Reload the Contentful page. The app will load entries through `sdk.cma` and show a loading overlay while fetching. HMR should now apply edits without hard reloads.
 
 If Contentful/browser mixed-content rules block the HTTP iframe, use an HTTPS tunnel:
 

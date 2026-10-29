@@ -21,7 +21,12 @@ export default defineConfig({
   },
   server: {
     allowedHosts: true,
-    host: 'localhost',
+    hmr: {
+      clientPort: 443,
+      host: 'editor.localhost',
+      protocol: 'wss',
+    },
+    host: '127.0.0.1',
     port: 3002,
     strictPort: true,
   },
