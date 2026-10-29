@@ -10,6 +10,7 @@ type MapSelectionState = {
   hoveredId: string | undefined;
   selectedFeatures: SelectedFeature[];
   hover: (id: string) => void;
+  selectFeature: (item: SelectedFeature) => void;
   toggleSelect: (item: SelectedFeature, clearSelected: boolean) => void;
   clearSelected: () => void;
   clearHovered: () => void;
@@ -22,6 +23,13 @@ const useMapSelection = create<MapSelectionState>((set) => ({
     set(
       produce((state: MapSelectionState) => {
         state.hoveredId = id;
+      }),
+    );
+  },
+  selectFeature: (item: SelectedFeature) => {
+    set(
+      produce((state: MapSelectionState) => {
+        state.selectedFeatures = [item];
       }),
     );
   },

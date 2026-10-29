@@ -14,6 +14,7 @@ import {
 } from '../lib/entries';
 import { mapBackgroundColor } from '../theme';
 import Hedges from './map/Hedges';
+import MapFocus from './map/MapFocus';
 import MapSectors from './map/MapSectors';
 import MapZones from './map/MapZones';
 import PlantMoveGhost from './map/PlantMoveGhost';
@@ -219,6 +220,7 @@ const EditorMap: FC = () => {
       onClick={onClick}
       onContextMenu={onContextMenu}
     >
+      <MapFocus />
       <StaticFeatures />
       <Rectangles />
       <Hedges />
