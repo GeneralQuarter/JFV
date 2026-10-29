@@ -2,17 +2,16 @@ import type { PageAppSDK } from '@contentful/app-sdk';
 import { useSDK } from '@contentful/react-apps-toolkit';
 import circle from '@turf/circle';
 import type { Feature, Polygon } from 'geojson';
-import type { MapMouseEvent } from 'maplibre-gl';
+import type { MapLayerMouseEvent, MapMouseEvent } from 'maplibre-gl';
 import {
   type FC,
-  type MouseEvent as ReactMouseEvent,
   useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from 'react';
-import { Layer, Marker, Source, useMap } from 'react-map-gl/maplibre';
+import { Layer, Source, useMap } from 'react-map-gl/maplibre';
 import useEntries from '../../hooks/useEntries';
 import useVisibilityToggles from '../../hooks/useVisibilityToggles';
 import {
@@ -20,6 +19,10 @@ import {
   updatePlantPosition,
 } from '../../lib/mutations/plant-actions';
 import { mapBackgroundColor } from '../../theme';
+
+const GHOST_FILL_LAYER = 'plant-move-ghost';
+const GHOST_LABEL_LAYER = 'plant-move-ghost-label';
+const GHOST_LAYERS = [GHOST_FILL_LAYER, GHOST_LABEL_LAYER];
 
 type PlantMoveGhostProps = {
   plantId: string;
@@ -42,23 +45,19 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
   const { mainMap } = useMap();
   const updatePlant = useEntries((state) => state.updatePlant);
   const showCanopy = useVisibilityToggles((state) => state.canopy);
+  const showLabels = useVisibilityToggles((state) => state.plantLabels);
   const [currentPosition, setCurrentPosition] = useState(position);
-  const [dragging, setDragging] = useState(false);
   const [saving, setSaving] = useState(false);
-  const [zoom, setZoom] = useState(mainMap?.getZoom() ?? 17);
+  const currentPositionRef = useRef(currentPosition);
+  const savingRef = useRef(saving);
+  const draggingRef = useRef(false);
+  const dragOffsetRef = useRef({ lat: 0, lon: 0 });
+  const onCancelRef = useRef(onCancel);
   const commitRef = useRef<(() => Promise<void>) | undefined>(undefined);
 
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        onCancel();
-      }
-    };
-
-    window.addEventListener('keydown', onKeyDown);
-
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [onCancel]);
+  currentPositionRef.current = currentPosition;
+  savingRef.current = saving;
+  onCancelRef.current = onCancel;
 
   const ghostFeature = useMemo<Feature<Polygon>>(
     () =>
@@ -72,60 +71,26 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
     [code, currentPosition.lat, currentPosition.lon, diameter, showCanopy],
   );
 
-  const hitBox = useMemo(() => {
-    void zoom;
-
-    if (!mainMap) {
-      return { height: 48, width: 48 };
-    }
-
-    let minX = Number.POSITIVE_INFINITY;
-    let maxX = Number.NEGATIVE_INFINITY;
-    let minY = Number.POSITIVE_INFINITY;
-    let maxY = Number.NEGATIVE_INFINITY;
-
-    for (const [lon, lat] of ghostFeature.geometry.coordinates[0]) {
-      const point = mainMap.project([lon, lat]);
-      minX = Math.min(minX, point.x);
-      maxX = Math.max(maxX, point.x);
-      minY = Math.min(minY, point.y);
-      maxY = Math.max(maxY, point.y);
-    }
-
-    return {
-      height: Math.max(32, maxY - minY),
-      width: Math.max(32, maxX - minX),
-    };
-  }, [ghostFeature, mainMap, zoom]);
-
-  useEffect(() => {
-    if (!mainMap) {
+  const endDrag = useCallback(() => {
+    if (!draggingRef.current) {
       return;
     }
 
-    const updateZoom = () => {
-      const nextZoom = mainMap.getZoom();
-      setZoom((currentZoom) =>
-        currentZoom === nextZoom ? currentZoom : nextZoom,
-      );
-    };
+    draggingRef.current = false;
+    mainMap?.dragPan.enable();
 
-    updateZoom();
-    mainMap.on('zoom', updateZoom);
-    mainMap.on('move', updateZoom);
-
-    return () => {
-      mainMap.off('zoom', updateZoom);
-      mainMap.off('move', updateZoom);
-    };
+    if (mainMap) {
+      mainMap.getCanvas().style.cursor = '';
+    }
   }, [mainMap]);
 
   const commitPosition = useCallback(async () => {
-    if (saving) {
+    if (savingRef.current) {
       return;
     }
 
     setSaving(true);
+    endDrag();
 
     try {
       await updatePlantPosition(sdk.cma, plantId, currentPosition);
@@ -139,7 +104,7 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
       sdk.notifier.error('Could not update the plant position.');
       setSaving(false);
     }
-  }, [currentPosition, onDone, plantId, saving, sdk, updatePlant]);
+  }, [currentPosition, endDrag, onDone, plantId, sdk, updatePlant]);
 
   commitRef.current = commitPosition;
 
@@ -148,14 +113,89 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
       return;
     }
 
+    const canvas = mainMap.getCanvas();
+
+    const onMouseDown = (event: MapLayerMouseEvent) => {
+      if (savingRef.current || event.originalEvent.button !== 0) {
+        return;
+      }
+
+      event.preventDefault();
+      draggingRef.current = true;
+      dragOffsetRef.current = {
+        lat: currentPositionRef.current.lat - event.lngLat.lat,
+        lon: currentPositionRef.current.lon - event.lngLat.lng,
+      };
+      mainMap.dragPan.disable();
+      canvas.style.cursor = 'grabbing';
+    };
+
+    const onMouseMove = (event: MapMouseEvent) => {
+      if (!draggingRef.current) {
+        return;
+      }
+
+      setCurrentPosition({
+        lat: event.lngLat.lat + dragOffsetRef.current.lat,
+        lon: event.lngLat.lng + dragOffsetRef.current.lon,
+      });
+    };
+
+    const onMouseUp = () => {
+      endDrag();
+    };
+
+    const onMouseEnter = () => {
+      if (!draggingRef.current) {
+        canvas.style.cursor = 'grab';
+      }
+    };
+
+    const onMouseLeave = () => {
+      if (!draggingRef.current) {
+        canvas.style.cursor = '';
+      }
+    };
+
+    for (const layer of GHOST_LAYERS) {
+      mainMap.on('mousedown', layer, onMouseDown);
+      mainMap.on('mouseenter', layer, onMouseEnter);
+      mainMap.on('mouseleave', layer, onMouseLeave);
+    }
+
+    mainMap.on('mousemove', onMouseMove);
+    mainMap.on('mouseup', onMouseUp);
+    window.addEventListener('mouseup', onMouseUp);
+
+    return () => {
+      for (const layer of GHOST_LAYERS) {
+        mainMap.off('mousedown', layer, onMouseDown);
+        mainMap.off('mouseenter', layer, onMouseEnter);
+        mainMap.off('mouseleave', layer, onMouseLeave);
+      }
+
+      mainMap.off('mousemove', onMouseMove);
+      mainMap.off('mouseup', onMouseUp);
+      window.removeEventListener('mouseup', onMouseUp);
+      mainMap.dragPan.enable();
+      canvas.style.cursor = '';
+    };
+  }, [endDrag, mainMap]);
+
+  useEffect(() => {
+    if (!mainMap) {
+      return;
+    }
+
     const onMapContextMenu = (event: MapMouseEvent) => {
       const features = mainMap.queryRenderedFeatures(event.point, {
-        layers: ['plant-move-ghost'],
+        layers: GHOST_LAYERS,
       });
 
       if (features.length > 0) {
-        event.preventDefault();
         void commitRef.current?.();
+      } else {
+        onCancelRef.current();
       }
     };
 
@@ -166,82 +206,50 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
     };
   }, [mainMap]);
 
-  const commitMove = (event: ReactMouseEvent) => {
-    event.preventDefault();
-    event.stopPropagation();
-    void commitPosition();
-  };
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onCancel();
+      }
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [onCancel]);
 
   return (
-    <>
-      <Source type="geojson" data={ghostFeature}>
-        <Layer
-          id="plant-move-ghost"
-          type="fill"
-          paint={{
-            'fill-color': 'rgba(47, 111, 78, 0.14)',
-          }}
-        />
-        <Layer
-          type="line"
-          paint={{
-            'line-color': '#2f6f4e',
-            'line-dasharray': [2, 2],
-            'line-width': 2,
-          }}
-        />
-        <Layer
-          id="plant-move-ghost-label"
-          type="symbol"
-          layout={{
-            'text-field': ['get', 'code'],
-          }}
-          paint={{
-            'text-color': '#1f4d13',
-            'text-halo-color': mapBackgroundColor,
-            'text-halo-width': 2,
-            'text-opacity': ['step', ['zoom'], 0, 19, 1],
-          }}
-        />
-      </Source>
-      <Marker
-        anchor="center"
-        draggable
-        latitude={currentPosition.lat}
-        longitude={currentPosition.lon}
-        onDrag={(event) =>
-          setCurrentPosition({
-            lat: event.lngLat.lat,
-            lon: event.lngLat.lng,
-          })
-        }
-        onDragEnd={(event) =>
-          setCurrentPosition({
-            lat: event.lngLat.lat,
-            lon: event.lngLat.lng,
-          })
-        }
-        onDragStart={() => setDragging(true)}
-      >
-        <button
-          aria-label="Right-click to confirm the new plant position"
-          onClick={(event) => event.stopPropagation()}
-          onContextMenu={commitMove}
-          style={{
-            background: 'transparent',
-            border: 'none',
-            borderRadius: '50%',
-            cursor: dragging ? 'grabbing' : 'grab',
-            height: hitBox.height,
-            opacity: saving ? 0.55 : 1,
-            padding: 0,
-            width: hitBox.width,
-          }}
-          title="Drag to move; right-click to confirm; Escape to cancel"
-          type="button"
-        />
-      </Marker>
-    </>
+    <Source type="geojson" data={ghostFeature}>
+      <Layer
+        id={GHOST_FILL_LAYER}
+        type="fill"
+        paint={{
+          'fill-color': 'rgba(47, 111, 78, 0.14)',
+        }}
+      />
+      <Layer
+        type="line"
+        paint={{
+          'line-color': '#2f6f4e',
+          'line-dasharray': [2, 2],
+          'line-width': 2,
+        }}
+      />
+      <Layer
+        id={GHOST_LABEL_LAYER}
+        type="symbol"
+        layout={{
+          'text-field': ['get', 'code'],
+          visibility: showLabels ? 'visible' : 'none',
+        }}
+        paint={{
+          'text-color': '#1f4d13',
+          'text-opacity': ['step', ['zoom'], 0, 19, 1],
+          'text-halo-color': mapBackgroundColor,
+          'text-halo-width': 2,
+        }}
+      />
+    </Source>
   );
 };
 

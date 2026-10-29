@@ -22,8 +22,7 @@ type MovingPlant = {
   diameter: number;
 };
 
-const GHOST_LAYER_ID = 'plant-move-ghost';
-const interactiveLayerIds = [MAP_LAYER_IDS.plant, GHOST_LAYER_ID];
+const interactiveLayerIds = [MAP_LAYER_IDS.plant];
 
 const mapStyle = createMapStyle(mapBackgroundColor);
 
@@ -64,13 +63,17 @@ const EditorMap: FC = () => {
 
   const onMouseMove = useCallback(
     (e: MapLayerMouseEvent) => {
+      if (movingPlant) {
+        return;
+      }
+
       const smallestFeature = getSmallestFeature(e.features);
 
       if (smallestFeature?.properties?.id) {
         hover(smallestFeature.properties.id);
       }
     },
-    [hover],
+    [hover, movingPlant],
   );
 
   const onMouseLeave = useCallback(() => {
@@ -79,6 +82,10 @@ const EditorMap: FC = () => {
 
   const onClick = useCallback(
     (e: MapLayerMouseEvent) => {
+      if (movingPlant) {
+        return;
+      }
+
       const smallestFeature = getSmallestFeature(e.features);
 
       if (!smallestFeature) {
@@ -91,7 +98,7 @@ const EditorMap: FC = () => {
         toggleSelect({ id, type }, !e.originalEvent.ctrlKey);
       }
     },
-    [toggleSelect],
+    [movingPlant, toggleSelect],
   );
 
   const onContextMenu = useCallback(
@@ -99,15 +106,10 @@ const EditorMap: FC = () => {
       e.originalEvent.preventDefault();
 
       if (movingPlant) {
-        setMovingPlant(undefined);
         return;
       }
 
       const firstFeature = e.features?.[0];
-
-      if (firstFeature?.layer.id === GHOST_LAYER_ID) {
-        return;
-      }
 
       if (
         !firstFeature ||
