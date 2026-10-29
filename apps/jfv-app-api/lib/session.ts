@@ -1,4 +1,7 @@
 import { randomBytes } from 'node:crypto';
+import { mkdir, readFile, unlink, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { Redis } from '@upstash/redis';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import {
@@ -28,36 +31,73 @@ type SessionStore = {
 
 const SESSION_PREFIX = 'jfv:session:';
 
-class MemorySessionStore implements SessionStore {
-  private readonly values = new Map<
-    string,
-    { value: string; expiresAt: number }
-  >();
+class FileSessionStore implements SessionStore {
+  private readonly directory: string;
+
+  constructor(directory = join(tmpdir(), 'jfv-app-api-sessions')) {
+    this.directory = directory;
+  }
+
+  private filePath(key: string): string {
+    return join(this.directory, `${encodeURIComponent(key)}.json`);
+  }
+
+  private async ensureDirectory(): Promise<void> {
+    await mkdir(this.directory, { recursive: true });
+  }
 
   async get(key: string): Promise<string | null> {
-    const entry = this.values.get(key);
+    try {
+      const raw = await readFile(this.filePath(key), 'utf8');
+      const entry = JSON.parse(raw) as {
+        value?: string;
+        expiresAt?: number;
+      };
 
-    if (!entry) {
-      return null;
+      if (
+        typeof entry.value !== 'string' ||
+        typeof entry.expiresAt !== 'number' ||
+        entry.expiresAt <= Date.now()
+      ) {
+        await this.delete(key);
+        return null;
+      }
+
+      return entry.value;
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+        return null;
+      }
+
+      if (error instanceof SyntaxError) {
+        await this.delete(key);
+        return null;
+      }
+
+      throw error;
     }
-
-    if (entry.expiresAt <= Date.now()) {
-      this.values.delete(key);
-      return null;
-    }
-
-    return entry.value;
   }
 
   async set(key: string, value: string, ttlSeconds: number): Promise<void> {
-    this.values.set(key, {
-      value,
-      expiresAt: Date.now() + ttlSeconds * 1000,
-    });
+    await this.ensureDirectory();
+    await writeFile(
+      this.filePath(key),
+      JSON.stringify({
+        value,
+        expiresAt: Date.now() + ttlSeconds * 1000,
+      }),
+      'utf8',
+    );
   }
 
   async delete(key: string): Promise<void> {
-    this.values.delete(key);
+    try {
+      await unlink(this.filePath(key));
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== 'ENOENT') {
+        throw error;
+      }
+    }
   }
 }
 
@@ -96,7 +136,7 @@ function getStore(): SessionStore {
   }
 
   if (!env.isProduction) {
-    store = new MemorySessionStore();
+    store = new FileSessionStore(process.env.SESSION_STORE_DIR);
     return store;
   }
 

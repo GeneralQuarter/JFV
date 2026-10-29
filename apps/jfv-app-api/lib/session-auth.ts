@@ -5,6 +5,7 @@ import {
   clearSessionCookie,
   deleteSession,
   getSessionFromRequest,
+  getSessionId,
   type Session,
   updateSession,
 } from './session';
@@ -18,6 +19,12 @@ export async function getAuthenticatedSession(
   req: VercelRequest,
   res: VercelResponse,
 ): Promise<AuthenticatedSession | null> {
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('auth session lookup', {
+      hasSessionCookie: Boolean(getSessionId(req)),
+    });
+  }
+
   const found = await getSessionFromRequest(req);
 
   if (!found) {

@@ -78,6 +78,6 @@ VITE_API_BASE_URL=https://jfv.local
 
 ## Notes
 
-- The API uses an in-memory session store when Redis is not configured outside production.
+- The API uses a file-backed session store when Redis is not configured outside production. This is required because `vercel dev` isolates function processes; a pure in-memory map would not be shared between `/auth/callback` and `/auth/me`.
 - Dev writes still hit the Contentful space configured in `CONTENTFUL_SPACE_ID`; use a test entry or a separate Contentful environment if possible.
 - If port 443 is busy, change the Caddyfile to `https://jfv.local:8443`, update the OAuth redirect URI, `APP_ORIGIN`, `ALLOWED_ORIGINS`, and `VITE_API_BASE_URL` accordingly.
