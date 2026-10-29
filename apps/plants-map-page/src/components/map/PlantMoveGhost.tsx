@@ -1,10 +1,12 @@
 import type { PageAppSDK } from '@contentful/app-sdk';
 import { useSDK } from '@contentful/react-apps-toolkit';
 import { mapDefaults } from '@jfv/map-data';
+import circle from '@turf/circle';
 import {
   type FC,
   type MouseEvent as ReactMouseEvent,
   useEffect,
+  useMemo,
   useState,
 } from 'react';
 import { Marker, useMap } from 'react-map-gl/maplibre';
@@ -44,13 +46,20 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
       return;
     }
 
-    const updateZoom = () => setZoom(mainMap.getZoom());
+    const updateZoom = () => {
+      const nextZoom = mainMap.getZoom();
+      setZoom((currentZoom) =>
+        currentZoom === nextZoom ? currentZoom : nextZoom,
+      );
+    };
 
     updateZoom();
     mainMap.on('zoom', updateZoom);
+    mainMap.on('move', updateZoom);
 
     return () => {
       mainMap.off('zoom', updateZoom);
+      mainMap.off('move', updateZoom);
     };
   }, [mainMap]);
 
@@ -70,7 +79,33 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
     (156543.03392 * Math.cos((currentPosition.lat * Math.PI) / 180)) /
     2 ** zoom;
   const visibleDiameter = showCanopy ? diameter : Math.min(diameter, 2);
-  const size = Math.max(10, visibleDiameter / metersPerPixel);
+
+  const visualSize = useMemo(() => {
+    if (!mainMap) {
+      return visibleDiameter / metersPerPixel;
+    }
+
+    const geometry = circle(
+      [currentPosition.lon, currentPosition.lat],
+      visibleDiameter / 2000,
+    ).geometry.coordinates[0];
+    let minX = Number.POSITIVE_INFINITY;
+    let maxX = Number.NEGATIVE_INFINITY;
+    let minY = Number.POSITIVE_INFINITY;
+    let maxY = Number.NEGATIVE_INFINITY;
+
+    for (const [lon, lat] of geometry) {
+      const point = mainMap.project([lon, lat]);
+      minX = Math.min(minX, point.x);
+      maxX = Math.max(maxX, point.x);
+      minY = Math.min(minY, point.y);
+      maxY = Math.max(maxY, point.y);
+    }
+
+    return Math.max(maxX - minX, maxY - minY);
+  }, [currentPosition, mainMap, metersPerPixel, visibleDiameter]);
+
+  const hitSize = Math.max(28, visualSize + 12);
 
   const commitMove = async (event: ReactMouseEvent) => {
     event.preventDefault();
@@ -115,18 +150,31 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
         onClick={(event) => event.stopPropagation()}
         onContextMenu={commitMove}
         style={{
-          background: 'rgba(47, 111, 78, 0.14)',
-          border: '2px dashed #2f6f4e',
-          borderRadius: '50%',
+          alignItems: 'center',
+          background: 'transparent',
+          border: 'none',
           cursor: dragging ? 'grabbing' : 'grab',
-          height: size,
+          display: 'flex',
+          height: hitSize,
+          justifyContent: 'center',
           opacity: saving ? 0.55 : 1,
           padding: 0,
-          width: size,
+          width: hitSize,
         }}
         title="Right-click to confirm; Escape to cancel"
         type="button"
-      />
+      >
+        <span
+          style={{
+            background: 'rgba(47, 111, 78, 0.14)',
+            border: '2px dashed #2f6f4e',
+            borderRadius: '50%',
+            height: visualSize,
+            pointerEvents: 'none',
+            width: visualSize,
+          }}
+        />
+      </button>
     </Marker>
   );
 };
