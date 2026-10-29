@@ -114,7 +114,7 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
           <>
             <SectionHeading marginBottom="none">Tags</SectionHeading>
             {plantTags.length > 0 ? (
-              <Stack css={{ flexWrap: 'wrap', gap: tokens.spacingXs }}>
+              <Stack css={{ flexWrap: 'wrap', gap: tokens.spacingS }}>
                 {plantTags.map((tagId) => (
                   <TagPill
                     key={tagId}

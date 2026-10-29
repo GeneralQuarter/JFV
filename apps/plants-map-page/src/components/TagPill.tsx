@@ -18,9 +18,9 @@ const TagPill: FC<TagPillProps> = ({ label, hueIndex, onClose }) => {
         borderRadius: 999,
         display: 'inline-flex',
         fontSize: tokens.fontSizeS,
-        gap: 6,
+        gap: 8,
         lineHeight: 1.5,
-        padding: '2px 4px 2px 8px',
+        padding: '3px 6px 3px 10px',
       }}
     >
       {hueIndex !== undefined && (
@@ -29,8 +29,8 @@ const TagPill: FC<TagPillProps> = ({ label, hueIndex, onClose }) => {
           css={{
             background: colorFromHueIndex(hueIndex, 1),
             borderRadius: '50%',
-            height: 8,
-            width: 8,
+            height: 9,
+            width: 9,
           }}
         />
       )}
@@ -46,12 +46,12 @@ const TagPill: FC<TagPillProps> = ({ label, hueIndex, onClose }) => {
             color: tokens.gray600,
             cursor: 'pointer',
             display: 'inline-flex',
-            fontSize: tokens.fontSizeS,
-            height: 16,
+            fontSize: tokens.fontSizeM,
+            height: 18,
             justifyContent: 'center',
             lineHeight: 1,
             padding: 0,
-            width: 16,
+            width: 18,
             '&:hover': {
               background: tokens.gray200,
               color: tokens.gray800,

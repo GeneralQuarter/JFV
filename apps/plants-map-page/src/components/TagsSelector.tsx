@@ -78,7 +78,7 @@ const TagsSelector: FC = () => {
             <Stack
               css={{
                 flexWrap: 'wrap',
-                gap: tokens.spacingXs,
+                gap: tokens.spacingS,
               }}
             >
               {selectedTags.map((tag) => (
