@@ -437,6 +437,9 @@ importers:
       contentful-management:
         specifier: ^12.20.0
         version: 12.20.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0)
+      dotenv:
+        specifier: ^18.0.9
+        version: 18.0.9
     devDependencies:
       '@types/node':
         specifier: ^25.0.3
@@ -3985,6 +3988,11 @@ packages:
   dotenv@17.4.2:
     resolution: {integrity: sha512-nI4U3TottKAcAD9LLud4Cb7b2QztQMUEfHbvhTH09bqXTxnSie8WnjPALV/WMCrJZ6UV/qHJ6L03OqO3LcdYZw==}
     engines: {node: '>=12'}
+
+  dotenv@18.0.9:
+    resolution: {integrity: sha512-3fVOW4cB02R066PUSwn8O4TJyz9NckQl7F81blIbaq9jKBm2tSmOKky7ZHIXzGvkVPXCSn6jkpziBPZdGFs8Tw==}
+    engines: {node: '>=12'}
+    hasBin: true
 
   downshift@6.1.12:
     resolution: {integrity: sha512-7XB/iaSJVS4T8wGFT3WRXmSF1UlBHAA40DshZtkrIscIN+VC+Lh363skLxFTvJwtNgHxAMDGEHT4xsyQFWL+UA==}
@@ -11103,6 +11111,8 @@ snapshots:
       csstype: 3.2.3
 
   dotenv@17.4.2: {}
+
+  dotenv@18.0.9: {}
 
   downshift@6.1.12(react@19.2.3):
     dependencies:

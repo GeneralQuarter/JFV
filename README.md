@@ -38,6 +38,8 @@ pnpm install
 
 Copy the relevant `.env.example` to `.env.local` in each app and fill in local values.
 
+For local HTTPS development on `https://jfv.local`, see [`dev/README.md`](dev/README.md).
+
 ## Commands
 
 ```bash

@@ -54,6 +54,8 @@ if (process.env.SW === 'true') {
 export default defineConfig({
   plugins: [react(), VitePWA(pwaOptions)],
   server: {
+    allowedHosts: ['jfv.local', 'jfv.localhost'],
+    host: '127.0.0.1',
     port: 3001,
   },
   build: {

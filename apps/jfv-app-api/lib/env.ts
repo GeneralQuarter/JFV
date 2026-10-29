@@ -1,3 +1,10 @@
+import { config } from 'dotenv';
+
+if (process.env.NODE_ENV !== 'production') {
+  config({ path: '.env.local' });
+  config();
+}
+
 export type CookieSameSite = 'lax' | 'strict' | 'none';
 
 export type ApiEnv = {
