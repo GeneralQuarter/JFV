@@ -18,3 +18,36 @@ export function translateCoords(
 ): LatLon[] {
   return coords.map(([lat, lon]) => [lat + delta.lat, lon + delta.lon]);
 }
+
+export function coordsCenter(coords: LatLon[]): { lat: number; lon: number } {
+  const first = coords[0];
+  const last = coords[coords.length - 1];
+  const isClosed =
+    coords.length > 1 && first[0] === last[0] && first[1] === last[1];
+  const points = isClosed ? coords.slice(0, -1) : coords;
+  const [latSum, lonSum] = points.reduce(
+    ([lat, lon], point) => [lat + point[0], lon + point[1]],
+    [0, 0],
+  );
+
+  return { lat: latSum / points.length, lon: lonSum / points.length };
+}
+
+export function rotateCoords(
+  coords: LatLon[],
+  center: { lat: number; lon: number },
+  radians: number,
+): LatLon[] {
+  const cosLat = Math.cos((center.lat * Math.PI) / 180);
+  const sin = Math.sin(radians);
+  const cos = Math.cos(radians);
+
+  return coords.map(([lat, lon]) => {
+    const x = (lon - center.lon) * cosLat;
+    const y = lat - center.lat;
+    const rotatedX = x * cos - y * sin;
+    const rotatedY = x * sin + y * cos;
+
+    return [center.lat + rotatedY, center.lon + rotatedX / cosLat];
+  });
+}

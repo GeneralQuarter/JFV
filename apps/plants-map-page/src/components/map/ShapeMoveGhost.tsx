@@ -1,7 +1,11 @@
 import type { PageAppSDK } from '@contentful/app-sdk';
 import { useSDK } from '@contentful/react-apps-toolkit';
 import type { Feature, Polygon } from 'geojson';
-import type { MapLayerMouseEvent, MapMouseEvent } from 'maplibre-gl';
+import type {
+  MapLayerMouseEvent,
+  MapMouseEvent,
+  MapWheelEvent,
+} from 'maplibre-gl';
 import {
   type FC,
   useCallback,
@@ -13,7 +17,12 @@ import {
 import { Layer, Source, useMap } from 'react-map-gl/maplibre';
 import useEntries from '../../hooks/useEntries';
 import type { LatLon } from '../../lib/geo';
-import { closeRing, translateCoords } from '../../lib/geo';
+import {
+  closeRing,
+  coordsCenter,
+  rotateCoords,
+  translateCoords,
+} from '../../lib/geo';
 import {
   setLocalCoords,
   updateMapZoneCoords,
@@ -64,8 +73,10 @@ const ShapeMoveGhost: FC<ShapeMoveGhostProps> = ({
   const { current: mainMap } = useMap();
   const updateEntry = useEntries((state) => state.updateEntry);
   const [delta, setDelta] = useState({ lat: 0, lon: 0 });
+  const [rotation, setRotation] = useState(0);
   const [saving, setSaving] = useState(false);
   const deltaRef = useRef(delta);
+  const rotationRef = useRef(rotation);
   const savingRef = useRef(saving);
   const draggingRef = useRef(false);
   const dragStartRef = useRef<
@@ -81,6 +92,7 @@ const ShapeMoveGhost: FC<ShapeMoveGhostProps> = ({
   const commitRef = useRef<(() => Promise<void>) | undefined>(undefined);
 
   deltaRef.current = delta;
+  rotationRef.current = rotation;
   savingRef.current = saving;
   onCancelRef.current = onCancel;
 
@@ -90,10 +102,17 @@ const ShapeMoveGhost: FC<ShapeMoveGhostProps> = ({
       properties: { label },
       geometry: {
         type: 'Polygon',
-        coordinates: [closeRing(translateCoords(coords, delta))],
+        coordinates: [
+          closeRing(
+            translateCoords(
+              rotateCoords(coords, coordsCenter(coords), rotation),
+              delta,
+            ),
+          ),
+        ],
       },
     }),
-    [coords, delta, label],
+    [coords, delta, label, rotation],
   );
 
   const endDrag = useCallback(() => {
@@ -119,7 +138,10 @@ const ShapeMoveGhost: FC<ShapeMoveGhostProps> = ({
     setSaving(true);
     endDrag();
 
-    const nextCoords = translateCoords(coords, deltaRef.current);
+    const nextCoords = translateCoords(
+      rotateCoords(coords, coordsCenter(coords), rotationRef.current),
+      deltaRef.current,
+    );
 
     try {
       if (kind === 'rectangle') {
@@ -226,6 +248,50 @@ const ShapeMoveGhost: FC<ShapeMoveGhostProps> = ({
       canvas.style.cursor = '';
     };
   }, [endDrag, mainMap]);
+
+  useEffect(() => {
+    if (!mainMap || kind !== 'rectangle') {
+      return;
+    }
+
+    const map = mainMap.getMap();
+
+    const onWheel = (event: MapWheelEvent) => {
+      if (savingRef.current) {
+        return;
+      }
+
+      const canvas = map.getCanvas();
+      const rect = canvas.getBoundingClientRect();
+      const point: [number, number] = [
+        event.originalEvent.clientX - rect.left,
+        event.originalEvent.clientY - rect.top,
+      ];
+      const features = map.queryRenderedFeatures(point, {
+        layers: GHOST_LAYERS,
+      });
+
+      if (features.length === 0) {
+        return;
+      }
+
+      const deltaY = event.originalEvent.deltaY;
+
+      if (!deltaY) {
+        return;
+      }
+
+      event.preventDefault();
+      event.originalEvent.preventDefault();
+      setRotation((current) => current + (deltaY / 100) * (Math.PI / 45));
+    };
+
+    map.on('wheel', onWheel);
+
+    return () => {
+      map.off('wheel', onWheel);
+    };
+  }, [kind, mainMap]);
 
   useEffect(() => {
     if (!mainMap) {
