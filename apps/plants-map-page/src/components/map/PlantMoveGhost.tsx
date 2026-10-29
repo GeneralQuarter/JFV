@@ -19,6 +19,7 @@ import {
   setLocalPlantPosition,
   updatePlantPosition,
 } from '../../lib/mutations/plant-actions';
+import { mapBackgroundColor } from '../../theme';
 
 type PlantMoveGhostProps = {
   plantId: string;
@@ -92,8 +93,8 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
     }
 
     return {
-      height: Math.max(48, maxY - minY + 8),
-      width: Math.max(48, maxX - minX + 8),
+      height: Math.max(32, maxY - minY),
+      width: Math.max(32, maxX - minX),
     };
   }, [ghostFeature, mainMap, zoom]);
 
@@ -193,14 +194,13 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
           id="plant-move-ghost-label"
           type="symbol"
           layout={{
-            'text-allow-overlap': true,
             'text-field': ['get', 'code'],
-            'text-size': 12,
           }}
           paint={{
             'text-color': '#1f4d13',
-            'text-halo-color': '#fffbec',
+            'text-halo-color': mapBackgroundColor,
             'text-halo-width': 2,
+            'text-opacity': ['step', ['zoom'], 0, 19, 1],
           }}
         />
       </Source>
@@ -228,30 +228,18 @@ const PlantMoveGhost: FC<PlantMoveGhostProps> = ({
           onClick={(event) => event.stopPropagation()}
           onContextMenu={commitMove}
           style={{
-            alignItems: 'center',
             background: 'transparent',
             border: 'none',
+            borderRadius: '50%',
             cursor: dragging ? 'grabbing' : 'grab',
-            display: 'flex',
             height: hitBox.height,
-            justifyContent: 'center',
             opacity: saving ? 0.55 : 1,
             padding: 0,
             width: hitBox.width,
           }}
-          title="Right-click to confirm; Escape to cancel"
+          title="Drag to move; right-click to confirm; Escape to cancel"
           type="button"
-        >
-          <span
-            style={{
-              background: 'rgba(47, 111, 78, 0.55)',
-              borderRadius: '50%',
-              height: 10,
-              pointerEvents: 'none',
-              width: 10,
-            }}
-          />
-        </button>
+        />
       </Marker>
     </>
   );
