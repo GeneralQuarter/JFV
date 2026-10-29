@@ -210,8 +210,12 @@ const EntriesSearch: FC = () => {
       return;
     }
 
-    if (result.type === 'plant') {
-      selectFeature({ id: result.id, type: 'plant' });
+    if (
+      result.type === 'plant' ||
+      result.type === 'rectangle' ||
+      result.type === 'mapZone'
+    ) {
+      selectFeature({ id: result.id, type: result.type });
     }
 
     if (!result.center) {

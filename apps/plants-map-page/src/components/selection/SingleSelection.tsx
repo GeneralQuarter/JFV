@@ -15,7 +15,7 @@ import type { SelectedFeature } from '../../hooks/useMapSelection';
 import useMapSelection from '../../hooks/useMapSelection';
 import useSelectedTags from '../../hooks/useSelectedTags';
 import useTags from '../../hooks/useTags';
-import { entryTags } from '../../lib/entries';
+import { entryCode, entryName, entryTags, localized } from '../../lib/entries';
 import TagPill from '../TagPill';
 import PlantQuickActions from './plant/PlantQuickActions';
 import SelectionHeader from './SelectionHeader';
@@ -28,6 +28,8 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
   const sdk = useSDK<PageAppSDK>();
   const plants = useEntries((state) => state.plants);
   const plantCards = useEntries((state) => state.plantCards);
+  const rectangles = useEntries((state) => state.rectangles);
+  const mapZones = useEntries((state) => state.mapZones);
   const tags = useTags((state) => state.tags);
   const selectedTags = useSelectedTags((state) => state.selected);
   const toggleSelect = useMapSelection((state) => state.toggleSelect);
@@ -36,19 +38,37 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
     switch (feature.type) {
       case 'plant':
         return plants.find((p) => p.sys.id === feature.id);
+      case 'rectangle':
+        return rectangles.find((rectangle) => rectangle.sys.id === feature.id);
+      case 'mapZone':
+        return mapZones.find((zone) => zone.sys.id === feature.id);
       default:
         return;
     }
-  }, [feature, plants]);
+  }, [feature, mapZones, plants, rectangles]);
 
   const title = useMemo(() => {
     switch (feature.type) {
       case 'plant':
-        return entry?.fields.code.fr;
+        return entry ? entryCode(entry) || 'Plant' : 'Plant';
+      case 'rectangle':
+        return entry
+          ? entryCode(entry) || localized<string>(entry, 'label') || 'Rectangle'
+          : 'Rectangle';
+      case 'mapZone':
+        return entry ? entryName(entry) || 'Zone' : 'Zone';
       default:
-        return `Unknown`;
+        return 'Unknown';
     }
-  }, [feature, entry]);
+  }, [entry, feature.type]);
+
+  const rectangleLabel = useMemo(() => {
+    if (!entry || entry.sys.contentType.sys.id !== 'rectangle') {
+      return;
+    }
+
+    return localized<string>(entry, 'label');
+  }, [entry]);
 
   const plantCard = useMemo(() => {
     if (!entry || entry.sys.contentType.sys.id !== 'plant') {
@@ -96,6 +116,24 @@ const SingleSelection: FC<SingleSelectionProps> = ({ feature }) => {
             </Paragraph>
             <PlantQuickActions entry={entry} />
           </>
+        )}
+        {entry?.sys.contentType.sys.id === 'rectangle' && (
+          <>
+            {rectangleLabel && (
+              <Paragraph marginBottom="none">{rectangleLabel}</Paragraph>
+            )}
+            <Paragraph>
+              Right-click the rectangle to move it. While moving, scroll over it
+              to rotate around its centre. Right-click the ghost to confirm;
+              press Escape or right-click elsewhere to cancel.
+            </Paragraph>
+          </>
+        )}
+        {entry?.sys.contentType.sys.id === 'mapZone' && (
+          <Paragraph>
+            Right-click the zone to move it. Right-click the ghost to confirm;
+            press Escape or right-click elsewhere to cancel.
+          </Paragraph>
         )}
         {plantCard && (
           <>

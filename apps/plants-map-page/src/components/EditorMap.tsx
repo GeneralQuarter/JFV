@@ -91,6 +91,22 @@ const getSmallestFeature = (features?: MapGeoJSONFeature[]) => {
   }, features[0]);
 };
 
+const pickSelectableFeature = (features?: MapGeoJSONFeature[]) => {
+  if (!features || features.length === 0) {
+    return;
+  }
+
+  const plant = getSmallestFeature(
+    features.filter((feature) => feature.layer.id === MAP_LAYER_IDS.plant),
+  );
+
+  return (
+    plant ??
+    features.find((feature) => feature.layer.id === MAP_LAYER_IDS.rectangle) ??
+    features.find((feature) => feature.layer.id === MAP_LAYER_IDS.mapZone)
+  );
+};
+
 const EditorMap: FC = () => {
   const plants = useEntries((state) => state.plants);
   const plantCards = useEntries((state) => state.plantCards);
@@ -140,15 +156,18 @@ const EditorMap: FC = () => {
         return;
       }
 
-      const smallestFeature = getSmallestFeature(e.features);
+      const feature = pickSelectableFeature(e.features);
 
-      if (!smallestFeature) {
+      if (!feature) {
         return;
       }
 
-      const { id, type } = smallestFeature.properties;
+      const { id, type } = feature.properties;
 
-      if (typeof id === 'string' && type === 'plant') {
+      if (
+        typeof id === 'string' &&
+        (type === 'plant' || type === 'rectangle' || type === 'mapZone')
+      ) {
         toggleSelect({ id, type }, !e.originalEvent.ctrlKey);
       }
     },
@@ -169,12 +188,7 @@ const EditorMap: FC = () => {
         return;
       }
 
-      const firstFeature =
-        features.find((feature) => feature.layer.id === MAP_LAYER_IDS.plant) ??
-        features.find(
-          (feature) => feature.layer.id === MAP_LAYER_IDS.rectangle,
-        ) ??
-        features.find((feature) => feature.layer.id === MAP_LAYER_IDS.mapZone);
+      const firstFeature = pickSelectableFeature(features);
 
       if (!firstFeature || typeof firstFeature.properties.id !== 'string') {
         return;
