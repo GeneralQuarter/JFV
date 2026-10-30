@@ -18,7 +18,9 @@ Create one Vercel project per deployed app. For every project:
 | `jfv-app` | `apps/jfv-app` | `pnpm build` | `dist` |
 | `jfv-app-api` | `apps/jfv-app-api` | Vercel functions | — |
 
-The checked-in `vercel.json` files set the build command, output directory, PWA cache headers, and an ignored-build step that skips deploys when only unrelated files changed. Vercel detects the root `pnpm-lock.yaml` and installs the workspace dependencies automatically.
+The checked-in `vercel.json` files set the build command, output directory, and PWA cache headers. Vercel detects the root `pnpm-lock.yaml` and installs the workspace dependencies automatically.
+
+Build skipping is intentionally not configured in the repo. A git-diff-based ignored-build step prevents manual redeploys after environment-variable-only changes, which is exactly when the API usually needs to restart. Configure an Ignored Build Step in the Vercel project settings only if you want that trade-off, and remember to disable it when redeploying for env changes.
 
 `plants-map-page` is deployed as a **Contentful-hosted bundle** instead of a Vercel project. The current build is 4 files / ~2.7 MB, within Contentful's 10 MB and 500-file bundle limits, and uses relative asset paths. A Vercel deployment remains an option for previews, but it is not needed for production.
 
@@ -53,7 +55,7 @@ Create the project with:
 - **Install Command:** default (`pnpm` is detected from the root lockfile)
 - **Node.js Version:** 22
 
-The ignored-build step, function duration, and framework are set in `apps/jfv-app-api/vercel.json`. After the first deploy, open `https://<api-project>.vercel.app/api/health` to confirm the function runtime is working, then add the custom API domain and update the Contentful OAuth redirect URI.
+The function duration and framework are set in `apps/jfv-app-api/vercel.json`. After the first deploy, open `https://<api-project>.vercel.app/api/health` to confirm the function runtime is working, then add the custom API domain and update the Contentful OAuth redirect URI.
 
 For local API development, link the project once with `npx vercel@latest link` and use `pnpm --filter jfv-app-api dev`. Avoid `vercel dev --local` for this project: without linked project settings it attempts a static build of the root and fails because the API has no static output. Use Node 22/24, since Node 26 no longer bundles Corepack.
 
