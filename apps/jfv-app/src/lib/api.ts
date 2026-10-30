@@ -52,18 +52,8 @@ async function apiFetch<T>(
   }
 }
 
-export async function fetchAuthUser(): Promise<AuthUser | null> {
-  const result = await apiFetch<{ user: AuthUser }>('/api/auth/me');
-
-  if (!result.ok && result.status !== 401) {
-    console.error(
-      'Auth check failed',
-      result.status || 'network',
-      result.error,
-    );
-  }
-
-  return result.ok ? result.data.user : null;
+export function fetchAuthUser(): Promise<ApiResult<{ user: AuthUser }>> {
+  return apiFetch<{ user: AuthUser }>('/api/auth/me');
 }
 
 export function getLoginUrl(): string {

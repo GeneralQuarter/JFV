@@ -41,11 +41,21 @@ export default function useAuth(): UseAuth {
     let cancelled = false;
 
     (async () => {
-      const user = await fetchAuthUser();
+      const result = await fetchAuthUser();
 
       if (cancelled) {
         return;
       }
+
+      if (!result.ok && (authResult === 'success' || result.status !== 401)) {
+        console.error(
+          'Auth check failed',
+          result.status || 'network',
+          result.error,
+        );
+      }
+
+      const user = result.ok ? result.data.user : null;
 
       if (user) {
         setState({
