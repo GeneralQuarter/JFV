@@ -49,24 +49,14 @@ export default async function handler(
       state && verifyState(stateCookie, state, env.sessionSecret),
     );
 
-    if (process.env.NODE_ENV !== 'production') {
-      console.log('oauth callback received', {
-        hasCode: Boolean(code),
-        hasState: Boolean(state),
-        hasStateCookie: Boolean(stateCookie),
-        stateValid,
-        hasProviderError: Boolean(oauthError),
-      });
-    }
-
     if (oauthError || !code || !state || !stateValid) {
       if (oauthError) {
         console.error('oauth provider returned an error', {
           error: oauthError,
           description: queryValue(req.query.error_description),
         });
-      } else if (process.env.NODE_ENV !== 'production') {
-        console.error('oauth callback rejected: invalid state');
+      } else {
+        console.warn('oauth callback rejected: invalid state');
       }
       res.setHeader('Set-Cookie', clearStateCookie);
       redirectToApp(res, env.appOrigin, 'error');
@@ -77,9 +67,6 @@ export default async function handler(
     const user = await fetchCurrentUser(tokens.accessToken);
 
     if (!isConfiguredUserAllowed(user)) {
-      if (process.env.NODE_ENV !== 'production') {
-        console.log('oauth user rejected by allowlist', { userId: user.id });
-      }
       res.setHeader('Set-Cookie', clearStateCookie);
       redirectToApp(res, env.appOrigin, 'denied');
       return;
@@ -102,11 +89,6 @@ export default async function handler(
       }),
       clearStateCookie,
     ]);
-
-    console.log('oauth callback succeeded', {
-      userId: user.id,
-      sessionCookieSet: true,
-    });
 
     redirectToApp(res, env.appOrigin, 'success');
   } catch (error) {

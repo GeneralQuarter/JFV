@@ -6,13 +6,6 @@ import { MapProvider } from 'react-map-gl/maplibre';
 import App from './App';
 import theme from './theme';
 
-console.info(
-  '[JFV app] bundle',
-  document
-    .querySelector<HTMLScriptElement>('script[type="module"][src]')
-    ?.getAttribute('src') ?? 'unknown',
-);
-
 const rootEl = document.getElementById('root');
 
 if (!rootEl) {

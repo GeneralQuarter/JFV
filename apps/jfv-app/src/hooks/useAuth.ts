@@ -47,14 +47,6 @@ export default function useAuth(): UseAuth {
         return;
       }
 
-      if (!result.ok && (authResult === 'success' || result.status !== 401)) {
-        console.error(
-          'Auth check failed',
-          result.status || 'network',
-          result.error,
-        );
-      }
-
       const user = result.ok ? result.data.user : null;
 
       if (user) {
