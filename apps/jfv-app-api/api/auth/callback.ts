@@ -96,16 +96,17 @@ export default async function handler(
     });
 
     res.setHeader('Set-Cookie', [
-      clearStateCookie,
       serializeCookie(SESSION_COOKIE, sessionId, {
         ...baseCookieOptions(env),
         maxAge: env.sessionTtlSeconds,
       }),
+      clearStateCookie,
     ]);
 
-    if (process.env.NODE_ENV !== 'production') {
-      console.log('oauth callback succeeded', { userId: user.id });
-    }
+    console.log('oauth callback succeeded', {
+      userId: user.id,
+      sessionCookieSet: true,
+    });
 
     redirectToApp(res, env.appOrigin, 'success');
   } catch (error) {
