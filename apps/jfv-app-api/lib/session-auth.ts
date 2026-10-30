@@ -28,6 +28,9 @@ export async function getAuthenticatedSession(
   const found = await getSessionFromRequest(req);
 
   if (!found) {
+    console.warn('session not found', {
+      hasSessionCookie: Boolean(getSessionId(req)),
+    });
     clearSessionCookie(res);
     return null;
   }
