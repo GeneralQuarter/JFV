@@ -55,6 +55,8 @@ Create the project with:
 
 The ignored-build step, function duration, and framework are set in `apps/jfv-app-api/vercel.json`. After the first deploy, open `https://<api-project>.vercel.app/api/health` to confirm the function runtime is working, then add the custom API domain and update the Contentful OAuth redirect URI.
 
+For local API development, link the project once with `npx vercel@latest link` and use `pnpm --filter jfv-app-api dev`. Avoid `vercel dev --local` for this project: without linked project settings it attempts a static build of the root and fails because the API has no static output. Use Node 22/24, since Node 26 no longer bundles Corepack.
+
 Copy environment values from `apps/jfv-app-api/.env.example`. Production requires:
 
 - Contentful OAuth: client ID, client secret, redirect URI, scope

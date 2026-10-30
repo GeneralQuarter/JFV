@@ -2,6 +2,7 @@
   "name": "jfv-app-api",
   "private": true,
   "version": "0.0.0",
+  "packageManager": "pnpm@12.16.1",
   "scripts": {
     "dev": "npx vercel@latest dev",
     "typecheck": "tsc --noEmit -p tsconfig.json",

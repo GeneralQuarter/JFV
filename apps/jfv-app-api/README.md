@@ -70,9 +70,14 @@ See `.env.example`. The required values are:
 
 ## Development
 
+Use Node 22 or 24 (see the root `.nvmrc`). Link the Vercel project once, then start the dev server:
+
 ```bash
+npx vercel@latest link
 pnpm --filter jfv-app-api dev
 ```
+
+Do not use `vercel dev --local`: without linked project settings, the CLI falls back to a static build for the project root, which an API-only project does not define. Node 26 also no longer bundles Corepack; use Node 22/24, or install Corepack separately if you must stay on Node 26.
 
 Run tests with:
 
