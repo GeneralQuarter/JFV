@@ -156,6 +156,18 @@ Point the Page app definition back to the legacy `plants-map` URL, or select the
 - Archive `treeviewer-api` when `jfv-map` is retired.
 - Remove the legacy apps from Vercel once the rollback window has passed.
 
+## Troubleshooting login
+
+If OAuth completes (you land on `APP_ORIGIN?auth=success`) but the app shows the failed-connection banner, check `https://<api-domain>/api/health` first:
+
+- `sessionStore: "redis"` — expected in production.
+- `sessionStore: "missing"` — set `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` and redeploy.
+- `sessionStore: "file"` — `NODE_ENV` is probably set to `development` in Vercel; remove it so file sessions are not used across instances.
+
+Then check the API logs. `session not found { hasSessionCookie: true }` means the cookie arrived but the Redis key could not be read. `hasSessionCookie: false` means the browser did not send `jfv_session`; verify the callback response has a `Set-Cookie: jfv_session=...` header and that `APP_ORIGIN` and the API share the same parent domain with `COOKIE_SAME_SITE=lax`.
+
+The Redis client must be created with `automaticDeserialization: false` because sessions are stored as JSON strings and parsed by `readSession`. With the default (`true`), Upstash returns an object, `JSON.parse` throws, and every authenticated request is treated as unauthenticated even though the session key exists.
+
 ## Known intentional differences
 
 - Water mode and 3D are not part of the Page editor.

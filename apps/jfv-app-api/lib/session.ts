@@ -106,7 +106,10 @@ class RedisSessionStore implements SessionStore {
   private readonly client: Redis;
 
   constructor(url: string, token: string) {
-    this.client = new Redis({ url, token });
+    // Sessions are stored as JSON strings and parsed by readSession. Upstash
+    // deserializes JSON values by default, which would return an object and
+    // make JSON.parse throw, so keep the raw string.
+    this.client = new Redis({ url, token, automaticDeserialization: false });
   }
 
   async get(key: string): Promise<string | null> {
