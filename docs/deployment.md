@@ -63,7 +63,8 @@ Copy environment values from `apps/jfv-app-api/.env.example`. Production require
 - Contentful space and environment
 - At least one entry in `CONTENTFUL_ALLOWED_USER_IDS` and/or `CONTENTFUL_ALLOWED_USER_EMAILS`
 - `SESSION_SECRET` (32+ random characters)
-- `APP_ORIGIN` and `ALLOWED_ORIGINS`
+- `APP_ORIGIN` — the `jfv-app` frontend origin, not the API origin; the OAuth callback redirects here
+- `ALLOWED_ORIGINS` — frontend origins allowed to call the API
 - Upstash `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` (or the `KV_REST_API_*` fallbacks)
 
 Create separate **confidential** Contentful OAuth applications for staging and production. The redirect URI must be HTTPS and point at `/api/auth/callback`.

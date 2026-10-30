@@ -65,7 +65,8 @@ See `.env.example`. The required values are:
 - Contentful space and environment
 - At least one allowed user ID or email
 - `SESSION_SECRET`
-- `APP_ORIGIN`
+- `APP_ORIGIN` — the **frontend** origin (for example `https://carte.example.com`), not the API origin; the OAuth callback redirects here
+- `ALLOWED_ORIGINS` — frontend origins allowed to call the API
 - Redis credentials in production
 
 ## Development
