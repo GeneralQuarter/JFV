@@ -115,7 +115,31 @@ pnpm --filter field-editor-plant-code upload:ci
 
 - `CONTENTFUL_ORG_ID`
 - `CONTENTFUL_APP_DEF_ID`
-- `CONTENTFUL_ACCESS_TOKEN` (a Contentful personal access token for CI)
+- `CONTENTFUL_ACCESS_TOKEN` — a **personal access token** created under Settings → CMA tokens, starting with `CFPAT-`, with access to the organization. A Delivery or Preview API token, or a token without org access, returns `401`/`403`.
+
+On Windows, the `$VAR` placeholders in `upload:ci` are not expanded because pnpm runs package scripts through `cmd.exe`, so the CLI receives the literal string `$CONTENTFUL_ACCESS_TOKEN`. Set the variables and pass them explicitly instead:
+
+```powershell
+$env:CONTENTFUL_ORG_ID = '<org-id>'
+$env:CONTENTFUL_APP_DEF_ID = '<app-definition-id>'
+$env:CONTENTFUL_ACCESS_TOKEN = 'CFPAT-...'
+
+pnpm --filter plants-map-page exec contentful-app-scripts upload --ci --bundle-dir ./build --organization-id $env:CONTENTFUL_ORG_ID --definition-id $env:CONTENTFUL_APP_DEF_ID --token $env:CONTENTFUL_ACCESS_TOKEN
+```
+
+Or run the interactive upload, which prompts for the organization, app definition, and token:
+
+```powershell
+pnpm --filter plants-map-page upload
+```
+
+Verify the token before uploading:
+
+```powershell
+Invoke-RestMethod https://api.contentful.com/users/me -Headers @{ Authorization = "Bearer $env:CONTENTFUL_ACCESS_TOKEN" }
+```
+
+`401` means the token is wrong, expired, or revoked. `403` means the token is valid but lacks organization or app-definition access.
 
 Use separate app definitions for staging and production. Remove any Vercel project for a micro app after its Contentful bundle is verified, so there is only one deployment path in production.
 
