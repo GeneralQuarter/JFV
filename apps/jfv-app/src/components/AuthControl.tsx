@@ -5,7 +5,6 @@ import {
   Avatar,
   Badge,
   Box,
-  Button,
   CircularProgress,
   Divider,
   IconButton,
@@ -53,20 +52,7 @@ const AuthControl: FC<AuthControlProps> = ({
     return <CircularProgress color="inherit" size={20} sx={{ ml: 1 }} />;
   }
 
-  if (status === 'anonymous') {
-    return (
-      <Button
-        color="inherit"
-        size="small"
-        startIcon={<LoginIcon />}
-        onClick={onLogin}
-        sx={{ ml: 1, textTransform: 'none', whiteSpace: 'nowrap' }}
-      >
-        Connexion
-      </Button>
-    );
-  }
-
+  const authenticated = status === 'authenticated' && Boolean(user);
   const label = user?.name || user?.email || 'Connecté';
   const initials = getInitials(user);
   const avatarUrl = user?.avatarUrl;
@@ -75,6 +61,11 @@ const AuthControl: FC<AuthControlProps> = ({
 
   const closeMenu = () => setAnchorEl(null);
 
+  const handleLogin = () => {
+    closeMenu();
+    onLogin();
+  };
+
   const handleLogout = () => {
     closeMenu();
     void onLogout();
@@ -82,38 +73,42 @@ const AuthControl: FC<AuthControlProps> = ({
 
   return (
     <>
-      <Tooltip title={`Connecté : ${label}`}>
+      <Tooltip title={authenticated ? `Connecté : ${label}` : 'Se connecter'}>
         <IconButton
-          aria-label="Compte Contentful"
+          aria-label={authenticated ? 'Compte Contentful' : 'Se connecter'}
           onClick={(event) => setAnchorEl(event.currentTarget)}
           size="small"
           sx={{ ml: 1 }}
         >
-          <Badge
-            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-            color="success"
-            overlap="circular"
-            variant="dot"
-          >
-            <Avatar
-              alt={label}
-              slotProps={{
-                img: {
-                  onError: () => setFailedAvatarUrl(avatarUrl),
-                  referrerPolicy: 'no-referrer',
-                },
-              }}
-              src={avatarSrc}
-              sx={{
-                bgcolor: 'secondary.main',
-                fontSize: 14,
-                height: 32,
-                width: 32,
-              }}
+          {authenticated ? (
+            <Badge
+              anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+              color="success"
+              overlap="circular"
+              variant="dot"
             >
-              {initials || <PersonIcon fontSize="small" />}
-            </Avatar>
-          </Badge>
+              <Avatar
+                alt={label}
+                slotProps={{
+                  img: {
+                    onError: () => setFailedAvatarUrl(avatarUrl),
+                    referrerPolicy: 'no-referrer',
+                  },
+                }}
+                src={avatarSrc}
+                sx={{
+                  bgcolor: 'secondary.main',
+                  fontSize: 14,
+                  height: 32,
+                  width: 32,
+                }}
+              >
+                {initials || <PersonIcon fontSize="small" />}
+              </Avatar>
+            </Badge>
+          ) : (
+            <PersonIcon fontSize="small" />
+          )}
         </IconButton>
       </Tooltip>
       <Menu
@@ -123,23 +118,34 @@ const AuthControl: FC<AuthControlProps> = ({
         open={Boolean(anchorEl)}
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
       >
-        <Box sx={{ maxWidth: 280, px: 2, py: 1 }}>
-          <Typography noWrap variant="subtitle2">
-            {user?.name || 'Connecté'}
-          </Typography>
-          {user?.email && (
-            <Typography color="text.secondary" noWrap variant="body2">
-              {user.email}
-            </Typography>
-          )}
-        </Box>
-        <Divider />
-        <MenuItem onClick={handleLogout}>
-          <ListItemIcon>
-            <LogoutIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Se déconnecter</ListItemText>
-        </MenuItem>
+        {authenticated ? (
+          <>
+            <Box sx={{ maxWidth: 280, px: 2, py: 1 }}>
+              <Typography noWrap variant="subtitle2">
+                {user?.name || 'Connecté'}
+              </Typography>
+              {user?.email && (
+                <Typography color="text.secondary" noWrap variant="body2">
+                  {user.email}
+                </Typography>
+              )}
+            </Box>
+            <Divider />
+            <MenuItem onClick={handleLogout}>
+              <ListItemIcon>
+                <LogoutIcon fontSize="small" />
+              </ListItemIcon>
+              <ListItemText>Se déconnecter</ListItemText>
+            </MenuItem>
+          </>
+        ) : (
+          <MenuItem onClick={handleLogin}>
+            <ListItemIcon>
+              <LoginIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText>Connexion</ListItemText>
+          </MenuItem>
+        )}
       </Menu>
     </>
   );
