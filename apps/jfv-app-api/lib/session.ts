@@ -25,7 +25,7 @@ export type Session = {
 };
 
 type SessionStore = {
-  get(key: string): Promise<string | null>;
+  get(key: string): Promise<Session | null>;
   set(key: string, value: string, ttlSeconds: number): Promise<void>;
   delete(key: string): Promise<void>;
 };
@@ -47,9 +47,20 @@ class FileSessionStore implements SessionStore {
     await mkdir(this.directory, { recursive: true });
   }
 
-  async get(key: string): Promise<string | null> {
+  async get(key: string): Promise<Session | null> {
+    let raw: string;
+
     try {
-      const raw = await readFile(this.filePath(key), 'utf8');
+      raw = await readFile(this.filePath(key), 'utf8');
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+        return null;
+      }
+
+      throw error;
+    }
+
+    try {
       const entry = JSON.parse(raw) as {
         value?: string;
         expiresAt?: number;
@@ -64,12 +75,8 @@ class FileSessionStore implements SessionStore {
         return null;
       }
 
-      return entry.value;
+      return JSON.parse(entry.value) as Session;
     } catch (error) {
-      if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
-        return null;
-      }
-
       if (error instanceof SyntaxError) {
         await this.delete(key);
         return null;
@@ -106,14 +113,15 @@ class RedisSessionStore implements SessionStore {
   private readonly client: Redis;
 
   constructor(url: string, token: string) {
-    // Sessions are stored as JSON strings and parsed by readSession. Upstash
-    // deserializes JSON values by default, which would return an object and
-    // make JSON.parse throw, so keep the raw string.
-    this.client = new Redis({ url, token, automaticDeserialization: false });
+    this.client = new Redis({ url, token });
   }
 
-  async get(key: string): Promise<string | null> {
-    return this.client.get<string>(key);
+  async get(key: string): Promise<Session | null> {
+    // The client deserializes JSON values by default, so the stored session
+    // comes back as an object instead of the string that was written.
+    const session = await this.client.get<Session>(key);
+
+    return session ?? null;
   }
 
   async set(key: string, value: string, ttlSeconds: number): Promise<void> {
@@ -169,17 +177,7 @@ export async function createSession(
 }
 
 export async function readSession(id: string): Promise<Session | null> {
-  const raw = await getStore().get(sessionKey(id));
-
-  if (!raw) {
-    return null;
-  }
-
-  try {
-    return JSON.parse(raw) as Session;
-  } catch {
-    return null;
-  }
+  return getStore().get(sessionKey(id));
 }
 
 export async function updateSession(

@@ -166,7 +166,7 @@ If OAuth completes (you land on `APP_ORIGIN?auth=success`) but the app shows the
 
 Then check the API logs. `session not found { hasSessionCookie: true }` means the cookie arrived but the Redis key could not be read. `hasSessionCookie: false` means the browser did not send `jfv_session`; verify the callback response has a `Set-Cookie: jfv_session=...` header and that `APP_ORIGIN` and the API share the same parent domain with `COOKIE_SAME_SITE=lax`.
 
-The Redis client must be created with `automaticDeserialization: false` because sessions are stored as JSON strings and parsed by `readSession`. With the default (`true`), Upstash returns an object, `JSON.parse` throws, and every authenticated request is treated as unauthenticated even though the session key exists.
+Each session store returns a parsed `Session`, so `readSession` must not `JSON.parse` the value again. Upstash deserializes JSON values by default; parsing the returned object throws and makes every authenticated request look unauthenticated even though the session key exists.
 
 ## Known intentional differences
 
